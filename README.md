@@ -1,2 +1,2 @@
-# homelab-config
-Homelab configuration
+# homelab
+Homelab configuration for ArgoCD
