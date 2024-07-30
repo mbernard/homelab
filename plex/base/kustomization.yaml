@@ -1,0 +1,13 @@
+resources:
+- deployment.yaml
+- service.yaml
+
+commonLabels:
+  app: plex
+
+commonAnnotations:
+  app: plex
+
+namePrefix: plex-
+
+nameSuffix: -v1
