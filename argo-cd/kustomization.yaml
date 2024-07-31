@@ -6,5 +6,5 @@ namespace: argocd
 resources:
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
-- azure-keyvault-cred
+- azure-keyvault-cred.yaml
 - ../overlays/cmp-sidecar
