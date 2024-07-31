@@ -4,10 +4,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+# https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
-
-# agrocd vault plugin https://github.com/argoproj-labs/argocd-vault-plugin/blob/main/manifests/cmp-sidecar/cmp-plugin.yaml
-- https://raw.githubusercontent.com/argoproj-labs/argocd-vault-plugin/main/manifests/cmp-sidecar/cmp-plugin.yaml
-
-patchesStrategicMerge:
-- https://raw.githubusercontent.com/argoproj-labs/argocd-vault-plugin/main/manifests/cmp-sidecar/argocd-repo-server.yaml
+- azure-keyvault-cred
+- ../overlays/cmp-sidecar
