@@ -17,7 +17,7 @@ spec:
             jobEnabled: false
           defaultSettings:
             defaultDataPath: /longhorn
-          csi
+          csi:
             kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
   destination:
     server: https://kubernetes.default.svc
