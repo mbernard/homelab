@@ -14,7 +14,6 @@ data:
         clientID: 466183256661-hp8psndegqp9km9f9ub74alr8mes879g.apps.googleusercontent.com
         # Connector config values starting with a "$" will read from the environment.
         clientSecret: $azurekv-secrets.google-oidc-client-secret
-        redirectURI: https://argocd.miguelbernard.com/api/dex/callback
       type: oidc
       id: google
       name: Google
