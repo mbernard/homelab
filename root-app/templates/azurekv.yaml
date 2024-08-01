@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: azurekv
-  namespace: argocd
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
 spec:

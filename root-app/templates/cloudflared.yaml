@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: cloudflared
   namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
@@ -9,11 +9,14 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mbernard/homelab.git
-    path: root-app/
+    path: cloudflared
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: cloudflared
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

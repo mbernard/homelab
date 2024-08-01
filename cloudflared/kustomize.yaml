@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cloudflared
+
+# https://developers.cloudflare.com/cloudflare-one/tutorials/many-cfd-one-tunnel/
+resources:
+- https://raw.githubusercontent.com/cloudflare/argo-tunnel-examples/master/named-tunnel-k8s/cloudflared.yaml
+
+patches:
+- config.yaml
