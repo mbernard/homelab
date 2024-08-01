@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground
+spec:
+  project: default
+  sources:
+    - chart: longhorn
+      repoURL: https://charts.longhorn.io/
+      targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to
+      helm:
+        values: |
+          preUpgradeChecker:
+            jobEnabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: longhorn
+syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
