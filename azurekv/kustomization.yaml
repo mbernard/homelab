@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: azurekv
 
 resources:
-- azurekv-secret-store
-- azurekv-secrets
+- azurekv-secret-store.yaml
+- azurekv-secrets.yaml
