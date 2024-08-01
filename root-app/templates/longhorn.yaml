@@ -16,9 +16,9 @@ spec:
           preUpgradeChecker:
             jobEnabled: false
           defaultSettings:
-            defaultDataPath: "/longhorn"
+            defaultDataPath: /longhorn
           csi
-            kubeletRootDir: "/var/snap/microk8s/common/var/lib/kubelet"
+            kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn
