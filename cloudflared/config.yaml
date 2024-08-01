@@ -39,7 +39,7 @@ data:
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
     ingress:
     - hostname: argocd.miguelbernard.com
-      service: 
+      service: argocd-server
     # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
     # - hostname: tunnel.example.com
     #   service: http://web-service:80
