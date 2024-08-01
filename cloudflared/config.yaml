@@ -37,9 +37,6 @@ data:
     # Remember, these rules route traffic from cloudflared to a local service. To route traffic
     # from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
-    ingress:
-    - hostname: argocd.miguelbernard.com
-      service: http://argocd-server.argocd.svc.cluster.local:80
     # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
     # - hostname: tunnel.example.com
     #   service: http://web-service:80
@@ -49,4 +46,7 @@ data:
     # - hostname: hello.example.com
     #   service: hello_world
     # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
+    ingress:
+    - hostname: argocd.miguelbernard.com
+      service: argocd-server
     - service: http_status:404
