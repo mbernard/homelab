@@ -6,3 +6,6 @@ namespace: argocd
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
+
+patches:
+- path: config.yaml
