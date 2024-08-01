@@ -48,5 +48,5 @@ data:
     # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
     ingress:
     - hostname: argocd.miguelbernard.com
-      service: https://argocd-server.argocd.svc.cluster.local:443
+      service: http://argocd-server.argocd.svc.cluster.local:80
     - service: http_status:404
