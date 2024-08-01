@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://argocd.example.com
+  dex.config: |
+    connectors:
+    - config:
+        issuer: https://accounts.google.com
+        clientID: 466183256661-hp8psndegqp9km9f9ub74alr8mes879g.apps.googleusercontent.com
+        # Connector config values starting with a "$" will read from the environment.
+        clientSecret: $azurekv-secrets.google-oidc-client-secret
+      type: oidc
+      id: google
+      name: Google

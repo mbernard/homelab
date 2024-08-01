@@ -7,3 +7,7 @@ Homelab configuration for ArgoCD
 2. Deploy ArgoCD manually with `kubectl apply -k argo-cd`
 3. Create an app manually in the ArgoCD UI or CLI `root-app`, point to `root-app` and synchronize
 4. Apps should now all deploy in the cluster
+
+# Utils
+
+1. Force refresh secrets from KV `kubectl annotate es azurekv-external-secret force-sync=$(date +%s) --overwrite`

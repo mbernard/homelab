@@ -8,4 +8,5 @@ resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
 
 patches:
-- path: config.yaml
+- path: argocd-cm.yaml
+- path: argocd-server.yaml
