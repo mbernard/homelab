@@ -49,4 +49,6 @@ data:
     ingress:
     - hostname: argocd.miguelbernard.com
       service: http://argocd-server.argocd.svc.cluster.local:80
+    - hostname: longhorn.miguelbernard.com
+      service: http://longhorn-frontend.svc.cluster.local:80
     - service: http_status:404
