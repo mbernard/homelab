@@ -4,7 +4,7 @@ metadata:
   name: longhorn
   namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
-  - resources-finalizer.argocd.argoproj.io/foreground
+    - resources-finalizer.argocd.argoproj.io/foreground
 spec:
   project: default
   sources:
@@ -23,8 +23,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: longhorn
 syncPolicy:
-    syncOptions:
+  syncOptions:
     - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
+  automated:
+    prune: true
+    selfHeal: true
