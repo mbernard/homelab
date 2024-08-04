@@ -9,7 +9,7 @@ namespace: emissary
 helmCharts:
   - name: emissary-ingress
     repo: https://app.getambassador.io
-    includeCRDs: true
+    # includeCRDs: true
     # version: "0.5.7"
     releaseName: emissary-ingress
     namespace: emissary
