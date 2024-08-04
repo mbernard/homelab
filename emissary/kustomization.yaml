@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: emissary
 
+resources:
+- https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
+  
 helmCharts:
   - name: emissary-ingress
     repo: https://app.getambassador.io
@@ -13,7 +16,3 @@ helmCharts:
     # valuesFile: values.yaml
     # valuesInline:
     #   fullnameOverride: helloagain
-
-patches:
-  - path: https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
-  
