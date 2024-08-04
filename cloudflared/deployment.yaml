@@ -1,12 +1,48 @@
-# homelab special config overrides
+# based on https://developers.cloudflare.com/cloudflare-one/tutorials/many-cfd-one-tunnel/
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloudflared
+  namespace: cloudflared
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudflared
   template:
+    metadata:
+      labels:
+        app: cloudflared
     spec:
+      containers:
+      - args:
+        - tunnel
+        - --config
+        - /etc/cloudflared/config/config.yaml
+        - run
+        image: cloudflare/cloudflared:2022.3.0
+        livenessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /ready
+            port: 2000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: cloudflared
+        volumeMounts:
+        - mountPath: /etc/cloudflared/config
+          name: config
+          readOnly: true
+        - mountPath: /etc/cloudflared/creds
+          name: creds
+          readOnly: true
       volumes:
-        - name: creds
-          secret:
-            secretName: azurekv-secrets
+      - name: creds
+        secret:
+          secretName: azurekv-secrets
+      - configMap:
+          items:
+          - key: config.yaml
+            path: config.yaml
+          name: cloudflared
+        name: config
