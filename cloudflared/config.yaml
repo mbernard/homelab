@@ -50,5 +50,5 @@ data:
     - hostname: argocd.miguelbernard.com
       service: http://argocd-server.argocd.svc.cluster.local:80
     - hostname: longhorn.miguelbernard.com
-      service: http://longhorn-frontend.longhorn.svc.cluster.local:80
+      service: longhorn-frontend.longhorn
     - service: http_status:404
