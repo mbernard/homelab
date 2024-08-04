@@ -13,3 +13,6 @@ helmCharts:
     # valuesFile: values.yaml
     # valuesInline:
     #   fullnameOverride: helloagain
+
+patch:
+- https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
