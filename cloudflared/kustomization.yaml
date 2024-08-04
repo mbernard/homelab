@@ -8,4 +8,10 @@ resources:
 - https://raw.githubusercontent.com/cloudflare/argo-tunnel-examples/master/named-tunnel-k8s/cloudflared.yaml
 
 patches:
-- path: config.yaml
+- path: deployment.yaml
+
+configMapGenerator:
+- name: cloudflared
+  behavior: merge
+  files:
+    - config.yaml

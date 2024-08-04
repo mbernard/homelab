@@ -1,0 +1,12 @@
+# homelab special config overrides
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+spec:
+  template:
+    spec:
+      volumes:
+        - name: creds
+          secret:
+            secretName: azurekv-secrets
