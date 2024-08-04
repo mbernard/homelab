@@ -3,8 +3,8 @@ kind: Kustomization
 
 namespace: emissary
 
-# resources:
-#   - https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
+resources:
+  - https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
 
 helmCharts:
   - name: emissary-ingress
