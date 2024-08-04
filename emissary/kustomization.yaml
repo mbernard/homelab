@@ -10,7 +10,7 @@ helmCharts:
     # version: "0.5.7"
     releaseName: emissary-ingress
     namespace: emissary
-    valuesFile: values.yaml
+    # valuesFile: values.yaml
     # valuesInline:
     #   fullnameOverride: helloagain
 
