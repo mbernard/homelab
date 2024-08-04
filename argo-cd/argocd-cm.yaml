@@ -8,6 +8,10 @@ metadata:
 data:
   kustomize.buildOptions: --enable-helm
   url: https://argocd.miguelbernard.com
+  resource.compareoptions: |
+    # disables status field diffing in specified resource types
+    # https://argo-cd.readthedocs.io/en/stable/user-guide/diffing/#ignoring-rbac-changes-made-by-aggregateroles
+    ignoreAggregatedRoles: true
   dex.config: |
     connectors:
     - config:
