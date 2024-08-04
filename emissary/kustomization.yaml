@@ -9,10 +9,13 @@ resources:
 helmCharts:
   - name: emissary-ingress
     repo: https://app.getambassador.io
-    # includeCRDs: true
+    includeCRDs: true
     # version: "0.5.7"
     releaseName: emissary-ingress
     namespace: emissary
     # valuesFile: values.yaml
     # valuesInline:
     #   fullnameOverride: helloagain
+
+patches:
+  - path: https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.yaml
