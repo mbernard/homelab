@@ -33,4 +33,6 @@ ingress:
     service: http://argocd-server.argocd.svc.cluster.local:80
   - hostname: longhorn.miguelbernard.com
     service: http://longhorn-frontend.longhorn
+  - hostname: emissary.miguelbernard.com
+    service: http://emissary-ingress.emissary
   - service: http_status:404
