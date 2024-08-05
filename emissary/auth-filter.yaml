@@ -1,0 +1,28 @@
+# https://www.getambassador.io/docs/edge-stack/latest/howtos/sso/google
+apiVersion: getambassador.io/v3alpha1
+kind: Filter
+metadata:
+  name: google
+spec:
+  OAuth2:
+    # Google openid-configuration endpoint can be found at https://accounts.google.com/.well-known/openid-configuration
+    authorizationURL: https://accounts.google.com
+    # Client ID from step 6 above
+    clientID: 466183256661-h4mm6ej5u2csgmq38vtr0h5dbh2rh1o7.apps.googleusercontent.com
+    # Secret created in step 6 above
+    secret: $azurekv-secrets:emissary-client-secret
+    # The protectedOrigin is the scheme and Host of your Ambassador Edge Stack endpoint
+    protectedOrigins:
+    - origin: https://emissary.miguelbernard.com
+---
+apiVersion: getambassador.io/v3alpha1
+kind: FilterPolicy
+metadata:
+  name: google-policy
+spec:
+  rules:
+      # Requires authentication on requests from any hostname
+    - host: "*"
+      # Identifies which Filter to use for the path and host above
+      filters:
+        - name: google
