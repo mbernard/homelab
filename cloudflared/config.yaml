@@ -12,6 +12,13 @@ metrics: 0.0.0.0:2000
 # autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
 # recommend using autoupdate.
 no-autoupdate: true
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/origin-configuration/#access-settings
+originRequest:
+  access:
+    required: true
+    teamName: migb
+    audTag:
+      - aud1 65403da30b4ec456f919775504c3a021e87eb4be54b179336a04abe44bcd6a1b
 # The `ingress` block tells cloudflared which local service to route incoming
 # requests to. For more about ingress rules, see
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
