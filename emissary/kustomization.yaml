@@ -10,7 +10,7 @@ helmCharts:
     namespace: emissary
 
 resources:
+  - listeners.yaml 
+  - hosts.yaml
   - auth-filter.yaml
-  - host.yaml
-  - listener.yaml
-  - mapping-test.yaml
+  - ../longhorn/mapping.yaml
