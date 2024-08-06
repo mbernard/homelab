@@ -13,4 +13,4 @@ resources:
   - listeners.yaml 
   - hosts.yaml
   - auth-filter.yaml
-  - ../longhorn/mapping.yaml
+  - mapping.yaml
