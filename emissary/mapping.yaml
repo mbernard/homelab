@@ -1,8 +1,0 @@
-apiVersion: getambassador.io/v3alpha1
-kind:  Mapping
-metadata:
-  name:  longhorn-mapping
-spec:
-  hostname: longhorn.miguelbernard.com
-  prefix: /
-  service: longhorn-frontend
