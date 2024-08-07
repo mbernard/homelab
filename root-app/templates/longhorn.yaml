@@ -13,9 +13,9 @@ spec:
       targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to
       helm:
         valueFiles:
-        - $values/values.yaml
+        - $values/longhorn/values.yaml
+    # values from git
     - repoURL: https://github.com/mbernard/homelab.git
-      path: longhorn
       targetRevision: HEAD
       ref: values
   destination:
