@@ -13,7 +13,11 @@ spec:
       targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to
       helm:
         valueFiles:
-        - ../longhorn/values.yaml     
+        - $longhorn-values/values.yaml
+    - repoURL: https://github.com/mbernard/homelab.git
+      path: longhorn
+      targetRevision: HEAD
+      ref: longhorn-values
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn
