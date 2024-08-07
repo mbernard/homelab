@@ -1,6 +1,8 @@
 preUpgradeChecker:
   jobEnabled: false
 defaultSettings:
-  defaultDataPath: /longhorn
+  defaultDataPath: /mnt/longhorn
+  createDefaultDiskLabeledNodes: true
+  defaultReplicaCount: 2
 csi:
   kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
