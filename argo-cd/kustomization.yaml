@@ -6,8 +6,8 @@ namespace: argocd
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
-- argocd-rbac-cm.yaml
 
 patches:
 - path: argocd-cm.yaml 
+- path: argocd-rbac-cm.yaml
 - path: argocd-server.yaml
