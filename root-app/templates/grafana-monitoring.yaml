@@ -10,7 +10,7 @@ spec:
   sources:
     - chart: k8s-monitoring
       repoURL: https://grafana.github.io/helm-charts
-      targetRevision: ''
+      targetRevision: 1.4.6
       helm:
         valueFiles:
         - $values/grafana-monitoring/values.yaml
