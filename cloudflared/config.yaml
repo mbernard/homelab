@@ -14,6 +14,7 @@ metrics: 0.0.0.0:2000
 no-autoupdate: true
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/origin-configuration/#access-settings
 originRequest:
+  noTLSVerify: true
   access:
     required: true
     teamName: migb
@@ -41,5 +42,5 @@ ingress:
   - hostname: longhorn.miguelbernard.com
     service: http://longhorn-frontend.longhorn
   - hostname: k8s.miguelbernard.com
-    service: http://kubernetes-dashboard.kube-system:443
+    service: https://kubernetes-dashboard.kube-system
   - service: http_status:404
