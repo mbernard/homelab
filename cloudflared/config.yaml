@@ -41,5 +41,5 @@ ingress:
   - hostname: longhorn.miguelbernard.com
     service: http://longhorn-frontend.longhorn
   - hostname: k8s.miguelbernard.com
-    service: https://kubernetes-dashboard.kube-system
+    service: http://kubernetes-dashboard.kube-system:443
   - service: http_status:404
