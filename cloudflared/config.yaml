@@ -45,4 +45,6 @@ ingress:
     service: https://kubernetes-dashboard.kube-system
   - hostname: stash.miguelbernard.com
     service: http://stash.stash:9999
+  - hostname: plex.miguelbernard.com
+    service: https://plex.plex:32400
   - service: http_status:404

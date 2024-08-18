@@ -1,0 +1,46 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: plex-udp
+  namespace: plex
+  annotations:
+    metallb.universe.tf/allow-shared-ip: plexserver # annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.200
+spec:
+  selector:
+    run: plexserver
+  ports:
+  - port: 1900
+    targetPort: 1900
+    name: dlna-udp
+    protocol: UDP
+  - port: 5353
+    targetPort: 5353
+    name: discovery-udp
+    protocol: UDP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.10.200
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: plex-tcp
+  namespace: plex
+  annotations:
+    metallb.universe.tf/allow-shared-ip: plexserver
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.200
+spec:
+  selector:
+    run: plexserver
+  ports:                      
+  - port: 32400
+    targetPort: 32400
+    name: pms-web
+    protocol: TCP
+  - port: 32469
+    targetPort: 32469
+    name: dlna-tcp
+    protocol: TCP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.10.200
+
