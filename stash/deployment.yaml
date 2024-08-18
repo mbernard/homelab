@@ -28,7 +28,7 @@ spec:
             - name: STASH_CACHE
               value: /cache/
             - name: STASH_PORT
-              value: 9999
+              value: '9999'
           volumeMounts:
             ## Point this at your collection.
             - name: nfs-porn
