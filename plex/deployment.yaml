@@ -38,11 +38,11 @@ spec:
             - name: PLEX_NO_AUTH_NETWORKS
               value: ''
             - name: PLEX_BETA_INSTALL
-              value: true
+              value: 'true'
             - name: NVIDIA_VISIBLE_DEVICES  
-              value: "all"           
+              value: 'all'          
             - name: NVIDIA_DRIVER_CAPABILITIES
-              value: "compute,video,utility"
+              value: 'compute,video,utility'
           volumeMounts:
             - name: data
               subPath: media
