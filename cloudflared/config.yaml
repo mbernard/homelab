@@ -43,4 +43,6 @@ ingress:
     service: http://longhorn-frontend.longhorn
   - hostname: k8s.miguelbernard.com
     service: https://kubernetes-dashboard.kube-system
+  - hostname: stash.miguelbernard.com
+    service: http://stash.stash:9999
   - service: http_status:404
