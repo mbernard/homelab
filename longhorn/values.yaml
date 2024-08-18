@@ -6,8 +6,3 @@ defaultSettings:
   defaultReplicaCount: 2
 csi:
   kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
-persistence:
-   # -- Replica count of the default Longhorn StorageClass.
-  defaultClassReplicaCount: 2
-  # -- Data locality of the default Longhorn StorageClass. (Options: "disabled", "best-effort")
-  defaultDataLocality: best-effort

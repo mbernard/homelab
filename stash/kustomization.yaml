@@ -4,4 +4,6 @@ kind: Kustomization
 namespace: stash
 
 resources:
+- storage.yaml
+- service.yaml
 - deployment.yaml
