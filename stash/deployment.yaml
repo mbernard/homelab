@@ -38,23 +38,23 @@ spec:
               readOnly: true
             ## Keep configs, scrapers, and plugins here.
             - name: stash-vol
-              subPath: /root
+              subPath: root
               mounthPath: /root/.stash
             ## This is where your stash's metadata lives
             - name: stash-vol
-              subPath: /metadata
+              subPath: metadata
               mounthPath: /metadata
             ## Any other cache content.
             - name: stash-vol
-              subPath: /cache
+              subPath: cache
               mounthPath: /cache
             ## Where to store binary blob data (scene covers, images)
             - name: stash-vol
-              subPath: /blobs
+              subPath: blobs
               mounthPath: /blobs
             ## Where to store generated content (screenshots,previews,transcodes,sprites)
             - name: stash-vol
-              subPath: /generated
+              subPath: generated
               mounthPath: /generated
       volumes:
         - name: nfs-porn
