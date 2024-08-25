@@ -4,21 +4,17 @@ metadata:
   name: stash-server
   namespace: stash
 spec:
+  replicas: 1  
   selector:
     matchLabels:
       run: stash
-  replicas: 1
   template:
     metadata:
       labels:
         run: stash
     spec:
       containers:
-        - image: stashapp/stash
-          name: stash
-          ports:
-            - containerPort: 9999
-          env:
+        - env:
             - name: STASH_STASH
               value: /data/
             - name: STASH_GENERATED
@@ -29,41 +25,45 @@ spec:
               value: /cache/
             - name: STASH_PORT
               value: '9999'
+          image: stashapp/stash
+          name: stash          
+          ports:
+            - containerPort: 9999
           volumeMounts:
             ## Point this at your collection.
-            - name: nfs-porn
-              mountPath: /data
-            - name: tz
-              mountPath: /etc/localtime
+            - mountPath: /data
+              name: nfs-porn
+            - mountPath: /etc/localtime
+              name: tz
               readOnly: true
             ## Keep configs, scrapers, and plugins here.
-            - name: stash-vol
+            - mountPath: /root/.stash
+              name: stash-vol
               subPath: root
-              mountPath: /root/.stash
             ## This is where your stash's metadata lives
-            - name: stash-vol
+            - mountPath: /metadata
+              name: stash-vol
               subPath: metadata
-              mountPath: /metadata
             ## Any other cache content.
-            - name: stash-vol
+            - mountPath: /cache
+              name: stash-vol
               subPath: cache
-              mountPath: /cache
             ## Where to store binary blob data (scene covers, images)
-            - name: stash-vol
+            - mountPath: /blobs
+              name: stash-vol
               subPath: blobs
-              mountPath: /blobs
             ## Where to store generated content (screenshots,previews,transcodes,sprites)
-            - name: stash-vol
+            - mountPath: /generated
+              name: stash-vol
               subPath: generated
-              mountPath: /generated
       volumes:
         - name: nfs-porn
           nfs:
-            server: 192.168.10.10
             path: /volume1/private/Porn
-        - name: tz
-          hostPath:
+            server: 192.168.10.10
+        - hostPath:
             path: /etc/localtime
+          name: tz
         - name: stash-vol
           persistentVolumeClaim:
             claimName: stash-pvc

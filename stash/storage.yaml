@@ -1,11 +1,32 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: stash-pv
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    # volumeAttributes:
+    #   numberOfReplicas: '2'
+    #   staleReplicaTimeout: '2880'
+    volumeHandle: stash-pv
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: longhorn
+  volumeMode: Filesystem
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: stash-pvc
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 10Gi
+  storageClassName: longhorn
+  volumeName: stash-pv
