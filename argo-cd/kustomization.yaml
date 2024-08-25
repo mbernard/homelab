@@ -11,3 +11,4 @@ patches:
 - path: argocd-cm.yaml 
 - path: argocd-rbac-cm.yaml
 - path: argocd-server.yaml
+- path: repo.yaml
