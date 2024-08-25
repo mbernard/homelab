@@ -6,8 +6,8 @@ metadata:
 spec:
   data:
     - remoteRef:
-        key: token
-      secretKey: github-personal-access-token-argocd  
+        key: github-personal-access-token-argocd
+      secretKey: token 
   refreshInterval: 1m
   secretStoreRef:
     kind: ClusterSecretStore
