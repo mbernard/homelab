@@ -1,9 +1,5 @@
 # Git repositories configure Argo CD with (optional).
 apiVersion: v1
-data:
-  password: $azurekv-secrets:github-personal-access-token-argocd
-  url: aHR0cHM6Ly9naXRodWIuY29tL21iZXJuYXJkL2hvbWVsYWI= # https://github.com/mbernard/homelab
-  username: bWJlcm5hcmQ= # mbernard
 kind: Secret
 metadata:
   labels:
@@ -11,3 +7,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
   name: homelab
   namespace: argocd
+stringData:
+  password: $azurekv-secrets:github-personal-access-token-argocd
+  url: https://github.com/mbernard/homelab #aHR0cHM6Ly9naXRodWIuY29tL21iZXJuYXJkL2hvbWVsYWI=
+  username: mbernard # bWJlcm5hcmQ=
