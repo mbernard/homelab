@@ -7,6 +7,7 @@ data:
 kind: Secret
 metadata:
   labels:
+    app.kubernetes.io/part-of: argocd
     argocd.argoproj.io/secret-type: repository
   name: homelab
   namespace: argocd
