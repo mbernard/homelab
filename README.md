@@ -21,7 +21,6 @@ helm install external-secrets external-secrets/external-secrets -n external-secr
 1. Navigate to Homelab root
 1. Create `argocd` namespace with `kubectl create namespace argocd`
 1. Deploy ArgoCD manually with `kubectl apply -k argo-cd`
-1. Edit `password` field in `homelab` secret: `kubectl edit secrets homelab -n argocd`
 1. Change the argocd-server service type to LoadBalancer: `kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'`
 1. `argocd admin initial-password -n argocd` to get the password
 1. `argocd login <ARGOCD_SERVER>`
