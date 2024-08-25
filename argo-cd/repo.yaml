@@ -1,13 +1,26 @@
-# Git repositories configure Argo CD with (optional).
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
 metadata:
-  labels:
-    app.kubernetes.io/part-of: argocd
-    argocd.argoproj.io/secret-type: repository
-  name: homelab
-  namespace: argocd
-stringData:
-  password: $azurekv-secrets:github-personal-access-token-argocd
-  url: https://github.com/mbernard/homelab #aHR0cHM6Ly9naXRodWIuY29tL21iZXJuYXJkL2hvbWVsYWI=
-  username: mbernard # bWJlcm5hcmQ=
+  name: git-homelab-cred-external-secret
+spec:
+  data:
+    - remoteRef:
+        key: token
+      secretKey: github-personal-access-token-argocd  
+  refreshInterval: 1m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: azurekv-secret-store 
+  target:
+    name: git-homelab-cred
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: argocd
+        argocd.argoproj.io/secret-type: repository
+      name: homelab
+      namespace: argocd
+    stringData:
+      password: "{{ .token }}"
+      url: https://github.com/mbernard/homelab 
+      username: mbernard
