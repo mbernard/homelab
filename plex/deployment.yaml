@@ -4,64 +4,64 @@ metadata:
   name: plex-server
   namespace: plex
 spec:
+  replicas: 1
   selector:
     matchLabels:
       run: plex
-  replicas: 1
   template:
     metadata:
       labels:
         run: plex
     spec:
       containers:
-        - image: ghcr.io/hotio/plex
+      - env:
+        - name: PLEX_CLAIM_TOKEN
+          value: claim-ABVvLxy-6rgnWX-fnLkC
+        - name: PLEX_ADVERTISE_URL
+          value: http://192.168.10.200:32400
+        - name: PLEX_NO_AUTH_NETWORKS
+          value: ''
+        - name: PLEX_BETA_INSTALL
+          value: 'true'
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: 'all'
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: 'compute,video,utility'
+        image: ghcr.io/hotio/plex
+        name: plex
+        ports:
+        - containerPort: 32400 #PMS
           name: plex
-          ports:
-            - containerPort: 32400 #PMS
-              name: plex
-            - containerPort: 32400
-              name: plex-udp
-              protocol: UDP
-            - containerPort: 32469 #Plex DLNA
-              name: plex-dlna
-            - containerPort: 5353
-              name: plex-discovery
-              protocol: UDP
-            - containerPort: 1900 #Plex DLNA
-              name: plex-dlna-udp
-              protocol: UDP
-          env:
-            - name: PLEX_CLAIM_TOKEN
-              value: claim-ABVvLxy-6rgnWX-fnLkC
-            - name: PLEX_ADVERTISE_URL
-              value: http://192.168.10.200:32400
-            - name: PLEX_NO_AUTH_NETWORKS
-              value: ''
-            - name: PLEX_BETA_INSTALL
-              value: 'true'
-            - name: NVIDIA_VISIBLE_DEVICES  
-              value: 'all'          
-            - name: NVIDIA_DRIVER_CAPABILITIES
-              value: 'compute,video,utility'
-          volumeMounts:
-            - name: data
-              subPath: media
-              mountPath: /media
-            - name: tz
-              mountPath: /etc/localtime
-              readOnly: true
-            - name: plex-vol
-              mountPath: /config
+        - containerPort: 32400
+          name: plex-udp
+          protocol: UDP
+        - containerPort: 32469 #Plex DLNA
+          name: plex-dlna
+        - containerPort: 5353
+          name: plex-discovery
+          protocol: UDP
+        - containerPort: 1900 #Plex DLNA
+          name: plex-dlna-udp
+          protocol: UDP
+        volumeMounts:
+        - mountPath: /media
+          name: data
+          subPath: media
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: plex-vol
       volumes:
-        - name: data
-          nfs:
-            server: 192.168.10.10
-            path: /volume1/data
-        - name: tz
-          hostPath:
-            path: /etc/localtime
-        - name: plex-vol
-          persistentVolumeClaim:
-            claimName: plex-pvc
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: plex-vol
+        persistentVolumeClaim:
+          claimName: plex-pvc
 
 

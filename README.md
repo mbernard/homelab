@@ -43,7 +43,5 @@ argocd app create root-app --repo https://github.com/mbernard/homelab.git --path
 1. Grafana-monitoring
 1. Use the UI to sync other apps
 
-
-
 # Utils
 
