@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: plex
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
+  name: plex
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
 spec:
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/mbernard/homelab.git
     path: plex
+    repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: plex
   syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true

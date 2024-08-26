@@ -1,29 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-monitoring
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
+  name: grafana-monitoring
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
 spec:
+  destination:
+    namespace: grafana-monitoring
+    server: https://kubernetes.default.svc
   project: default
   sources:
-    - chart: k8s-monitoring
-      repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 1.4.6
-      helm:
-        valueFiles:
-        - $values/grafana-monitoring/values.yaml
-    # values from git
-    - repoURL: https://github.com/mbernard/homelab.git
-      targetRevision: HEAD
-      ref: values
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: grafana-monitoring
+  - chart: k8s-monitoring
+    helm:
+      valueFiles:
+      - $values/grafana-monitoring/values.yaml
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 1.4.6
+  # values from git
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
   syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true

@@ -1,32 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+  destination:
+    namespace: longhorn
+    server: https://kubernetes.default.svc
   finalizers:
-    - resources-finalizer.argocd.argoproj.io/foreground
-spec:
+  - resources-finalizer.argocd.argoproj.io/foreground
+  name: longhorn
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UIspec:
   project: default
   sources:
-    - repoURL: https://github.com/mbernard/homelab.git
-      path: longhorn/resources
-      targetRevision: HEAD
-    - chart: longhorn
-      repoURL: https://charts.longhorn.io/
-      targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to
-      helm:
-        valueFiles:
-        - $values/longhorn/values.yaml
-    # values from git
-    - repoURL: https://github.com/mbernard/homelab.git
-      targetRevision: HEAD
-      ref: values
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: longhorn
+  - path: longhorn/resources
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+  - chart: longhorn
+    helm:
+      valueFiles:
+      - $values/longhorn/values.yaml
+    repoURL: https://charts.longhorn.io/
+    targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to    # values from git
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
   syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
+    - CreateNamespace=true

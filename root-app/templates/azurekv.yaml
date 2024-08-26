@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: azurekv
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+  destination:
+    namespace: azurekv
+    server: https://kubernetes.default.svc
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
-spec:
+  name: azurekv
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UIspec:
   project: default
   source:
-    repoURL: https://github.com/mbernard/homelab.git
     path: azurekv
+    repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: azurekv
   syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true

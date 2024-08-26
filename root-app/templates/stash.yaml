@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: stash
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
+  name: stash
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
 spec:
+  destination:
+    namespace: stash
+    server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/mbernard/homelab.git
     path: stash
+    repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: stash
   syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
