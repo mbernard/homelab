@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  destination:
-    namespace: longhorn
-    server: https://kubernetes.default.svc
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
   name: longhorn
   namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
 spec:
+  destination:
+    namespace: longhorn
+    server: https://kubernetes.default.svc
   project: default
   sources:
   - path: longhorn/resources
@@ -19,7 +19,8 @@ spec:
       valueFiles:
       - $values/longhorn/values.yaml
     repoURL: https://charts.longhorn.io/
-    targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to    # values from git
+    targetRevision: v1.6.2 # Replace with the Longhorn version you'd like to install or upgrade to    
+    # values from git
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
