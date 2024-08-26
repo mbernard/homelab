@@ -29,7 +29,7 @@ kubectl config set-context --current --namespace=argocd
 argocd app create root-app --repo https://github.com/mbernard/homelab.git --path root-app --dest-server https://kubernetes.default.svc --dest-namespace root-app
 ```
 1. Sync root-app: `argocd app sync root-app`
-1. Apps should now all deploy in the cluster
+1. Sync cloudflared: `argocd app sync cloudflared`
 1. Wait a few min for https://argocd.miguelbernard.com/ to be available
 
 

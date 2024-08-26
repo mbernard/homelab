@@ -7,7 +7,8 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
   name: cloudflared
-  namespace: argocd # Apps need to be in the argocd namespace to appear in the UIspec:
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+spec:
   project: default
   source:
     path: cloudflared
