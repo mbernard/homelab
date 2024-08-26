@@ -3,23 +3,7 @@
 # this lets you use various k8s templating solutions (e.g. Helm charts) to
 # parameterize your config, instead of just using string literals.
 
-# Name of the tunnel you want to run
-tunnel: homelab
 credentials-file: /etc/cloudflared/creds/cloudflared-cred
-# Serves the metrics server under /metrics and the readiness server under /ready
-metrics: 0.0.0.0:2000
-# Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so
-# autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
-# recommend using autoupdate.
-no-autoupdate: true
-# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/origin-configuration/#access-settings
-originRequest:
-  noTLSVerify: true
-  access:
-    required: true
-    teamName: migb
-    audTag:
-      - aud1 65403da30b4ec456f919775504c3a021e87eb4be54b179336a04abe44bcd6a1b
 # The `ingress` block tells cloudflared which local service to route incoming
 # requests to. For more about ingress rules, see
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
@@ -37,14 +21,29 @@ originRequest:
 #   service: hello_world
 # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
 ingress:
-  - hostname: argocd.miguelbernard.com
-    service: http://argocd-server.argocd.svc.cluster.local:80
-  - hostname: longhorn.miguelbernard.com
-    service: http://longhorn-frontend.longhorn
-  - hostname: k8s.miguelbernard.com
-    service: https://kubernetes-dashboard.kube-system
-  - hostname: stash.miguelbernard.com
-    service: http://stash.stash:9999
-  - hostname: plex.miguelbernard.com
-    service: https://plex.plex:32400
-  - service: http_status:404
+- hostname: argocd.miguelbernard.com
+  service: http://argocd-server.argocd.svc.cluster.local:80
+- hostname: longhorn.miguelbernard.com
+  service: http://longhorn-frontend.longhorn
+- hostname: k8s.miguelbernard.com
+  service: https://kubernetes-dashboard.kube-system
+- hostname: stash.miguelbernard.com
+  service: http://stash.stash:9999
+- hostname: plex.miguelbernard.com
+  service: https://plex.plex:32400
+- service: http_status:404
+# Serves the metrics server under /metrics and the readiness server under /ready
+metrics: 0.0.0.0:2000
+# Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so
+# autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
+# recommend using autoupdate.
+no-autoupdate: true
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/origin-configuration/#access-settings
+originRequest:
+  access:
+    audTag:
+    - aud1 65403da30b4ec456f919775504c3a021e87eb4be54b179336a04abe44bcd6a1b
+    required: true
+    teamName: migb
+  noTLSVerify: true# Name of the tunnel you want to run
+tunnel: homelab

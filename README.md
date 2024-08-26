@@ -31,6 +31,16 @@ argocd app create root-app --repo https://github.com/mbernard/homelab.git --path
 1. Sync root-app: `argocd app sync root-app`
 1. Sync cloudflared: `argocd app sync cloudflared`
 1. Wait a few min for https://argocd.miguelbernard.com/ to be available
+
+## Validate
+1. Switch back Argocd to ClusterIP to avoid being stuck indefinitely in "Progressing" `kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "ClusterIP"}}'`
+1. Valide Apps or healthy in this order
+1. root-app
+1. ArgoCD
+1. External-secrets
+1. AzureKV
+1. Longhorn (check the UI and restore backups if needed)
+1. Grafana-monitoring
 1. Use the UI to sync other apps
 
 
