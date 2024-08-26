@@ -7,5 +7,5 @@ spec:
   local:
     v4pools:
     - aggregation: default
-      pool: 192.168.10.200-192.168.10.255
+      pool: 192.168.10.210-192.168.10.255
       subnet: 192.168.10.0/24

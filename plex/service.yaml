@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    metallb.universe.tf/allow-shared-ip: plexserver # annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
-    metallb.universe.tf/loadBalancerIPs: 192.168.10.200
+    purelb.io/addresses: 192.168.10.200
+    purelb.io/allow-shared-ip: plexserver # annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
   name: plex-udp
   namespace: plex
 spec:
@@ -25,8 +25,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    metallb.universe.tf/allow-shared-ip: plexserver
-    metallb.universe.tf/loadBalancerIPs: 192.168.10.200
+    purelb.io/addresses: 192.168.10.200
+    purelb.io/allow-shared-ip: plexserver
   name: plex-tcp
   namespace: plex
 spec:
