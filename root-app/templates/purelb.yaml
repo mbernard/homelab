@@ -16,7 +16,7 @@ spec:
     targetRevision: HEAD
   - chart: purelb
     repoURL: https://gitlab.com/api/v4/projects/20400619/packages/helm/stable
-    # targetRevision: v1.6.2
+    targetRevision: v0.9.0
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
