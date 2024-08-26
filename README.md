@@ -31,6 +31,7 @@ argocd app create root-app --repo https://github.com/mbernard/homelab.git --path
 1. Sync root-app: `argocd app sync root-app`
 1. Sync cloudflared: `argocd app sync cloudflared`
 1. Wait a few min for https://argocd.miguelbernard.com/ to be available
+1. Use the UI to sync other apps
 
 
 
