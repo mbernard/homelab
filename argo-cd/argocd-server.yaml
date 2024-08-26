@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
+    app.kubernetes.io/component: server
     app.kubernetes.io/name: argocd-server
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/component: server
   name: argocd-server
 spec:
   selector:
@@ -15,12 +15,23 @@ spec:
       labels:
         app.kubernetes.io/name: argocd-server
     spec:
-      serviceAccountName: argocd-server
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: argocd-server
+                topologyKey: kubernetes.io/hostname
+              weight: 100            
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/part-of: argocd
+                topologyKey: kubernetes.io/hostname      
+              weight: 5      
       containers:
-        - name: argocd-server
-          image: quay.io/argoproj/argocd:latest
-          imagePullPolicy: Always
-          args:
+        - args:
             - /usr/local/bin/argocd-server
             - --insecure
           env:
@@ -32,74 +43,74 @@ spec:
             - name: ARGOCD_SERVER_INSECURE
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.insecure
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_BASEHREF
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.basehref
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_ROOTPATH
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.rootpath
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_LOGFORMAT
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.log.format
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_LOG_LEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.log.level
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_REPO_SERVER
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: repo.server
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_DEX_SERVER
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.dex.server
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_DISABLE_AUTH
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.disable.auth
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_ENABLE_GZIP
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.enable.gzip
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_REPO_SERVER_TIMEOUT_SECONDS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.repo.server.timeout.seconds
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_X_FRAME_OPTIONS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.x.frame.options
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_CONTENT_SECURITY_POLICY
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
                   key: server.content.security.policy
+                  name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_SERVER_REPO_SERVER_PLAINTEXT
               valueFrom:
@@ -293,31 +304,17 @@ spec:
                   name: argocd-cmd-params-cm
                   key: applicationsetcontroller.enable.scm.providers
                   optional: true
-          volumeMounts:
-            - name: ssh-known-hosts
-              mountPath: /app/config/ssh
-            - name: tls-certs
-              mountPath: /app/config/tls
-            - name: argocd-repo-server-tls
-              mountPath: /app/config/server/tls
-            - name: argocd-dex-server-tls
-              mountPath: /app/config/dex/tls
-            - mountPath: /home/argocd
-              name: plugins-home
-            - mountPath: /tmp
-              name: tmp
-            - name: argocd-cmd-params-cm
-              mountPath: /home/argocd/params
-          ports:
-            - containerPort: 8080
-            - containerPort: 8083
-          livenessProbe:
+          image: quay.io/argoproj/argocd:latest
+          imagePullPolicy: Always          livenessProbe:
             httpGet:
               path: /healthz?full=true
               port: 8080
             initialDelaySeconds: 3
             periodSeconds: 30
             timeoutSeconds: 5
+          name: argocd-server          ports:
+            - containerPort: 8080
+            - containerPort: 8083
           readinessProbe:
             httpGet:
               path: /healthz
@@ -333,7 +330,22 @@ spec:
                 - ALL
             seccompProfile:
               type: RuntimeDefault
-      volumes:
+          volumeMounts:
+            - name: ssh-known-hosts
+              mountPath: /app/config/ssh
+            - name: tls-certs
+              mountPath: /app/config/tls
+            - name: argocd-repo-server-tls
+              mountPath: /app/config/server/tls
+            - name: argocd-dex-server-tls
+              mountPath: /app/config/dex/tls
+            - mountPath: /home/argocd
+              name: plugins-home
+            - mountPath: /tmp
+              name: tmp
+            - name: argocd-cmd-params-cm
+              mountPath: /home/argocd/params
+      serviceAccountName: argocd-server      volumes:
         - emptyDir: {}
           name: plugins-home
         - emptyDir: {}
@@ -371,18 +383,3 @@ spec:
             items:
             - key: server.profile.enabled
               path: profiler.enabled
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/name: argocd-server
-                topologyKey: kubernetes.io/hostname
-            - weight: 5
-              podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/part-of: argocd
-                topologyKey: kubernetes.io/hostname
