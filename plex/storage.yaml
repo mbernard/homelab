@@ -10,7 +10,7 @@ spec:
   csi:
     driver: driver.longhorn.io
     fsType: ext4
-    # volumeHandle: plex-pv
+    volumeHandle: plex-pv
   persistentVolumeReclaimPolicy: Delete
   storageClassName: longhorn
   volumeMode: Filesystem
