@@ -14,7 +14,7 @@ spec:
         run: qbittorrent
     spec:
       containers:
-        image: hotio/qbittorrent:latest
+      - image: hotio/qbittorrent:latest
         name: qbittorrent
         ports:
         - containerPort: 8080
@@ -31,11 +31,11 @@ spec:
         - mountPath: /config
           name: qbittorrent-vol
       securityContext:
+        capabilities:
+          add: ["NET_ADMIN"]
         sysctls:
         - name: net.ipv4.conf.all.src_valid_mark
           value: 1
-        capabilities:
-        add: ["NET_ADMIN"]
       volumes:
       - name: data
         nfs:
