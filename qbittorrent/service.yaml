@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  name: qbittorrent
+  namespace: qbittorrent
+spec:
+  ports:
+  - name: seeding
+    port: 24503
+    protocol: TCP
+    targetPort: 24503
+  - name: web-ui
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: qbittorrent
+

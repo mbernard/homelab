@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: qbittorrent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: qbittorrent
+  template:
+    metadata:
+      labels:
+        run: qbittorrent
+    spec:
+      containers:
+        image: hotio/qbittorrent:latest
+        name: qbittorrent
+        ports:
+        - containerPort: 8080
+          name: web-ui
+        - containerPort: 24503
+          name: seeding
+        volumeMounts:
+        - mountPath: data/torrents
+          name: data
+          subPath: torrents
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: qbittorrent-vol
+      securityContext:
+        sysctls:
+        - name: net.ipv4.conf.all.src_valid_mark
+          value: 1
+        capabilities:
+        add: ["NET_ADMIN"]
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: qbittorrent-vol
+        persistentVolumeClaim:
+          claimName: qbittorrent-pvc
+
+
