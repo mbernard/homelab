@@ -19,8 +19,11 @@ spec:
         ports:
         - containerPort: 8080
           name: web-ui
-        - containerPort: 24503
-          name: seeding
+        - containerPort: 6881
+          name: seeding-udp
+          protocol: udp
+        - containerPort: 6881
+          name: seeding-tcp
         volumeMounts:
         - mountPath: data/torrents
           name: data
