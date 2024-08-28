@@ -18,7 +18,7 @@ spec:
         - name: PLEX_CLAIM_TOKEN
           value: claim-ABVvLxy-6rgnWX-fnLkC
         - name: PLEX_ADVERTISE_URL
-          value: http://192.168.10.200
+          value: http://192.168.10.200:32400
         - name: PLEX_NO_AUTH_NETWORKS
           value: ''
         - name: PLEX_BETA_INSTALL
