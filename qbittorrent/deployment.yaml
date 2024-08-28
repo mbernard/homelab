@@ -33,9 +33,9 @@ spec:
       securityContext:
         capabilities:
           add: ["NET_ADMIN"]
-        sysctls:
-        - name: net.ipv4.conf.all.src_valid_mark
-          value: "1"
+          # sysctls:
+          # - name: net.ipv4.conf.all.src_valid_mark
+          #   value: "1"
       volumes:
       - name: data
         nfs:
