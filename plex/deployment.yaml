@@ -7,18 +7,18 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      run: plex
+      run: plexserver
   template:
     metadata:
       labels:
-        run: plex
+        run: plexserver
     spec:
       containers:
       - env:
         - name: PLEX_CLAIM_TOKEN
           value: claim-ABVvLxy-6rgnWX-fnLkC
         - name: PLEX_ADVERTISE_URL
-          value: http://192.168.10.200:32400
+          value: http://192.168.10.200
         - name: PLEX_NO_AUTH_NETWORKS
           value: ''
         - name: PLEX_BETA_INSTALL
