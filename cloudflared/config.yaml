@@ -45,5 +45,6 @@ originRequest:
     - aud1 65403da30b4ec456f919775504c3a021e87eb4be54b179336a04abe44bcd6a1b
     required: true
     teamName: migb
-  noTLSVerify: true# Name of the tunnel you want to run
+  noTLSVerify: true
+# Name of the tunnel you want to run
 tunnel: homelab
