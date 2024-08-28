@@ -21,7 +21,7 @@ spec:
           name: web-ui
         - containerPort: 6881
           name: seeding-udp
-          protocol: udp
+          protocol: UDP
         - containerPort: 6881
           name: seeding-tcp
         volumeMounts:
