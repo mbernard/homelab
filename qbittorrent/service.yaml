@@ -12,9 +12,9 @@ spec:
   loadBalancerIP: 192.168.10.201
   ports:
   - name: seeding
-    port: 6881
+    port: 28601
     protocol: TCP
-    targetPort: 6881
+    targetPort: 28601
   - name: web-ui
     port: 8080
     protocol: TCP
@@ -36,9 +36,9 @@ spec:
   loadBalancerIP: 192.168.10.201
   ports:
   - name: seeding-udp
-    port: 6881
+    port: 28601
     protocol: UDP
-    targetPort: 6881
+    targetPort: 28601
   selector:
     run: qbittorrent
   type: LoadBalancer
