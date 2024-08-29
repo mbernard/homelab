@@ -22,23 +22,3 @@ spec:
   selector:
     run: qbittorrent
   type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    purelb.io/addresses: 192.168.10.201
-    purelb.io/allow-shared-ip: qbittorrent # annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
-    purelb.io/service-group: default
-  name: qbittorrent-udp
-  namespace: qbittorrent
-spec:
-  loadBalancerIP: 192.168.10.201
-  ports:
-  - name: seeding-udp
-    port: 28601
-    protocol: UDP
-    targetPort: 28601
-  selector:
-    run: qbittorrent
-  type: LoadBalancer
