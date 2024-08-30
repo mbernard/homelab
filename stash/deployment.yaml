@@ -4,7 +4,7 @@ metadata:
   name: stash-server
   namespace: stash
 spec:
-  replicas: 1  
+  replicas: 1
   selector:
     matchLabels:
       run: stash
@@ -14,56 +14,57 @@ spec:
         run: stash
     spec:
       containers:
-        - env:
-            - name: STASH_STASH
-              value: /data/
-            - name: STASH_GENERATED
-              value: /generated/
-            - name: STASH_METADATA
-              value: /metadata/
-            - name: STASH_CACHE
-              value: /cache/
-            - name: STASH_PORT
-              value: '9999'
-          image: stashapp/stash
-          name: stash          
-          ports:
-            - containerPort: 9999
-          volumeMounts:
-            ## Point this at your collection.
-            - mountPath: /data
-              name: nfs-porn
-            - mountPath: /etc/localtime
-              name: tz
-              readOnly: true
-            ## Keep configs, scrapers, and plugins here.
-            - mountPath: /root/.stash
-              name: stash-vol
-              subPath: root
-            ## This is where your stash's metadata lives
-            - mountPath: /metadata
-              name: stash-vol
-              subPath: metadata
-            ## Any other cache content.
-            - mountPath: /cache
-              name: stash-vol
-              subPath: cache
-            ## Where to store binary blob data (scene covers, images)
-            - mountPath: /blobs
-              name: stash-vol
-              subPath: blobs
-            ## Where to store generated content (screenshots,previews,transcodes,sprites)
-            - mountPath: /generated
-              name: stash-vol
-              subPath: generated
-      volumes:
-        - name: nfs-porn
-          nfs:
-            path: /volume1/private/Porn
-            server: 192.168.10.10
-        - hostPath:
-            path: /etc/localtime
+      - env:
+        - name: STASH_STASH
+          value: /data/
+        - name: STASH_GENERATED
+          value: /generated/
+        - name: STASH_METADATA
+          value: /metadata/
+        - name: STASH_CACHE
+          value: /cache/
+        - name: STASH_PORT
+          value: '9999'
+        image: stashapp/stash
+        name: stash
+        ports:
+        - containerPort: 9999
+        volumeMounts:
+        - mountPath: /etc/localtime
           name: tz
-        - name: stash-vol
-          persistentVolumeClaim:
-            claimName: stash-pvc
+          readOnly: true
+        ## Point this at your collection.
+        - mountPath: /data
+          name: nfs-private
+          subPath: Porn
+        ## Keep configs, scrapers, and plugins here.
+        - mountPath: /root/.stash
+          name: stash-vol
+          subPath: root
+        ## This is where your stash's metadata lives
+        - mountPath: /metadata
+          name: stash-vol
+          subPath: metadata
+        ## Any other cache content.
+        - mountPath: /cache
+          name: stash-vol
+          subPath: cache
+        ## Where to store binary blob data (scene covers, images)
+        - mountPath: /blobs
+          name: stash-vol
+          subPath: blobs
+        ## Where to store generated content (screenshots,previews,transcodes,sprites)
+        - mountPath: /generated
+          name: nfs-private
+          subPath: stash/generated
+      volumes:
+      - name: nfs-private
+        nfs:
+          path: /volume1/private
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: stash-vol
+        persistentVolumeClaim:
+          claimName: stash-pvc
