@@ -1,0 +1,5 @@
+namespace: qbitmanage
+
+resources:
+- deployment.yaml
+- storage.yaml

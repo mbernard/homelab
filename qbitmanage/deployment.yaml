@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbitmanage
+  namespace: qbitmanage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: qbitmanage
+  template:
+    metadata:
+      labels:
+        run: qbitmanage
+    spec:
+      containers:
+      - image: ghcr.io/stuffanthings/qbit_manage:latest
+        name: qbitmanage
+        volumeMounts:
+        - mountPath: data/torrents
+          name: data
+          subPath: torrents
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: qbitmanage-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - name: qbitmanage-vol
+        persistentVolumeClaim:
+          claimName: qbitmanage-pvc
+
+
