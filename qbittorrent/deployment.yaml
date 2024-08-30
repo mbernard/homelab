@@ -13,6 +13,7 @@ spec:
       labels:
         run: qbittorrent
     spec:
+      # qbittorrent
       containers:
       - image: hotio/qbittorrent:latest
         name: qbittorrent
@@ -30,6 +31,24 @@ spec:
           readOnly: true
         - mountPath: /config
           name: qbittorrent-vol
+      # qbitmanage
+      - env:
+        - name: QBT_LOG_LEVEL
+          value: DEBUG
+        image: ghcr.io/stuffanthings/qbit_manage:latest
+        name: qbitmanage
+        volumeMounts:
+        - mountPath: data/torrents
+          name: data
+          subPath: torrents
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: qbitmanage-vol
+        - mountPath: /qbit_appdata
+          name: qbittorrent-vol
+          subPath: data/BT_backup
       volumes:
       - name: data
         nfs:
@@ -41,5 +60,8 @@ spec:
       - name: qbittorrent-vol
         persistentVolumeClaim:
           claimName: qbittorrent-pvc
+      - name: qbitmanage-vol
+        persistentVolumeClaim:
+          claimName: qbitmanage-pvc
 
 

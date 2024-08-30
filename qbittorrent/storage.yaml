@@ -27,3 +27,33 @@ spec:
       storage: 1Gi
   storageClassName: longhorn
   volumeName: qbittorrent-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: qbitmanage-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: qbitmanage
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: longhorn
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbitmanage-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  volumeName: qbitmanage-pv
