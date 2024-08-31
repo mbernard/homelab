@@ -1,3 +1,8 @@
+configMapGenerator:
+- files:
+  - env_vars.yaml
+  name: env_vars
+
 namespace: qbittorrent
 
 resources:

@@ -15,11 +15,9 @@ spec:
     spec:
       containers:
       # qbitmanage
-      - env:
-        - name: QBT_LOG_LEVEL
-          value: DEBUG
-        - name: QBT_STARTUP_DELAY
-          value: "60"
+      - envFrom:
+        - configMapRef:
+            name: env_vars
         image: ghcr.io/stuffanthings/qbit_manage:latest
         name: qbitmanage
         volumeMounts:
