@@ -1,0 +1,6 @@
+namespace: qbittorrent
+
+resources:
+- deployment.yaml
+- service.yaml
+- storage.yaml
