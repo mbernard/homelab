@@ -17,7 +17,7 @@ spec:
       # qbitmanage
       - envFrom:
         - configMapRef:
-            name: env_vars
+            name: env-vars
         image: ghcr.io/stuffanthings/qbit_manage:latest
         name: qbitmanage
         volumeMounts:

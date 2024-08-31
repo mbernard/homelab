@@ -4,5 +4,5 @@ data:
   QBT_STARTUP_DELAY: 30
 kind: ConfigMap
 metadata:
-  name: env_vars
+  name: env-vars
   namespace: qbittorrent
