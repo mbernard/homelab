@@ -29,6 +29,8 @@ spec:
           readOnly: true
         - mountPath: /config
           name: qbitmanage-vol
+        - mountPath: /qbitmanage-config
+          name: qbitmanage-config
         - mountPath: /qbit_appdata
           name: qbittorrent-vol
           subPath: data/BT_backup
@@ -63,5 +65,7 @@ spec:
       - name: qbitmanage-vol
         persistentVolumeClaim:
           claimName: qbitmanage-pvc
-
+      - configMap:
+          name: qbitmanage-config
+        name: qbitmanage-config
 
