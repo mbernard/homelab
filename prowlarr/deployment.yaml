@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: prowlarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: prowlarr
+  template:
+    metadata:
+      labels:
+        run: prowlarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: hotio/prowlarr:latest
+        name: prowlarr
+        ports:
+        - containerPort: 9696
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: prowlarr-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: prowlarr-vol
+        persistentVolumeClaim:
+          claimName: prowlarr-pvc
+
