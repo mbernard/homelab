@@ -35,6 +35,8 @@ spec:
       - env:
         - name: QBT_LOG_LEVEL
           value: DEBUG
+        - name: QBT_STARTUP_DELAY
+          value: 60
         image: ghcr.io/stuffanthings/qbit_manage:latest
         name: qbitmanage
         volumeMounts:
