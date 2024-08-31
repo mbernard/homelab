@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readarr-audio
+  namespace: readarr-audio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: readarr-audio
+  template:
+    metadata:
+      labels:
+        run: readarr-audio
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/hotio/readarr
+        name: readarr-audio
+        ports:
+        - containerPort: 8787
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: readarr-audio-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: readarr-audio-vol
+        persistentVolumeClaim:
+          claimName: readarr-audio-pvc
+
