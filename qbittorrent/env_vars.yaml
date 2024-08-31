@@ -1,8 +1,2 @@
-apiVersion: v1
-data:
-  QBT_SCHEDULE: 1440 # 24h
-  QBT_STARTUP_DELAY: 30
-kind: ConfigMap
-metadata:
-  name: env-vars
-  namespace: qbittorrent
+QBT_SCHEDULE: 1440 # 24h 
+QBT_STARTUP_DELAY: 30
