@@ -1,4 +1,4 @@
-namespace: qbittorrent
+namespace: radarr
 
 resources:
 - deployment.yaml
