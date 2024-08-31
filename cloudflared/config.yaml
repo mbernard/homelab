@@ -39,6 +39,8 @@ ingress:
   service: http://readarr.readarr:8787
 - hostname: readarr-audio.miguelbernard.com
   service: http://readarr-audio.readarr-audio:8787
+- hostname: audiobookshelf.miguelbernard.com
+  service: http://audiobookshelf.audiobookshelf
 - service: http_status:404
 # Serves the metrics server under /metrics and the readiness server under /ready
 metrics: 0.0.0.0:2000
