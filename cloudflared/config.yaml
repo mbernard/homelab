@@ -35,6 +35,8 @@ ingress:
   service: http://radarr.radarr:7878
 - hostname: sonarr.miguelbernard.com
   service: http://sonarr.sonarr:8989
+- hostname: readarr.miguelbernard.com
+  service: http://readarr.readarr:8787
 - service: http_status:404
 # Serves the metrics server under /metrics and the readiness server under /ready
 metrics: 0.0.0.0:2000

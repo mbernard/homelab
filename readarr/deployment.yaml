@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readarr
+  namespace: readarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: readarr
+  template:
+    metadata:
+      labels:
+        run: readarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/hotio/readarr
+        name: readarr
+        ports:
+        - containerPort: 8787
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: readarr-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: readarr-vol
+        persistentVolumeClaim:
+          claimName: readarr-pvc
+
