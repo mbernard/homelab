@@ -28,9 +28,9 @@ spec:
         - mountPath: /config
           name: audiobookshelf-vol
           subPath: /config
-        - mountPath: /metadata
+        - mountPath: metadata
           name: audiobookshelf-vol
-          subPath: /metadata
+          subPath: metadata
         - mountPath: /audiobooks
           name: data
           subPath: media/audiobooks
