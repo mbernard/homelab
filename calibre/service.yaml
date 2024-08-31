@@ -6,9 +6,13 @@ metadata:
   namespace: calibre
 spec:
   ports:
-  - name: web-ui
-    port: 7474
+  - name: desktop-gui
+    port: 8080
     protocol: TCP
-    targetPort: 7474
+    targetPort: 8080
+  - name: webserver
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
   selector:
     run: calibre
