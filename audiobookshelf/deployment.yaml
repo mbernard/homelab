@@ -27,8 +27,8 @@ spec:
           readOnly: true
         - mountPath: /config
           name: audiobookshelf-vol
-          subPath: /config
-        - mountPath: metadata
+          subPath: config
+        - mountPath: /metadata
           name: audiobookshelf-vol
           subPath: metadata
         - mountPath: /audiobooks
