@@ -1,7 +1,7 @@
 configMapGenerator:
 - files:
   - env_vars.yaml
-  name: env_vars
+  name: env-vars
 
 namespace: qbittorrent
 
