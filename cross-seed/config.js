@@ -15,17 +15,17 @@ module.exports = {
      * Wrap each URL in quotation marks, and separate them with commas, and surround the entire set in brackets.
      */
     torznab: [
-        "https://prowlarr.miguelbernard.com/1/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // RevolutionTT
-        "https://prowlarr.miguelbernard.com/2/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Milkie
-        "https://prowlarr.miguelbernard.com/3/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Digital core
-        "https://prowlarr.miguelbernard.com/4/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // My Anonymouse
-        "https://prowlarr.miguelbernard.com/5/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // LST
-        "https://prowlarr.miguelbernard.com/6/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // SportsCult
+        "http://prowlarr.prowlarr:9696/1/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // RevolutionTT
+        "http://prowlarr.prowlarr:9696/2/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Milkie
+        "http://prowlarr.prowlarr:9696/3/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Digital core
+        "http://prowlarr.prowlarr:9696/4/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // My Anonymouse
+        "http://prowlarr.prowlarr:9696/5/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // LST
+        "http://prowlarr.prowlarr:9696/6/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // SportsCult
     ],
 
-    sonarr: ["http://192.168.10.11:8989?apikey=fb78767622cd47b5988bf24769adc14d"],
+    sonarr: ["http://sonarr.sonarr:8989?apikey=fb78767622cd47b5988bf24769adc14d"],
 
-    radarr: ["http://192.168.10.11:7878?apikey=967e3df3277c4f7dbcd29a3ac79465a4"],
+    radarr: ["http://radarr.radarr:7878?apikey=967e3df3277c4f7dbcd29a3ac79465a4"],
 
     /**
      * To search with downloaded data, you can pass in directories to your downloaded torrent
@@ -85,7 +85,7 @@ module.exports = {
      * Don't change this for Docker.
      * Instead set the volume mapping on your docker container.
      */
-    outputDir: "config/cross-seeds",
+    outputDir: "cross-seeds",
 
     /**
      * Whether to include single episode torrents in the search (not from season packs).
@@ -142,7 +142,7 @@ module.exports = {
      * Supply your username and password inside the url like so:
      * "http://username:password@localhost:8080"
      */
-    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@192.168.10.11:8080",
+    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@qbittorrent-tcp.qbittorrent:8080",
     /**
      * The url of your Transmission RPC interface.
      * Usually ends with "/transmission/rpc".
