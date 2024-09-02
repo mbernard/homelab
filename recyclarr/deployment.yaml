@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recyclarr
+  namespace: recyclarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: recyclarr
+  template:
+    metadata:
+      labels:
+        run: recyclarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/recyclarr/recyclarr
+        name: recyclarr
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: recyclarr-vol
+        - mountPath: /config/recyclarr.yml
+          name: recyclarr-config
+          subPath: recyclarr.yml
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: recyclarr-vol
+        persistentVolumeClaim:
+          claimName: recyclarr-pvc
+      - configMap:
+          name: recyclarr-config
+        name: recyclarr-config
+
