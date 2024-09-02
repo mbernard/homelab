@@ -33,7 +33,7 @@ spec:
           name: qbittorrent-vol
         - mountPath: /config/data/BT_backup
           name: data
-          subPath: torrents/torrents
+          subPath: BT_backup
       # qbitmanage
       - envFrom:
         - configMapRef:
