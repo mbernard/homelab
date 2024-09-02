@@ -20,7 +20,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/cross-seed/cross-seed:latest
+        image: ghcr.io/cross-seed/cross-seed:master
         name: cross-seed
         ports:
         - containerPort: 2468
