@@ -15,17 +15,17 @@ module.exports = {
      * Wrap each URL in quotation marks, and separate them with commas, and surround the entire set in brackets.
      */
     torznab: [
-        "http://prowlarr.prowlarr:9696/1/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // RevolutionTT
-        "http://prowlarr.prowlarr:9696/2/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Milkie
-        "http://prowlarr.prowlarr:9696/3/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Digital core
-        "http://prowlarr.prowlarr:9696/4/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // My Anonymouse
-        "http://prowlarr.prowlarr:9696/5/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // LST
-        "http://prowlarr.prowlarr:9696/6/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // SportsCult
+        "http://prowlarr.prowlarr/1/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // RevolutionTT
+        "http://prowlarr.prowlarr/2/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Milkie
+        "http://prowlarr.prowlarr/3/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // Digital core
+        "http://prowlarr.prowlarr/4/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // My Anonymouse
+        "http://prowlarr.prowlarr/5/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // LST
+        "http://prowlarr.prowlarr/6/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // SportsCult
     ],
 
-    sonarr: ["http://sonarr.sonarr:8989?apikey=fb78767622cd47b5988bf24769adc14d"],
+    sonarr: ["http://sonarr.sonarr?apikey=fb78767622cd47b5988bf24769adc14d"],
 
-    radarr: ["http://radarr.radarr:7878?apikey=967e3df3277c4f7dbcd29a3ac79465a4"],
+    radarr: ["http://radarr.radarr?apikey=967e3df3277c4f7dbcd29a3ac79465a4"],
 
     /**
      * To search with downloaded data, you can pass in directories to your downloaded torrent
@@ -142,7 +142,7 @@ module.exports = {
      * Supply your username and password inside the url like so:
      * "http://username:password@localhost:8080"
      */
-    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@qbittorrent.qbittorrent:8080",
+    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@qbittorrent.qbittorrent",
     /**
      * The url of your Transmission RPC interface.
      * Usually ends with "/transmission/rpc".

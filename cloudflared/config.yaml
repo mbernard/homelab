@@ -22,29 +22,29 @@ credentials-file: /etc/cloudflared/creds/cloudflared-cred
 # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
 ingress:
 - hostname: argocd.miguelbernard.com
-  service: http://argocd-server.argocd.svc.cluster.local:80
+  service: http://argocd-server.argocd.svc.cluster.local
 - hostname: longhorn.miguelbernard.com
   service: http://longhorn-frontend.longhorn
 - hostname: k8s.miguelbernard.com
   service: https://kubernetes-dashboard.kube-system
 - hostname: stash.miguelbernard.com
-  service: http://stash.stash:9999
+  service: http://stash.stash
 - hostname: torrent.miguelbernard.com
-  service: http://192.168.10.201:8080
+  service: http://qbittorrent.qbittorrent
 - hostname: radarr.miguelbernard.com
-  service: http://radarr.radarr:7878
+  service: http://radarr.radarr
 - hostname: sonarr.miguelbernard.com
-  service: http://sonarr.sonarr:8989
+  service: http://sonarr.sonarr
 - hostname: readarr.miguelbernard.com
-  service: http://readarr.readarr:8787
+  service: http://readarr.readarr
 - hostname: readarr-audio.miguelbernard.com
-  service: http://readarr-audio.readarr-audio:8787
+  service: http://readarr-audio.readarr-audio
 - hostname: audiobook.miguelbernard.com
   service: http://audiobookshelf.audiobookshelf
 - hostname: prowlarr.miguelbernard.com
-  service: http://prowlarr.prowlarr:9696
+  service: http://prowlarr.prowlarr
 - hostname: autobrr.miguelbernard.com
-  service: http://autobrr.autobrr:7474
+  service: http://autobrr.autobrr
 - hostname: calibre.miguelbernard.com
   service: http://calibre.calibre:8080
 - hostname: book.miguelbernard.com
