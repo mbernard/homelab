@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organizr
+  namespace: organizr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: organizr
+  template:
+    metadata:
+      labels:
+        run: organizr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: organizr/organizr:latest
+        name: organizr
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: organizr-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: organizr-vol
+        persistentVolumeClaim:
+          claimName: organizr-pvc
+

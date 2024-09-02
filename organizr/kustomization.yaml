@@ -1,0 +1,11 @@
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+
+namespace: organizr
+
+resources:
+- deployment.yaml
+- service.yaml
+- storage.yaml
