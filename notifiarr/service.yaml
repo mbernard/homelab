@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
   - name: api
-    port: 5454
+    port: 80
     protocol: TCP
     targetPort: 5454
   selector:
