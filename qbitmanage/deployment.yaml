@@ -1,27 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qbittorrent
-  namespace: qbittorrent
+  name: qbitmanage
+  namespace: qbitmanage
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: qbittorrent
+      run: qbitmanage
   template:
     metadata:
       labels:
-        run: qbittorrent
+        run: qbitmanage
     spec:
       containers:
-      # qbittorrent
-      - image: hotio/qbittorrent:latest
-        name: qbittorrent
-        ports:
-        - containerPort: 8080
-          name: web-ui
-        - containerPort: 28601
-          name: seeding
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/stuffanthings/qbit_manage:latest
+        name: qbitmanage
         volumeMounts:
         - mountPath: data/torrents
           name: data
@@ -30,8 +27,10 @@ spec:
           name: tz
           readOnly: true
         - mountPath: /config
-          name: qbittorrent-vol
-        - mountPath: /config/data/BT_backup
+          name: qbitmanage-vol
+        - mountPath: /qbitmanage-config
+          name: qbitmanage-config
+        - mountPath: /qbit_appdata
           name: data
           subPath: BT_backup
       volumes:
@@ -42,7 +41,10 @@ spec:
       - hostPath:
           path: /etc/localtime
         name: tz
-      - name: qbittorrent-vol
+      - name: qbitmanage-vol
         persistentVolumeClaim:
-          claimName: qbittorrent-pvc
+          claimName: qbitmanage-pvc
+      - configMap:
+          name: qbitmanage-config
+        name: qbitmanage-config
 

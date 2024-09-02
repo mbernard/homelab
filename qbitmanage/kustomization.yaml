@@ -2,10 +2,12 @@ configMapGenerator:
 - envs:
   - env_vars.properties
   name: env-vars
+- files:
+  - qbitmanage-config.yaml
+  name: qbitmanage-config
 
-namespace: qbittorrent
+namespace: qbitmanage
 
 resources:
 - deployment.yaml
-- service.yaml
 - storage.yaml
