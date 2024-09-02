@@ -1,0 +1,118 @@
+# config.yaml
+clients:
+  arr:
+  - apikey: 967e3df3277c4f7dbcd29a3ac79465a4
+    filters:
+    - 1 # Change me
+    host: http://radarr.radarr
+    name: radarr
+    type: radarr
+
+  #- name: radarr4k
+  #  type: radarr
+  #  host: http://localhost:7878
+  #  apikey: API_KEY
+  #  filters:
+  #    - 16 # Change me
+
+  - apikey: fb78767622cd47b5988bf24769adc14d
+    filters:
+    - 2 # Change me
+    #excludeAlternateTitles: true # defaults to false
+    host: http://sonarr.sonarr
+    name: sonarr
+    type: sonarr
+
+  - apikey: 34b9deada6c24061b93dc3a96b511880
+    filters:
+    - 4 # Change me
+    host: http://readarr.readarr
+    name: readarr
+    type: readarr
+
+  - apikey: ce9c0b6f4dd44366badd685e68da34f2
+    filters:
+    - 5 # Change me
+    host: http://readarr-audio.readarr-audio
+    name: readarr
+    type: readarr
+
+  #- name: lidarr
+  #  type: lidarr
+  #  host: http://localhost:8686
+  #  apikey: API_KEY
+  #  filters:
+  #    - 32 # Change me
+
+  #- name: whisparr
+  #  type: whisparr
+  #  host: http://localhost:6969
+  #  apikey: API_KEY
+  #  matchRelease: true
+  #  filters:
+  #    - 69 # Change me
+  autobrr:
+    apikey: 670770332f4d684a6622bb24c28ddc18
+    basicAuth:
+      pass: $azurekv-secrets:autobrr-password
+      user: migb
+    host: http://autobrr.autobrr
+lists:
+#- name: Latest TV Shows
+#  type: mdblist
+#  url: https://mdblist.com/lists/garycrawfordgc/latest-tv-shows/json
+#  filters:
+#    - 1 # Change me
+
+#- name: Anticipated TV
+#  type: trakt
+#  url: https://api.autobrr.com/lists/trakt/anticipated-tv
+#  filters:
+#    - 22 # Change me
+
+#- name: Upcoming Movies
+#  type: trakt
+#  url: https://api.autobrr.com/lists/trakt/upcoming-movies
+#  filters:
+#    - 21 # Change me
+
+#- name: Upcoming Bluray
+#  type: trakt
+#  url: https://api.autobrr.com/lists/trakt/upcoming-bluray
+#  filters:
+#    - 24 # Change me
+
+#- name: Popular TV
+#  type: trakt
+#  url: https://api.autobrr.com/lists/trakt/popular-tv
+#  filters:
+#    - 25 # Change me
+
+#- name: StevenLu
+#  type: trakt
+#  url: https://api.autobrr.com/lists/stevenlu
+#  filters:
+#    - 23 # Change me
+
+#- name: New Albums
+#  type: metacritic
+#  url: https://api.autobrr.com/lists/metacritic/new-albums
+#  filters:
+#    - 9 # Change me
+
+#- name: Upcoming Albums
+#  type: metacritic
+#  url: https://api.autobrr.com/lists/metacritic/upcoming-albums
+#  filters:
+#    - 20 # Change me
+
+#- name: Steam Wishlist
+#  type: steam
+#  url: https://store.steampowered.com/wishlist/id/USERNAME/wishlistdata
+#  filters:
+#    - 20 # Change me
+schedule: 0 */6 * * *
+server:
+  apiToken: 4b3dfd21a4277410115dad7766f5a13c
+  host: 0.0.0.0
+  port: 7441

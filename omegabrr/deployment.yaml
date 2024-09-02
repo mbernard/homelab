@@ -26,12 +26,12 @@ spec:
           name: tz
           readOnly: true
         - mountPath: /config
-          name: omegabrr-vol
+          name: omegabrr-config
       volumes:
       - hostPath:
           path: /etc/localtime
         name: tz
-      - name: omegabrr-vol
-        persistentVolumeClaim:
-          claimName: omegabrr-pvc
+      - configMap:
+          name: omegabrr-config
+        name: omegabrr-config
 

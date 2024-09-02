@@ -6,7 +6,7 @@ metadata:
   namespace: omegabrr
 spec:
   ports:
-  - name: web-ui
+  - name: api
     port: 80
     protocol: TCP
     targetPort: 7441
