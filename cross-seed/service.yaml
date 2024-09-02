@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cross-seed
+  namespace: cross-seed
+spec:
+  ports:
+  - name: api
+    port: 2468
+    protocol: TCP
+    targetPort: 2468
+  selector:
+    run: cross-seed

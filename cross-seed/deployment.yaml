@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cross-seed
+  namespace: cross-seed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: cross-seed
+  template:
+    metadata:
+      labels:
+        run: cross-seed
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/cross-seed/cross-seed:latest
+        name: cross-seed
+        ports:
+        - containerPort: 2468
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: cross-seed-vol
+        - mountPath: /data
+          name: data
+        - mountPath: /torrents
+          name: qbittorrent-vol
+          readOnly: true
+          subPath: config/data/BT_backup
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: cross-seed-vol
+        persistentVolumeClaim:
+          claimName: cross-seed-pvc
+      - name: qbittorrent-vol
+        persistentVolumeClaim:
+          claimName: qbittorrent-pvc
+
