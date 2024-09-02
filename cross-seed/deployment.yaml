@@ -14,7 +14,8 @@ spec:
         run: cross-seed
     spec:
       containers:
-      - envFrom:
+      - command: daemon
+        envFrom:
         - configMapRef:
             name: env-vars
         image: ghcr.io/cross-seed/cross-seed:latest
@@ -33,6 +34,8 @@ spec:
           name: qbittorrent-vol
           readOnly: true
           subPath: config/data/BT_backup
+        - mountPath: /cross-seed-config
+          name: cross-seed-config
       volumes:
       - name: data
         nfs:
@@ -47,4 +50,7 @@ spec:
       - name: qbittorrent-vol
         persistentVolumeClaim:
           claimName: qbittorrent-pvc
+      - configMap:
+          name: cross-seed-config
+        name: cross-seed-config
 

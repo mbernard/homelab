@@ -2,6 +2,9 @@ configMapGenerator:
 - envs:
   - env_vars.properties
   name: env-vars
+- files:
+  - config.js
+  name: cross-seed-config
 
 namespace: cross-seed
 
