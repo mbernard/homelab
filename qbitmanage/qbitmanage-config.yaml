@@ -22,7 +22,7 @@ qbt:
   # qBittorrent parameters
   host: "qbittorrent.qbittorrent:8080"
   user: "admin"
-  pass: "F$HQsAG3Y6LjkBYn!xnND3fKJRer"
+  pass: $azurekv-secrets:qbittorrent-password
 
 settings:
   force_auto_tmm: True # Will force qBittorrent to enable Automatic Torrent Management for each torrent.

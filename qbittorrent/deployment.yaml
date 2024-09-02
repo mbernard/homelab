@@ -14,8 +14,10 @@ spec:
         run: qbittorrent
     spec:
       containers:
-      # qbittorrent
-      - image: hotio/qbittorrent:latest
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: hotio/qbittorrent:latest
         name: qbittorrent
         ports:
         - containerPort: 8080
