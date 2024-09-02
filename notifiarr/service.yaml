@@ -6,7 +6,7 @@ metadata:
   namespace: notifiarr
 spec:
   ports:
-  - name: api
+  - name: web-ui
     port: 80
     protocol: TCP
     targetPort: 5454
