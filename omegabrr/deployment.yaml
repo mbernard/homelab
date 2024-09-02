@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omegabrr
+  namespace: omegabrr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: omegabrr
+  template:
+    metadata:
+      labels:
+        run: omegabrr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/autobrr/omegabrr:latest
+        name: omegabrr
+        ports:
+        - containerPort: 7441
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: omegabrr-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: omegabrr-vol
+        persistentVolumeClaim:
+          claimName: omegabrr-pvc
+
