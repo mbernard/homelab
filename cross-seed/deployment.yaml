@@ -36,8 +36,8 @@ spec:
           name: qbittorrent-vol
           readOnly: true
           subPath: config/data/BT_backup
-        - mountPath: ~/.cross-seed
-          name: cross-seed-config
+          # - mountPath: ~/.cross-seed
+          #   name: cross-seed-config
       volumes:
       - name: data
         nfs:
