@@ -1,0 +1,12 @@
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+- files:
+  - unpackerr-conf
+  name: unpackerr-config
+
+namespace: unpackerr
+
+resources:
+- deployment.yaml

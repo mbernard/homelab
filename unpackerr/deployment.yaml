@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unpackerr
+  namespace: unpackerr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: unpackerr
+  template:
+    metadata:
+      labels:
+        run: unpackerr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: hotio/unpackerr:release
+        name: unpackerr
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: unpackerr-config
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - configMap:
+          name: unpackerr-config
+        name: unpackerr-config
+
