@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cross-seed
-  namespace: qbittorrent
+  namespace: cross-seed
 spec:
   replicas: 1
   selector:
