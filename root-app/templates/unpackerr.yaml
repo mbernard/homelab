@@ -7,11 +7,11 @@ metadata:
   namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
 spec:
   destination:
-    namespace: sonarr
+    namespace: unpackerr
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: sonarr
+    path: unpackerr
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
   syncPolicy:
