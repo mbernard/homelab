@@ -53,6 +53,8 @@ ingress:
   service: http://notifiarr.notifiarr
 - hostname: homelab.miguelbernard.com
   service: http://organizr.organizr
+- hostname: overseerr.miguelbernard.com
+  service: http://overseerr.overseerr
 - service: http_status:404
 # Serves the metrics server under /metrics and the readiness server under /ready
 metrics: 0.0.0.0:2000
