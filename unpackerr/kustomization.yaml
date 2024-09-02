@@ -3,7 +3,7 @@ configMapGenerator:
   - env_vars.properties
   name: env-vars
 - files:
-  - unpackerr-conf
+  - unpackerr.conf
   name: unpackerr-config
 
 namespace: unpackerr
