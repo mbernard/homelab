@@ -31,9 +31,9 @@ spec:
           readOnly: true
         - mountPath: /config
           name: qbittorrent-vol
-          # - mountPath: /config/data/BT_backup
-          #   name: data
-          #   subPath: torrents/torrents
+        - mountPath: /config/data/BT_backup
+          name: data
+          subPath: torrents/torrents
       # qbitmanage
       - envFrom:
         - configMapRef:
