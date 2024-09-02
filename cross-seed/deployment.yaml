@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - command:
-        - 'cross-seed'
-        - 'daemon'
+        # - 'cross-seed'
+        # - 'daemon'
         envFrom:
         - configMapRef:
             name: env-vars
