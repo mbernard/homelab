@@ -6,7 +6,7 @@ configMapGenerator:
   - config.js
   name: cross-seed-config
 
-namespace: cross-seed
+namespace: qbittorrent
 
 resources:
 - deployment.yaml

@@ -27,33 +27,3 @@ spec:
       storage: 1Gi
   storageClassName: longhorn
   volumeName: cross-seed-pv
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: qbittorrent-pv
-spec:
-  accessModes:
-  - ReadOnlyMany
-  capacity:
-    storage: 1Gi
-  csi:
-    driver: driver.longhorn.io
-    fsType: ext4
-    volumeHandle: qbittorrent
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: longhorn
-  volumeMode: Filesystem
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: qbittorrent-pvc
-spec:
-  accessModes:
-  - ReadOnlyMany
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: longhorn
-  volumeName: qbittorrent-pv
