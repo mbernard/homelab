@@ -14,6 +14,26 @@ spec:
         run: qbittorrent
     spec:
       containers:
+      # qbittorrent
+      - image: hotio/qbittorrent:latest
+        name: qbittorrent
+        ports:
+        - containerPort: 8080
+          name: web-ui
+        - containerPort: 28601
+          name: seeding
+        volumeMounts:
+        - mountPath: data/torrents
+          name: data
+          subPath: torrents
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: qbittorrent-vol
+          # - mountPath: /config/data/BT_backup
+          #   name: data
+          #   subPath: torrents/torrents
       # qbitmanage
       - envFrom:
         - configMapRef:
@@ -34,23 +54,6 @@ spec:
         - mountPath: /qbit_appdata
           name: qbittorrent-vol
           subPath: data/BT_backup
-      # qbittorrent
-      - image: hotio/qbittorrent:latest
-        name: qbittorrent
-        ports:
-        - containerPort: 8080
-          name: web-ui
-        - containerPort: 28601
-          name: seeding
-        volumeMounts:
-        - mountPath: data/torrents
-          name: data
-          subPath: torrents
-        - mountPath: /etc/localtime
-          name: tz
-          readOnly: true
-        - mountPath: /config
-          name: qbittorrent-vol
       volumes:
       - name: data
         nfs:
