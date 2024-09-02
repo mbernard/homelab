@@ -33,9 +33,9 @@ spec:
         - mountPath: /data
           name: data
         - mountPath: /torrents
-          name: qbittorrent-vol
+          name: data
           readOnly: true
-          subPath: config/data/BT_backup
+          subPath: BT_backup
         - mountPath: /config/config.js
           name: cross-seed-config
           subPath: config.js
@@ -50,9 +50,6 @@ spec:
       - name: cross-seed-vol
         persistentVolumeClaim:
           claimName: cross-seed-pvc
-      - name: qbittorrent-vol
-        persistentVolumeClaim:
-          claimName: qbittorrent-pvc
       - configMap:
           name: cross-seed-config
         name: cross-seed-config
