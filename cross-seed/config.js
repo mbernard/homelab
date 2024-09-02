@@ -142,7 +142,7 @@ module.exports = {
      * Supply your username and password inside the url like so:
      * "http://username:password@localhost:8080"
      */
-    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@qbittorrent-tcp.qbittorrent:8080",
+    qbittorrentUrl: "http://admin:F$HQsAG3Y6LjkBYn!xnND3fKJRer@qbittorrent.qbittorrent:8080",
     /**
      * The url of your Transmission RPC interface.
      * Usually ends with "/transmission/rpc".
