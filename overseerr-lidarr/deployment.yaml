@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr-lidarr
+  namespace: overseerr-lidarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: overseerr-lidarr
+  template:
+    metadata:
+      labels:
+        run: overseerr-lidarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ano002/overseerr-lidarr:latest
+        name: overseerr-lidarr
+        ports:
+        - containerPort: 5055
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: overseerr-lidarr-vol
+        - mountPath: /data/media
+          name: data
+          subPath: media
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: overseerr-lidarr-vol
+        persistentVolumeClaim:
+          claimName: overseerr-lidarr-pvc
+

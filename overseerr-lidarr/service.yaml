@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: overseerr-lidarr
+  namespace: overseerr-lidarr
+spec:
+  ports:
+  - name: web-ui
+    port: 80
+    protocol: TCP
+    targetPort: 5055
+  selector:
+    run: overseerr-lidarr
