@@ -37,12 +37,12 @@ clients:
     name: readarr
     type: readarr
 
-  #- name: lidarr
-  #  type: lidarr
-  #  host: http://localhost:8686
-  #  apikey: API_KEY
-  #  filters:
-  #    - 32 # Change me
+  - apikey: 36981bd50c814cf7a53297514034f863
+    filters:
+    - 6 # Change me
+    host: http://lidarr.lidarr
+    name: lidarr
+    type: lidarr
 
   #- name: whisparr
   #  type: whisparr

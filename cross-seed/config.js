@@ -21,6 +21,7 @@ module.exports = {
         "http://prowlarr.prowlarr/4/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // My Anonymouse
         "http://prowlarr.prowlarr/5/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // LST
         "http://prowlarr.prowlarr/6/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // SportsCult
+        "http://prowlarr.prowlarr/7/api?apikey=7dc5aee4136a4b00939a5e2f0b462659&extended=1&t=search", // YOiNKED
     ],
 
     sonarr: ["http://sonarr.sonarr?apikey=fb78767622cd47b5988bf24769adc14d"],
