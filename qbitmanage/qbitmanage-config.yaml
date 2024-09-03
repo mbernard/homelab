@@ -64,6 +64,7 @@ cat:
   movies.cross-seed: "/data/torrents/movies"
   tv: "/data/torrents/tv"
   tv.cross-seed: "/data/torrents/tv"
+  music: "/data/torrent/music"
 
 cat_change:
 # This moves all the torrents from one category to another category. This executes on --cat-update
@@ -118,6 +119,12 @@ tracker:
   myanonamouse:
     tag: MaM
     notifiarr: myanonamouse
+  lst:
+    tag: lst
+    notifiarr: lst
+  yoinked:
+    tag: yoinked
+    notifiarr: yoinked
   # passthepopcorn:
   #   tag: PassThePopcorn
   #   notifiarr: passthepopcorn
