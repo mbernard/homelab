@@ -11,7 +11,7 @@ data:
       id: google
       name: Google
   exec.enabled: "true"
-  exec.shells: bash,sh,powershell,cmd,zsh
+  exec.shells: zsh,sh,bash,powershell,cmd
   kustomize.buildOptions: --enable-helm
   resource.compareoptions: |
     # disables status field diffing in specified resource types
