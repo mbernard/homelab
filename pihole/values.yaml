@@ -56,7 +56,6 @@ serviceDns:
     # purelb.io/addresses: 172.32.100.200
     purelb.io/allow-shared-ip: pihole-svc
     purelb.io/service-group: virtual
-  loadBalancerIP: 172.32.100.200
   type: LoadBalancer
 
 serviceWeb:
@@ -64,5 +63,4 @@ serviceWeb:
     # purelb.io/addresses: 172.32.100.200
     purelb.io/allow-shared-ip: pihole-svc
     purelb.io/service-group: virtual
-  loadBalancerIP: 172.32.100.200
   type: LoadBalancer
