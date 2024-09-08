@@ -1,0 +1,67 @@
+# https://github.com/MoJo2600/pihole-kubernetes/blob/main/charts/pihole/values.yaml
+admin:
+  # -- If set to false admin password will be disabled, adminPassword specified above and the pre-existing secret (if specified) will be ignored.
+  enabled: true
+  # -- Specify an existing secret to use as admin password
+  existingSecret: azurekv-secrets
+  # -- Specify the key inside the secret to use
+  passwordKey: pihole-admin-password
+
+dnsmasq:
+  customCnameEntries:
+  - cname=ds,nas
+  - cname=home,homeassistant
+
+  customDnsEntries:
+  # LB- address=/plex/192.168.10.200
+  - address=/qbittorrent/192.168.10.201
+  # Physical servers
+  - address=/nas/192.168.10.10
+  - address=/spartan/192.168.10.11
+  - address=/homeassistant/192.168.10.12
+  - address=/shade/192.168.10.13
+  - address=/luna/192.168.10.14
+
+# enables cloudflare tunnel sidecar container
+# and sets upstream dns in pihole to leverage it
+doh:
+  enabled: true
+  envVars: {TUNNEL_DNS_UPSTREAM: "https://1.1.1.3/dns-query,https://1.0.0.3/dns-query"}
+  pullPolicy: Always
+
+# pi-hole will automatially create a new
+# persistent volume managed by longhorn
+persistentVolumeClaim:
+  enabled: true
+  existingClaim: pihole-pvc
+  storageClass: longhorn
+
+podDnsConfig:
+  enabled: true
+  nameservers:
+  - 127.0.0.1
+  - 1.1.1.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
+  - 1.0.0.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
+  - 8.8.8.8
+  - 4.4.4.4
+  policy: None
+
+serviceDhcp:
+  # -- Generate a Service resource for DHCP traffic
+  enabled: false
+
+serviceDns:
+  annotations:
+    purelb.io/addresses: 192.168.10.255
+    purelb.io/allow-shared-ip: pihole-svc
+    purelb.io/service-group: default
+  loadBalancerIP: 192.168.10.255
+  type: LoadBalancer
+
+serviceWeb:
+  annotations:
+    purelb.io/addresses: 192.168.10.255
+    purelb.io/allow-shared-ip: pihole-svc
+    purelb.io/service-group: default
+  loadBalancerIP: 192.168.10.255
+  type: LoadBalancer
