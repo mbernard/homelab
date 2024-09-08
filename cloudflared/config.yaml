@@ -60,7 +60,7 @@ ingress:
 - hostname: overseerr-lidarr.miguelbernard.com
   service: http://overseerr-lidarr.overseerr-lidarr
 - hostname: pihole.miguelbernard.com
-  service: http://pihole.pihole
+  service: http://pihole-web.pihole
 - service: http_status:404
 # Serves the metrics server under /metrics and the readiness server under /ready
 metrics: 0.0.0.0:2000
