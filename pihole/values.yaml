@@ -27,7 +27,7 @@ dnsmasq:
 # and sets upstream dns in pihole to leverage it
 doh:
   enabled: true
-  envVars: {TUNNEL_DNS_UPSTREAM: "https://1.1.1.3/dns-query,https://1.0.0.3/dns-query"}
+  envVars: {TUNNEL_DNS_UPSTREAM: "https://1.1.1.2/dns-query,https://1.0.0.2/dns-query"}
   pullPolicy: Always
 
 extraEnvVars: {DNSMASQ_USER: "root"}
@@ -43,8 +43,8 @@ podDnsConfig:
   enabled: true
   nameservers:
   - 127.0.0.1
-  - 1.1.1.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
-  - 1.0.0.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
+  - 1.1.1.2 # Cloudflare Block malware. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
+  - 1.0.0.2 # Cloudflare Block malware. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
   policy: None
 
 serviceDhcp:
