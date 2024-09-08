@@ -42,8 +42,6 @@ podDnsConfig:
   - 127.0.0.1
   - 1.1.1.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
   - 1.0.0.3 # Cloudflare Block malware and adult content. https://developers.cloudflare.com/1.1.1.1/ip-addresses/
-  - 8.8.8.8
-  - 4.4.4.4
   policy: None
 
 serviceDhcp:
