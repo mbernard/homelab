@@ -54,7 +54,7 @@ serviceDhcp:
 
 serviceDns:
   annotations:
-    purelb.io/addresses: 172.32.100.202
+    purelb.io/addresses: 192.168.10.202
     purelb.io/allow-shared-ip: pihole-svc
     purelb.io/service-group: default
   externalTrafficPolicy: Cluster
@@ -62,7 +62,7 @@ serviceDns:
 
 serviceWeb:
   annotations:
-    purelb.io/addresses: 172.32.100.202
+    purelb.io/addresses: 192.168.10.202
     purelb.io/allow-shared-ip: pihole-svc
     purelb.io/service-group: default
   externalTrafficPolicy: Cluster
