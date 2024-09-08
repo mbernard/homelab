@@ -50,17 +50,20 @@ podDnsConfig:
 serviceDhcp:
   # -- Generate a Service resource for DHCP traffic
   enabled: false
+  externalTrafficPolicy: Cluster
 
 serviceDns:
   annotations:
-    # purelb.io/addresses: 172.32.100.200
+    purelb.io/addresses: 172.32.100.202
     purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtualsg
+    purelb.io/service-group: default
+  externalTrafficPolicy: Cluster
   type: LoadBalancer
 
 serviceWeb:
   annotations:
-    # purelb.io/addresses: 172.32.100.200
+    purelb.io/addresses: 172.32.100.202
     purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtualsg
+    purelb.io/service-group: default
+  externalTrafficPolicy: Cluster
   type: LoadBalancer
