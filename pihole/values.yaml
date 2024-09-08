@@ -13,7 +13,8 @@ dnsmasq:
   - cname=home,homeassistant
 
   customDnsEntries:
-  # LB- address=/plex/192.168.10.200
+  # LB
+  - address=/plex/192.168.10.200
   - address=/qbittorrent/192.168.10.201
   # Physical servers
   - address=/nas/192.168.10.10
@@ -28,6 +29,8 @@ doh:
   enabled: true
   envVars: {TUNNEL_DNS_UPSTREAM: "https://1.1.1.3/dns-query,https://1.0.0.3/dns-query"}
   pullPolicy: Always
+
+extraEnvVars: {DNSMASQ_USER: "root"}
 
 # pi-hole will automatially create a new
 # persistent volume managed by longhorn
