@@ -9,3 +9,15 @@ spec:
     - aggregation: /32
       pool: 192.168.10.200-192.168.10.255
       subnet: 192.168.10.0/24
+---
+apiVersion: purelb.io/v1
+kind: ServiceGroup
+metadata:
+  name: virtual
+  namespace: purelb
+spec:
+  local:
+    v4pools:
+    - aggregation: /32
+      pool: 172.32.100.200-172.30.100.255
+      subnet: 172.32.100.0/24
