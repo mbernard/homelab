@@ -13,7 +13,7 @@ spec:
 apiVersion: purelb.io/v1
 kind: ServiceGroup
 metadata:
-  name: virtual
+  name: virtualsg
   namespace: purelb
 spec:
   local:

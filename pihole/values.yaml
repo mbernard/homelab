@@ -55,12 +55,12 @@ serviceDns:
   annotations:
     # purelb.io/addresses: 172.32.100.200
     purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtual
+    purelb.io/service-group: virtualsg
   type: LoadBalancer
 
 serviceWeb:
   annotations:
     # purelb.io/addresses: 172.32.100.200
     purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtual
+    purelb.io/service-group: virtualsg
   type: LoadBalancer
