@@ -54,16 +54,14 @@ serviceDhcp:
 
 serviceDns:
   annotations:
-    purelb.io/addresses: 192.168.20.1
-    purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtualsg
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.202
   externalTrafficPolicy: Local
   type: LoadBalancer
 
 serviceWeb:
   annotations:
-    purelb.io/addresses: 192.168.20.1
-    purelb.io/allow-shared-ip: pihole-svc
-    purelb.io/service-group: virtualsg
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.202
   externalTrafficPolicy: Local
   type: LoadBalancer
