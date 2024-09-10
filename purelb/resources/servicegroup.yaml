@@ -21,11 +21,3 @@ spec:
     - aggregation: /24
       pool: 192.168.20.1-192.168.20.255
       subnet: 192.168.20.0/24
----
-apiVersion: crd.projectcalico.org/v1
-kind: IPPool
-metadata:
-  name: purelb-ipv4
-spec:
-  cidr: 192.168.20.0/24
-  disabled: true
