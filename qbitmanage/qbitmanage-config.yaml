@@ -12,7 +12,7 @@ commands:
   tag_update: True
   rem_unregistered: True
   tag_tracker_error: True
-  rem_orphaned: False
+  # rem_orphaned: False
   tag_nohardlinks: True
   share_limits: True
   skip_qb_version_check: False
