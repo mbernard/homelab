@@ -3,20 +3,20 @@
 # Please refer to the link below for more details on how to set up the configuration file
 # https://github.com/StuffAnThings/qbit_manage/wiki/Config-Setup
 
-# commands:
-#   # The commands defined below will IGNORE any commands used in command line and docker env variables.
-#   dry_run: False
-#   cross_seed: False
-#   recheck: False
-#   cat_update: True
-#   tag_update: True
-#   rem_unregistered: True
-#   tag_tracker_error: True
-#   rem_orphaned: False
-#   tag_nohardlinks: True
-#   share_limits: True
-#   skip_qb_version_check: False
-#   skip_cleanup: False
+commands:
+  # The commands defined below will IGNORE any commands used in command line and docker env variables.
+  dry_run: False
+  cross_seed: False
+  recheck: False
+  cat_update: True
+  tag_update: True
+  rem_unregistered: True
+  tag_tracker_error: True
+  rem_orphaned: # False
+  tag_nohardlinks: True
+  share_limits: True
+  skip_qb_version_check: False
+  skip_cleanup: False
 
 qbt:
   # qBittorrent parameters
