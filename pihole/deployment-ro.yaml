@@ -24,8 +24,8 @@ spec:
         - name: WEBPASSWORD
           valueFrom:
             secretKeyRef:
-              key: azurekv-secrets
-              name: pihole-admin-password
+              key: pihole-admin-password
+              name: azurekv-secrets
         envFrom:
         - configMapRef:
             name: env-vars
