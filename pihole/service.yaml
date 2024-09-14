@@ -9,7 +9,6 @@ spec:
   externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
-  ipFamilyPolicy: PreferDualStack
   ports:
   - name: dnsudp
     port: 53
@@ -30,7 +29,6 @@ spec:
   externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
-  ipFamilyPolicy: PreferDualStack
   ports:
   - name: dnstcp
     port: 53
