@@ -8,9 +8,8 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ipFamilies:
-  - IPv6
   - IPv4
-  ipFamilyPolicy: PreferDualStack
+  ipFamilyPolicy: IPv4
   ports:
   - name: dnsudp
     port: 53
@@ -30,9 +29,8 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ipFamilies:
-  - IPv6
   - IPv4
-  ipFamilyPolicy: PreferDualStack
+  ipFamilyPolicy: IPv4
   ports:
   - name: dnstcp
     port: 53
