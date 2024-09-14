@@ -30,46 +30,46 @@ spec:
             secretKeyRef:
               key: azurekv-secrets
               name: pihole-admin-password
-        image: pihole/pihole:2024.01.0
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          initialDelaySeconds: 15
-          periodSeconds: 30
-          tcpSocket:
-            port: dns-tcp
-        name: pihole-rw
-        ports:
-        - containerPort: 53
-          name: dns-tcp
-          protocol: TCP
-        - containerPort: 53
-          name: dns-udp
-          protocol: UDP
-        - containerPort: 80
-          name: web
-          protocol: TCP
-        readinessProbe:
-          exec:
-            command: ['dig', '@127.0.0.1', 'cloudflare.com']
-          initialDelaySeconds: 5
-          periodSeconds: 60
-          timeoutSeconds: 20
-        resources:
-          limits:
-            cpu: "250m"
-            memory: "896Mi"
-          requests:
-            cpu: "20m"
-            memory: "512Mi"
-        volumeMounts:
-        - mountPath: /etc/pihole
-          name: pihole-etc
-        - mountPath: /etc/dnsmasq.d
-          name: pihole-dnsm
-      volumes:
-      - name: pihole-etc
-        persistentVolumeClaim:
-          claimName: pihole-etc-pvc
-      - name: pihole-dnsm
-        persistentVolumeClaim:
-          claimName: pihole-dnsm-pvc
+      image: pihole/pihole:2024.01.0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        initialDelaySeconds: 15
+        periodSeconds: 30
+        tcpSocket:
+          port: dns-tcp
+      name: pihole-rw
+      ports:
+      - containerPort: 53
+        name: dns-tcp
+        protocol: TCP
+      - containerPort: 53
+        name: dns-udp
+        protocol: UDP
+      - containerPort: 80
+        name: web
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command: ['dig', '@127.0.0.1', 'cloudflare.com']
+        initialDelaySeconds: 5
+        periodSeconds: 60
+        timeoutSeconds: 20
+      resources:
+        limits:
+          cpu: "250m"
+          memory: "896Mi"
+        requests:
+          cpu: "20m"
+          memory: "512Mi"
+      volumeMounts:
+      - mountPath: /etc/pihole
+        name: pihole-etc
+      - mountPath: /etc/dnsmasq.d
+        name: pihole-dnsm
+    volumes:
+    - name: pihole-etc
+      persistentVolumeClaim:
+        claimName: pihole-etc-pvc
+    - name: pihole-dnsm
+      persistentVolumeClaim:
+        claimName: pihole-dnsm-pvc
