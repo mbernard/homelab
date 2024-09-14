@@ -9,7 +9,6 @@ namespace: pihole
 
 resources:
 - deployment-rw.yaml
-- deployment-ro.yaml
 - service.yaml
 - storage-dnsm.yaml
 - storage-etc.yaml
