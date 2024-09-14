@@ -15,8 +15,6 @@ spec:
     type: Recreate
   template:
     metadata:
-      annotations:
-        cni.projectcalico.org/ipAddrs: '["2001:db8:1234:100::1", "10.244.0.11"]'
       labels:
         app: pihole
     spec:
