@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+kind: Kustomization
+
+namespace: pihole
+
+resources:
+- deployment-rw.yaml
+- deployment-ro.yaml
+- service.yaml
+- storage-dnsm.yaml
+- storage-etc.yaml
+

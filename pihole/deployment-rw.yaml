@@ -1,0 +1,75 @@
+# Deployment for Pi-hole RW
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pihole
+  name: pihole-rw
+  namespace: pihole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pihole
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        cni.projectcalico.org/ipAddrs: '["2001:db8:1234:100::1", "10.244.0.11"]'
+      labels:
+        app: pihole
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+      - env:
+        - name: WEBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: azurekv-secrets
+              name: pihole-admin-password
+        image: pihole/pihole:2024.01.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          initialDelaySeconds: 15
+          periodSeconds: 30
+          tcpSocket:
+            port: dns-tcp
+        name: pihole-rw
+        ports:
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command: ['dig', '@127.0.0.1', 'cloudflare.com']
+          initialDelaySeconds: 5
+          periodSeconds: 60
+          timeoutSeconds: 20
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "896Mi"
+          requests:
+            cpu: "20m"
+            memory: "512Mi"
+        volumeMounts:
+        - mountPath: /etc/pihole
+          name: pihole-etc
+        - mountPath: /etc/dnsmasq.d
+          name: pihole-dnsm
+      volumes:
+      - name: pihole-etc
+        persistentVolumeClaim:
+          claimName: pihole-etc-pvc
+      - name: pihole-dnsm
+        persistentVolumeClaim:
+          claimName: pihole-dnsm-pvc
