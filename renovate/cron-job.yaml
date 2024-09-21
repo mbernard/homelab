@@ -9,9 +9,7 @@ spec:
       template:
         spec:
           containers:
-          - args:
-            - user/repo
-            envFrom:
+          - envFrom:
             - configMapRef:
                 name: env-vars
             image: renovate/renovate:38.72.1
