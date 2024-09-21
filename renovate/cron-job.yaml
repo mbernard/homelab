@@ -14,12 +14,12 @@ spec:
                 name: env-vars
             image: renovate/renovate:38.72.1
             name: renovate
-            # restartPolicy: 'Never'
             volumeMounts:
             - mountPath: /opt/renovate/
               name: config-volume
             - mountPath: /tmp/renovate/
               name: work-volume
+          restartPolicy: Never
           volumes:
           - configMap:
               name: config
