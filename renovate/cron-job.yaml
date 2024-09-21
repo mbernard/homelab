@@ -9,7 +9,10 @@ spec:
       template:
         spec:
           containers:
-          - envFrom:
+          - env:
+            - name: RENOVATE_TOKEN
+              value: $azurekv-secrets:github-personal-access-token-argocd
+            envFrom:
             - configMapRef:
                 name: env-vars
             image: renovate/renovate:38.72.1
