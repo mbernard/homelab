@@ -1,0 +1,11 @@
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+- files:
+  - config.json
+  name: config
+namespace: renovate
+
+resources:
+- cron-job.yaml
