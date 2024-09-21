@@ -11,7 +11,10 @@ spec:
           containers:
           - env:
             - name: RENOVATE_TOKEN
-              value: $azurekv-secrets:github-personal-access-token-argocd
+              valueFrom:
+                secretKeyRef:
+                  key: github-personal-access-token-argocd
+                  name: azurekv-secrets
             envFrom:
             - configMapRef:
                 name: env-vars
