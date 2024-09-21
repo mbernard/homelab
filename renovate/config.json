@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "labels": ["renovate"],
   "repositories": ["mbernard/homelab"],
-  "dryRun" : "full",
   "packageRules": [
     {
       "matchManagers": [
