@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: renovate
 spec:
-  #concurrencyPolicy: Forbid
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
@@ -14,7 +14,7 @@ spec:
                 name: env-vars
             image: renovate/renovate:38.72.1
             name: renovate
-            restartPolicy: Never
+            restartPolicy: 'Never'
             volumeMounts:
             - mountPath: /opt/renovate/
               name: config-volume
