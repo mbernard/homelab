@@ -5,9 +5,9 @@
   "extends": ["config:recommended"],
   "minimumReleaseAge": "36 hours",
   "argocd": {
-    "fileMatch": ["\\.yaml$"]
+    "fileMatch": [".*\\.yaml$"]
   },
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"]
+    "fileMatch": [".*\\.yaml$"]
   }
 }
