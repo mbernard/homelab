@@ -14,7 +14,7 @@ spec:
                 name: env-vars
             image: renovate/renovate:38.72.1
             name: renovate
-            restartPolicy: Never
+            restartPolicy: OnFailure
             volumeMounts:
             - mountPath: /opt/renovate/
               name: config-volume
