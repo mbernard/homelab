@@ -2,17 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "labels": ["renovate"],
   "repositories": ["mbernard/homelab"],
-  "packageRules": [
-    {
-      "matchManagers": [
-        "argocd"
-      ],
-      "matchPaths": [
-        "**/**"
-      ]
-    }   
-  ],
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "36 hours",
   "argocd": {
+    "fileMatch": ["\\.yaml$"]
+  },
+  "kubernetes": {
     "fileMatch": ["\\.yaml$"]
   }
 }
