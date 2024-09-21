@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/advplyr/audiobookshelf:latest
+        image: ghcr.io/advplyr/audiobookshelf:2.13.4
         name: audiobookshelf
         ports:
         - containerPort: 80

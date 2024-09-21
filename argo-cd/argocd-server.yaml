@@ -304,7 +304,7 @@ spec:
               name: argocd-cmd-params-cm
               key: applicationsetcontroller.enable.scm.providers
               optional: true
-        image: quay.io/argoproj/argocd:latest
+        image: quay.io/argoproj/argocd:v2.13.0-rc2
         imagePullPolicy: Always
         livenessProbe:
           httpGet:

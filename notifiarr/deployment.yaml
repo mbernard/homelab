@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: golift/notifiarr:latest
+        image: golift/notifiarr:0.8.1
         name: notifiarr
         ports:
         - containerPort: 5454
