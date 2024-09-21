@@ -25,7 +25,7 @@ spec:
           value: /cache/
         - name: STASH_PORT
           value: '9999'
-        image: stashapp/stash
+        image: stashapp/stash:v0.26.2
         name: stash
         ports:
         - containerPort: 9999
@@ -33,28 +33,28 @@ spec:
         - mountPath: /etc/localtime
           name: tz
           readOnly: true
-        ## Point this at your collection.
         - mountPath: /data
+          ## Point this at your collection.
           name: nfs-private
           subPath: Porn
-        ## Keep configs, scrapers, and plugins here.
         - mountPath: /root/.stash
+          ## Keep configs, scrapers, and plugins here.
           name: stash-vol
           subPath: root
-        ## This is where your stash's metadata lives
         - mountPath: /metadata
+          ## This is where your stash's metadata lives
           name: stash-vol
           subPath: metadata
-        ## Any other cache content.
         - mountPath: /cache
+          ## Any other cache content.
           name: stash-vol
           subPath: cache
-        ## Where to store binary blob data (scene covers, images)
         - mountPath: /blobs
+          ## Where to store binary blob data (scene covers, images)
           name: stash-vol
           subPath: blobs
-        ## Where to store generated content (screenshots,previews,transcodes,sprites)
         - mountPath: /generated
+          ## Where to store generated content (screenshots,previews,transcodes,sprites)
           name: nfs-private
           subPath: stash/generated
       volumes:
