@@ -10,5 +10,6 @@
   "kubernetes": {
     "fileMatch": [".*\\.yaml$"]
   },
-  "assignees": ["mbernard"]
+  "assignees": ["mbernard"],
+  "reviewers": ["mbernard"]
 }
