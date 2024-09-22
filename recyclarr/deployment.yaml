@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/recyclarr/recyclarr
+        image: ghcr.io/recyclarr/recyclarr:7.2.4
         name: recyclarr
         volumeMounts:
         - mountPath: /etc/localtime
