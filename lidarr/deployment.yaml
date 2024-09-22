@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: lscr.io/linuxserver/lidarr:2.5.3
+        image: lscr.io/linuxserver/lidarr:8.1.2135
         name: lidarr
         ports:
         - containerPort: 8686
