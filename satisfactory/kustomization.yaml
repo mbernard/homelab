@@ -7,5 +7,5 @@ namespace: satisfactory
 
 resources:
 - service.yaml
-- StatefulSet.yaml
+- statefulset.yaml
 - storage.yaml
