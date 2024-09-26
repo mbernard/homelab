@@ -7,9 +7,9 @@ patches:
 - path: argocd-cm.yaml
 - path: argocd-rbac-cm.yaml
 - path: clusterrole.yaml
-# - path: argocd-cmd-params-cm.yaml
+- path: argocd-cmd-params-cm.yaml
 
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 resources:
-- https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/ha/install.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/release-2.13/manifests/ha/install.yaml
 - repo.yaml
