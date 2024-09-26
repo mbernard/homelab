@@ -4,10 +4,11 @@ kind: Kustomization
 namespace: argocd
 
 patches:
-- path: argocd-cm.yaml 
+- path: argocd-cm.yaml
 - path: argocd-rbac-cm.yaml
-- path: argocd-server.yaml
 - path: clusterrole.yaml
+  # - path: argocd-server.yaml
+- path: argocd-cmd-params-cm.yaml
 
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 resources:
