@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  server.insecure: "true"
+  server.insecure: true
 kind: ConfigMap
 metadata:
   labels:
