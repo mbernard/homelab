@@ -10,5 +10,12 @@
   "kubernetes": {
     "fileMatch": [".*\\.yaml$"]
   },
-  "reviewers": ["mbernard"]
+  "reviewers": ["mbernard"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ],
+  "prCreation": "not-pending"
 }
