@@ -1,0 +1,6 @@
+namespace: grafana
+
+resources:
+- deployment.yaml
+- service.yaml
+- storage.yaml
