@@ -11,7 +11,7 @@ spec:
     driver: driver.longhorn.io
     fsType: ext4
     volumeHandle: overseerr
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Delete
   storageClassName: longhorn
   volumeMode: Filesystem
 ---

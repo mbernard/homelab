@@ -5,9 +5,6 @@ configMapGenerator:
 - files:
   - config.yaml
   name: omegabrr-config
-generatorOptions:
-  labels:
-    app.kubernetes.io/part-of: argocd
 
 namespace: omegabrr
 
