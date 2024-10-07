@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: hotio/prowlarr:release-1.23.1.4708
+        image: hotio/prowlarr:release-1.24.3.4754
         name: prowlarr
         ports:
         - containerPort: 9696
