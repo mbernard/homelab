@@ -1,7 +1,7 @@
 # config.yaml
 clients:
   arr:
-  - apikey: 967e3df3277c4f7dbcd29a3ac79465a4
+  - apikey: $azurekv-secrets:radarr-api-key
     filters:
     - 1 # Change me
     host: http://radarr.radarr
