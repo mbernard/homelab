@@ -13,7 +13,8 @@
   "reviewers": ["mbernard"],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["minor", "patch", "bump", "digest", "pin", "pinDigest", "replacement"],
+      "matchCurrentVersion": "!/^0/",
       "automerge": true
     }
   ],
