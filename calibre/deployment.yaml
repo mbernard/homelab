@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: lscr.io/linuxserver/calibre:v7.18.0-ls302
+        image: lscr.io/linuxserver/calibre:7.19.0
         name: calibre
         ports:
         - containerPort: 8080
