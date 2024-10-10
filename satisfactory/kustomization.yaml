@@ -1,0 +1,11 @@
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+
+namespace: satisfactory
+
+resources:
+- service.yaml
+- statefulset.yaml
+- storage.yaml

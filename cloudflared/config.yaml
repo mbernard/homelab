@@ -1,0 +1,82 @@
+# This ConfigMap is just a way to define the cloudflared config.yaml file in k8s.
+# It's useful to define it in k8s, rather than as a stand-alone .yaml file, because
+# this lets you use various k8s templating solutions (e.g. Helm charts) to
+# parameterize your config, instead of just using string literals.
+
+credentials-file: /etc/cloudflared/creds/cloudflared-cred
+# The `ingress` block tells cloudflared which local service to route incoming
+# requests to. For more about ingress rules, see
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
+#
+# Remember, these rules route traffic from cloudflared to a local service. To route traffic
+# from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
+# E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
+# The first rule proxies traffic to the httpbin sample Service defined in app.yaml
+# - hostname: tunnel.example.com
+#   service: http://web-service:80
+# This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
+# issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
+# in the connection from cloudflared to your local service, not from the internet to cloudflared.
+# - hostname: hello.example.com
+#   service: hello_world
+# This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
+ingress:
+- hostname: argocd.miguelbernard.com
+  service: http://argocd-server.argocd.svc.cluster.local
+- hostname: longhorn.miguelbernard.com
+  service: http://longhorn-frontend.longhorn
+- hostname: k8s.miguelbernard.com
+  service: https://kubernetes-dashboard.kube-system
+- hostname: stash.miguelbernard.com
+  service: http://stash.stash
+- hostname: torrent.miguelbernard.com
+  service: http://qbittorrent.qbittorrent
+- hostname: radarr.miguelbernard.com
+  service: http://radarr.radarr
+- hostname: sonarr.miguelbernard.com
+  service: http://sonarr.sonarr
+- hostname: readarr.miguelbernard.com
+  service: http://readarr.readarr
+- hostname: readarr-audio.miguelbernard.com
+  service: http://readarr-audio.readarr-audio
+- hostname: audiobook.miguelbernard.com
+  service: http://audiobookshelf.audiobookshelf
+- hostname: prowlarr.miguelbernard.com
+  service: http://prowlarr.prowlarr
+- hostname: autobrr.miguelbernard.com
+  service: http://autobrr.autobrr
+- hostname: calibre.miguelbernard.com
+  service: http://calibre.calibre:8080
+- hostname: book.miguelbernard.com
+  service: http://calibre.calibre:8081
+- hostname: notifiarr.miguelbernard.com
+  service: http://notifiarr.notifiarr
+- hostname: homelab.miguelbernard.com
+  service: http://organizr.organizr
+- hostname: overseerr.miguelbernard.com
+  service: http://overseerr.overseerr
+- hostname: lidarr.miguelbernard.com
+  service: http://lidarr.lidarr
+- hostname: overseerr-lidarr.miguelbernard.com
+  service: http://overseerr-lidarr.overseerr-lidarr
+- hostname: pihole.miguelbernard.com
+  service: http://pihole-tcp.pihole
+- hostname: grafana.miguelbernard.com
+  service: http://grafana.grafana
+- service: http_status:404
+# Serves the metrics server under /metrics and the readiness server under /ready
+metrics: 0.0.0.0:2000
+# Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so
+# autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
+# recommend using autoupdate.
+no-autoupdate: true
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/origin-configuration/#access-settings
+originRequest:
+  access:
+    audTag:
+    - aud1 65403da30b4ec456f919775504c3a021e87eb4be54b179336a04abe44bcd6a1b
+    required: true
+    teamName: migb
+  noTLSVerify: true
+# Name of the tunnel you want to run
+tunnel: homelab

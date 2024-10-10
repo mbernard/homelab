@@ -1,0 +1,28 @@
+preUpgradeChecker:
+  jobEnabled: false
+defaultSettings:
+  defaultDataPath: /mnt/longhorn
+  createDefaultDiskLabeledNodes: false
+  defaultReplicaCount: 2
+  backupTarget: nfs://192.168.10.10:/volume1/longhorn-backup
+csi:
+  kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
+persistence:
+   # -- Replica count of the default Longhorn StorageClass.
+  defaultClassReplicaCount: 2
+  # -- Data locality of the default Longhorn StorageClass. (Options: "disabled", "best-effort")
+  defaultDataLocality: best-effort
+  # recurringJobSelector:
+  #   # -- Setting that allows you to enable the recurring job selector for a Longhorn StorageClass.
+  #   enable: true
+  #   # -- Recurring job selector for a Longhorn StorageClass. Ensure that quotes are used correctly when specifying job parameters. (Example: `[{"name":"backup", "isGroup":true}]`)
+  #   jobList: [
+  #   {
+  #     "name":"snap",
+  #     "isGroup":true
+  #   },
+  #   {
+  #     "name":"backup",
+  #     "isGroup":false
+  #   }
+  #   ]

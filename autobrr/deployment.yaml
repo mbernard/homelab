@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autobrr
+  namespace: autobrr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: autobrr
+  template:
+    metadata:
+      labels:
+        run: autobrr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/autobrr/autobrr:v1.46.1
+        name: autobrr
+        ports:
+        - containerPort: 7474
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: autobrr-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: autobrr-vol
+        persistentVolumeClaim:
+          claimName: autobrr-pvc
+

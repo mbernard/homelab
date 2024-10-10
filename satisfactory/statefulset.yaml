@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: satisfactory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: satisfactory
+  serviceName: satisfactory
+  template:
+    metadata:
+      labels:
+        app: satisfactory
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: wolveix/satisfactory-server:v1.8.6
+        name: satisfactory
+        ports:
+        - containerPort: 7777
+          name: gametcp
+          protocol: TCP
+        - containerPort: 7777
+          name: game
+          protocol: UDP
+        volumeMounts:
+        - mountPath: /config
+          name: satisfactory-vol
+      volumes:
+      - name: satisfactory-vol
+        persistentVolumeClaim:
+          claimName: satisfactory-pvc

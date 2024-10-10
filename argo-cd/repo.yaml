@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: git-homelab-cred-external-secret
+  namespace: argocd
+spec:
+  data:
+    - remoteRef:
+        key: github-personal-access-token-argocd
+      secretKey: token 
+  refreshInterval: 1m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: azurekv-secret-store 
+  target:
+    name: git-homelab-cred
+    template:
+      data:
+        password: "{{ .token }}"
+        url: https://github.com/mbernard/homelab 
+        username: mbernard
+      metadata:
+        labels:
+          app.kubernetes.io/part-of: argocd
+          argocd.argoproj.io/secret-type: repository

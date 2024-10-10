@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calibre
+  namespace: calibre
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: calibre
+  template:
+    metadata:
+      labels:
+        run: calibre
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: lscr.io/linuxserver/calibre:7.19.0
+        name: calibre
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: calibre-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: calibre-vol
+        persistentVolumeClaim:
+          claimName: calibre-pvc
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+

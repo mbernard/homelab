@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifiarr
+  namespace: notifiarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: notifiarr
+  template:
+    metadata:
+      labels:
+        run: notifiarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: golift/notifiarr:0.8.2
+        name: notifiarr
+        ports:
+        - containerPort: 5454
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: notifiarr-vol
+      volumes:
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: notifiarr-vol
+        persistentVolumeClaim:
+          claimName: notifiarr-pvc
+

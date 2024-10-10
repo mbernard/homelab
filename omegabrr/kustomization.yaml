@@ -1,0 +1,13 @@
+configMapGenerator:
+- envs:
+  - env_vars.properties
+  name: env-vars
+- files:
+  - config.yaml
+  name: omegabrr-config
+
+namespace: omegabrr
+
+resources:
+- deployment.yaml
+- service.yaml

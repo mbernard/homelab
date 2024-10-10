@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground
+  name: organizr
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+spec:
+  destination:
+    namespace: organizr
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: organizr
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

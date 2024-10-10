@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: radarr
+  template:
+    metadata:
+      labels:
+        run: radarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/hotio/radarr:release-5.11.0.9244
+        name: radarr
+        ports:
+        - containerPort: 7878
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: radarr-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: radarr-vol
+        persistentVolumeClaim:
+          claimName: radarr-pvc
+

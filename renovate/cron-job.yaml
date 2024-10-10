@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - env:
+            - name: GITHUB_COM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: github-personal-access-token-argocd
+                  name: azurekv-secrets
+            - name: RENOVATE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: renovate-bot-github
+                  name: azurekv-secrets
+            envFrom:
+            - configMapRef:
+                name: env-vars
+            image: renovate/renovate:38.110.2
+            name: renovate
+            volumeMounts:
+            - mountPath: /opt/renovate/
+              name: config-volume
+            - mountPath: /tmp/renovate/
+              name: work-volume
+          restartPolicy: Never
+          volumes:
+          - configMap:
+              name: config
+            name: config-volume
+          - emptyDir: {}
+            name: work-volume
+  schedule: '@hourly'

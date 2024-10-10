@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: sonarr
+  template:
+    metadata:
+      labels:
+        run: sonarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/hotio/sonarr:release-4.0.9.2244
+        name: sonarr
+        ports:
+        - containerPort: 8989
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: sonarr-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: sonarr-vol
+        persistentVolumeClaim:
+          claimName: sonarr-pvc
+

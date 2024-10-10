@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "labels": ["renovate"],
+  "repositories": ["mbernard/homelab"],
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "36 hours",
+  "argocd": {
+    "fileMatch": [".*\\.yaml$"]
+  },
+  "kubernetes": {
+    "fileMatch": [".*\\.yaml$"]
+  },
+  "reviewers": ["mbernard"],
+  "assignees": ["mbernard"],
+  "packageRules": [
+    {
+      "description": "auto merge everything except major",
+      "matchUpdateTypes": ["minor", "patch", "bump", "digest", "pin", "pinDigest", "replacement"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "description": "regex to match custom dokker tags",
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^(?<compatibility>(release|testing))-(?<major>\\d+)\\.(?<minor>\\d+)?\\.?(?<patch>\\d+)?\\.?(?<bump>\\d+)?$"
+    }
+  ],
+  "platformAutomerge": true,
+  "prCreation": "not-pending",
+  "ignoreTests": true
+}

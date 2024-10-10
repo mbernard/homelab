@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audiobookshelf
+  namespace: audiobookshelf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: audiobookshelf
+  template:
+    metadata:
+      labels:
+        run: audiobookshelf
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/advplyr/audiobookshelf:2.14.0
+        name: audiobookshelf
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: audiobookshelf-vol
+          subPath: config
+        - mountPath: /metadata
+          name: audiobookshelf-vol
+          subPath: metadata
+        - mountPath: /audiobooks
+          name: data
+          subPath: media/audiobooks
+        - mountPath: /podcasts
+          name: data
+          subPath: media/podcasts
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: audiobookshelf-vol
+        persistentVolumeClaim:
+          claimName: audiobookshelf-pvc
+

@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+configMapGenerator:
+- files:
+  - cmp-plugin/avp-helm.yaml
+  - cmp-plugin/avp-kustomize.yaml
+  - cmp-plugin/avp.yaml
+  name: cmp-plugin
+kind: Kustomization
+
+namespace: argocd
+
+patches:
+- path: argocd-cm.yaml
+- path: argocd-rbac-cm.yaml
+- path: clusterrole.yaml
+- path: argocd-cmd-params-cm.yaml
+- path: argocd-repo-server.yaml
+
+# https://github.com/argoproj/argo-cd/tree/master/manifests/ha
+resources:
+- https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/release-2.13/manifests/ha/install.yaml
+- repo.yaml
+
+# secretGenerator:
+# - literals:
+#   - AVP_TYPE=kubernetessecret
+#   name: vault-configuration

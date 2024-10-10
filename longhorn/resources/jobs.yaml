@@ -1,0 +1,38 @@
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: snapshot
+  namespace: longhorn
+spec:
+  cron: "0 * * * *" # every hour
+  task: "snapshot"
+  groups:
+  - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
+  retain: 24
+  concurrency: 2
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: backup
+  namespace: longhorn
+spec:
+  cron: "0 0 * * *" # every day
+  task: "backup"
+  groups:
+  - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
+  retain: 7
+  concurrency: 2
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: filesystem-trim
+  namespace: longhorn
+spec:
+  cron: "0 0 * * *" # every day
+  task: "filesystem-trim"
+  groups:
+  - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
+  retain: 7
+  concurrency: 2

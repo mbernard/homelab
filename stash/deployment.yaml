@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stash-server
+  namespace: stash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: stash
+  template:
+    metadata:
+      labels:
+        run: stash
+    spec:
+      containers:
+      - env:
+        - name: STASH_STASH
+          value: /data/
+        - name: STASH_GENERATED
+          value: /generated/
+        - name: STASH_METADATA
+          value: /metadata/
+        - name: STASH_CACHE
+          value: /cache/
+        - name: STASH_PORT
+          value: '9999'
+        image: stashapp/stash:v0.27.0
+        name: stash
+        ports:
+        - containerPort: 9999
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /data
+          ## Point this at your collection.
+          name: nfs-private
+          subPath: Porn
+        - mountPath: /root/.stash
+          ## Keep configs, scrapers, and plugins here.
+          name: stash-vol
+          subPath: root
+        - mountPath: /metadata
+          ## This is where your stash's metadata lives
+          name: stash-vol
+          subPath: metadata
+        - mountPath: /cache
+          ## Any other cache content.
+          name: stash-vol
+          subPath: cache
+        - mountPath: /blobs
+          ## Where to store binary blob data (scene covers, images)
+          name: stash-vol
+          subPath: blobs
+        - mountPath: /generated
+          ## Where to store generated content (screenshots,previews,transcodes,sprites)
+          name: nfs-private
+          subPath: stash/generated
+      volumes:
+      - name: nfs-private
+        nfs:
+          path: /volume1/private
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: stash-vol
+        persistentVolumeClaim:
+          claimName: stash-pvc

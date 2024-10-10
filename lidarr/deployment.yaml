@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  namespace: lidarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: lidarr
+  template:
+    metadata:
+      labels:
+        run: lidarr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/hotio/lidarr:release-2.6.4.4402
+        name: lidarr
+        ports:
+        - containerPort: 8686
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: lidarr-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: lidarr-vol
+        persistentVolumeClaim:
+          claimName: lidarr-pvc
+

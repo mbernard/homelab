@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr
+  namespace: overseerr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: overseerr
+  template:
+    metadata:
+      labels:
+        run: overseerr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: hotio/overseerr:release-1.33.2
+        name: overseerr
+        ports:
+        - containerPort: 5055
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: overseerr-vol
+        - mountPath: /data/media
+          name: data
+          subPath: media
+      volumes:
+      - name: data
+        nfs:
+          path: /volume1/data
+          server: 192.168.10.10
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: overseerr-vol
+        persistentVolumeClaim:
+          claimName: overseerr-pvc
+
