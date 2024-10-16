@@ -57,6 +57,10 @@ spec:
           ## Where to store generated content (screenshots,previews,transcodes,sprites)
           name: nfs-private
           subPath: stash/generated
+        - mountPath: /dev/dri
+          name: quicksync
+      nodeSelector:
+      - kubernetes.io/hostname: shade
       volumes:
       - name: nfs-private
         nfs:
@@ -68,3 +72,6 @@ spec:
       - name: stash-vol
         persistentVolumeClaim:
           claimName: stash-pvc
+      - hostPath:
+          path: /dev/dri
+        name: quicksync
