@@ -59,8 +59,7 @@ spec:
           subPath: stash/generated
         - mountPath: /dev/dri
           name: quicksync
-      nodeSelector:
-      - kubernetes.io/hostname: shade
+      nodeName: shade
       volumes:
       - name: nfs-private
         nfs:

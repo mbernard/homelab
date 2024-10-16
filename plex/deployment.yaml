@@ -54,8 +54,7 @@ spec:
           name: plex-vol
         - mountPath: /dev/dri
           name: quicksync
-      nodeSelector:
-      - kubernetes.io/hostname: shade
+      nodeName: shade
       volumes:
       - name: data
         nfs:
