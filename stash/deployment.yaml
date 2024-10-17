@@ -25,6 +25,10 @@ spec:
           value: /cache/
         - name: STASH_PORT
           value: '9999'
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: all
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: compute,video,utility
         image: stashapp/stash:v0.27.0
         name: stash
         ports:
