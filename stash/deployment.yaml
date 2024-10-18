@@ -15,8 +15,7 @@ spec:
     spec:
       containers:
       - command:
-        - apk add libva-intel-driver
-        - stash
+        - /bin/sh -c 'apk --no-cache add intel-media-driver && stash'
         env:
         - name: STASH_STASH
           value: /data/
