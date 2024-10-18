@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: wolveix/satisfactory-server:v1.8.6
+        image: wolveix/satisfactory-server:v1.8.7
         name: satisfactory
         ports:
         - containerPort: 7777
