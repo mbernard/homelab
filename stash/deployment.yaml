@@ -14,11 +14,7 @@ spec:
         run: stash
     spec:
       containers:
-      - args:
-        - -c
-        - "apk add libva-intel-driver && apk add --no-cache intel-media-driver && stash"
-        command: ['sh']
-        env:
+      - env:
         - name: STASH_STASH
           value: /data/
         - name: STASH_GENERATED
@@ -33,7 +29,7 @@ spec:
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: compute,video,utility
-        image: stashapp/stash:v0.27.2
+        image: nerethos/stash-jellyfin-ffmpeg:v0.27.2
         name: stash
         ports:
         - containerPort: 9999
