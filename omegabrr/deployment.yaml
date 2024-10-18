@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/autobrr/omegabrr:v1.14
+        image: ghcr.io/autobrr/omegabrr:v1.14.0
         name: omegabrr
         ports:
         - containerPort: 7441
