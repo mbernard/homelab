@@ -14,7 +14,8 @@ spec:
         run: stash
     spec:
       containers:
-      - env:
+      - command: sh -c "apk add libva-intel-driver && stash"
+        env:
         - name: STASH_STASH
           value: /data/
         - name: STASH_GENERATED
