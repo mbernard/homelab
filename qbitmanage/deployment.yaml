@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/stuffanthings/qbit_manage:v4.1.11
+        image: ghcr.io/stuffanthings/qbit_manage:v4.1.12
         name: qbitmanage
         volumeMounts:
         - mountPath: data/torrents
