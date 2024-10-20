@@ -63,7 +63,7 @@ spec:
           subPath: stash/generated
         - mountPath: /dev/dri
           name: quicksync
-      nodeName: shade
+      nodeName: spartan
       volumes:
       - name: nfs-private
         nfs:

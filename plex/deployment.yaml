@@ -54,7 +54,7 @@ spec:
           name: plex-vol
         - mountPath: /dev/dri
           name: quicksync
-      nodeName: shade
+      nodeName: spartan
       volumes:
       - name: data
         nfs:
