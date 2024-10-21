@@ -15,19 +15,23 @@ spec:
     spec:
       containers:
       - env:
-        - name: PLEX_CLAIM_TOKEN
+        - name: PUID
+          value: 1000
+        - name: PGID
+          value: 1000
+        - name: PLEX_CLAIM
           value: <path:azurekv-secrets#plex-claim-token>
-        - name: PLEX_ADVERTISE_URL
-          value: http://192.168.10.200:32400
-        - name: PLEX_NO_AUTH_NETWORKS
-          value: ''
-        - name: PLEX_BETA_INSTALL
-          value: 'true'
+        # - name: PLEX_NO_AUTH_NETWORKS
+        #   value: ''
+        # - name: PLEX_BETA_INSTALL
+        #   value: 'true'
         - name: NVIDIA_VISIBLE_DEVICES
+          # - name: PLEX_ADVERTISE_URL
+          #   value: http://192.168.10.200:32400
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
-        image: ghcr.io/hotio/plex:release-1.41.0.8992-8463ad060
+        image: linuxserver/plex:1.41.0
         name: plex
         ports:
         - containerPort: 32400 #PMS
