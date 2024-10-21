@@ -21,7 +21,7 @@ spec:
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
-        image: linuxserver/plex:1.41.0
+        image: lscr.io/linuxserver/plex:1.41.0
         name: plex
         ports:
         - containerPort: 32400 #PMS
