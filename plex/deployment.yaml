@@ -37,6 +37,9 @@ spec:
         - containerPort: 1900 #Plex DLNA
           name: plex-dlna-udp
           protocol: UDP
+        resources:
+          limits:
+            nvidia.com/gpu: 1
         volumeMounts:
         - mountPath: data/media
           name: data
