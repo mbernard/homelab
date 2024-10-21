@@ -16,7 +16,7 @@ spec:
       containers:
       - env:
         - name: PLEX_CLAIM
-          value: <path:azurekv-secrets#plex-claim-token>
+          value: claim-LZ-VG6Nyj1-mfwvydtPf # valid 4 minutes
         - name: NVIDIA_VISIBLE_DEVICES
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
