@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - chart: nvdp
+  - chart: nvidia-device-plugin
     repoURL: https://nvidia.github.io/k8s-device-plugin
     targetRevision: 0.16.1
   syncPolicy:
