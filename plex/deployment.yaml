@@ -21,13 +21,7 @@ spec:
           value: 1000
         - name: PLEX_CLAIM
           value: <path:azurekv-secrets#plex-claim-token>
-        # - name: PLEX_NO_AUTH_NETWORKS
-        #   value: ''
-        # - name: PLEX_BETA_INSTALL
-        #   value: 'true'
         - name: NVIDIA_VISIBLE_DEVICES
-          # - name: PLEX_ADVERTISE_URL
-          #   value: http://192.168.10.200:32400
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
