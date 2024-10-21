@@ -11,19 +11,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - path: nvidia/resources
-    repoURL: https://github.com/mbernard/homelab.git
-    targetRevision: HEAD
   - chart: nvidia
-    helm:
-      valueFiles:
-      - $values/nvidia/values.yaml
     repoURL: https://nvidia.github.io/k8s-device-plugin
     targetRevision: 0.16.1
-    # values from git
-  - ref: values
-    repoURL: https://github.com/mbernard/homelab.git
-    targetRevision: HEAD
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
