@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - env:
-        - name: PLEX_CLAIM_TOKEN
+        - name: PLEX_CLAIM
           value: <path:azurekv-secrets#plex-claim-token>
         - name: PLEX_ADVERTISE_URL
           value: http://192.168.10.200:32400
