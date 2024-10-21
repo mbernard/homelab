@@ -16,9 +16,9 @@ spec:
       containers:
       - env:
         - name: PUID
-          value: 1000
+          value: '1000'
         - name: PGID
-          value: 1000
+          value: '1000'
         - name: PLEX_CLAIM
           value: <path:azurekv-secrets#plex-claim-token>
         - name: NVIDIA_VISIBLE_DEVICES
