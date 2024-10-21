@@ -46,8 +46,6 @@ spec:
           readOnly: true
         - mountPath: /config
           name: plex-vol
-        - mountPath: /dev/dri
-          name: quicksync
       nodeName: spartan
       volumes:
       - name: data
@@ -60,9 +58,6 @@ spec:
       - name: plex-vol
         persistentVolumeClaim:
           claimName: plex-pvc
-      - hostPath:
-          path: /dev/dri
-        name: quicksync
 
 
 
