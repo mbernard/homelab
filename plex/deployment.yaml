@@ -15,13 +15,19 @@ spec:
     spec:
       containers:
       - env:
-        - name: PLEX_CLAIM
-          value: claim-LZ-VG6Nyj1-mfwvydtPf # valid 4 minutes
+        - name: PLEX_CLAIM_TOKEN
+          value: <path:azurekv-secrets#plex-claim-token>
+        - name: PLEX_ADVERTISE_URL
+          value: http://192.168.10.200:32400
+        - name: PLEX_NO_AUTH_NETWORKS
+          value: ''
+        - name: PLEX_BETA_INSTALL
+          value: 'true'
         - name: NVIDIA_VISIBLE_DEVICES
-          value: all
+          value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
-          value: compute,video,utility
-        image: lscr.io/linuxserver/plex:1.41.0
+          value: 'compute,video,utility'
+        image: ghcr.io/hotio/plex:release-1.41.0.8992-8463ad060
         name: plex
         ports:
         - containerPort: 32400 #PMS
@@ -37,9 +43,6 @@ spec:
         - containerPort: 1900 #Plex DLNA
           name: plex-dlna-udp
           protocol: UDP
-        resources:
-          limits:
-            nvidia.com/gpu: 1
         volumeMounts:
         - mountPath: data/media
           name: data
@@ -49,6 +52,8 @@ spec:
           readOnly: true
         - mountPath: /config
           name: plex-vol
+        - mountPath: /dev/dri
+          name: quicksync
       nodeName: spartan
       volumes:
       - name: data
@@ -61,6 +66,9 @@ spec:
       - name: plex-vol
         persistentVolumeClaim:
           claimName: plex-pvc
+      - hostPath:
+          path: /dev/dri
+        name: quicksync
 
 
 
