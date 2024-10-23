@@ -29,7 +29,7 @@ spec:
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: compute,video,utility
-        image: nerethos/stash-jellyfin-ffmpeg:v0.27.2
+        image: ghcr.io/feederbox826/stash-s6:hwaccel
         name: stash
         ports:
         - containerPort: 9999
