@@ -33,9 +33,6 @@ spec:
         name: stash
         ports:
         - containerPort: 9999
-        resources:
-          limits:
-            nvidia.com/gpu: 1 # requesting 1 GPU
         volumeMounts:
         - mountPath: /etc/localtime
           name: tz
