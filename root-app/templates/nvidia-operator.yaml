@@ -17,7 +17,7 @@ spec:
   - chart: nvidia/gpu-operator
     helm:
       valueFiles:
-      - $values/longhorn/values.yaml
+      - $values/nvidia-operator/values.yaml
     repoURL: https://helm.ngc.nvidia.com/nvidia
     targetRevision: 24.6.2
   - ref: values
