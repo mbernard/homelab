@@ -1,0 +1,18 @@
+toolkit:
+  enabled: true
+  repository: nvcr.io/nvidia/k8s
+  image: container-toolkit
+  version: v1.16.2-ubuntu20.04
+  imagePullPolicy: IfNotPresent
+  imagePullSecrets: []
+  env:
+  - name: CONTAINERD_CONFIG
+    value: /var/snap/microk8s/current/args/containerd-template.toml
+  - name: CONTAINERD_SOCKET
+    value: /var/snap/microk8s/common/run/containerd.sock
+  - name: CONTAINERD_RUNTIME_CLASS
+    value: nvidia
+  - name: CONTAINERD_SET_AS_DEFAULT
+    value: true
+  resources: {}
+  installDir: "/usr/local/nvidia"
