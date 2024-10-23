@@ -13,13 +13,13 @@ spec:
       labels:
         run: stash
     spec:
-      args:
-      - -c
-      - apk add libva-intel-driver && apk add --no-cache intel-media-driver && stash
-      command:
-      - sh
       containers:
-      - env:
+      - args:
+        - -c
+        - "apk add libva-intel-driver && apk add --no-cache intel-media-driver && stash"
+        command:
+        - sh
+        env:
         - name: STASH_STASH
           value: /data/
         - name: STASH_GENERATED
