@@ -64,8 +64,6 @@ spec:
           ## Where to store generated content (screenshots,previews,transcodes,sprites)
           name: nfs-private
           subPath: stash/generated
-        - mountPath: /dev/dri
-          name: quicksync
       nodeName: spartan
       volumes:
       - name: nfs-private
@@ -78,6 +76,3 @@ spec:
       - name: stash-vol
         persistentVolumeClaim:
           claimName: stash-pvc
-      - hostPath:
-          path: /dev/dri
-        name: quicksync
