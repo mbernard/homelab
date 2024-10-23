@@ -11,9 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - path: nvidia-operator/resources
-    repoURL: https://github.com/mbernard/homelab.git
-    targetRevision: HEAD
   - chart: nvidia/gpu-operator
     helm:
       valueFiles:
