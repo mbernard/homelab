@@ -70,6 +70,7 @@ cat:
   tv.cross-seed: "/data/torrents/tv"
   music: "/data/torrents/music"
   music.cross-seed: "/data/torrents/music"
+  xxx: "/data/torrents/xxx"
 
 cat_change:
 # This moves all the torrents from one category to another category. This executes on --cat-update
@@ -118,6 +119,10 @@ tracker:
   # landof.tv:
   #   tag: BroadcasTheNet
   #   notifiarr: broadcasthenet
+  happyfappy:
+    tag: xxx
+    cat: xxx
+    notifiarr: happyfappy
   milkie:
     tag: Milkie
     notifiarr: milkie
