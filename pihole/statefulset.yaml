@@ -10,8 +10,6 @@ spec:
   selector:
     matchLabels:
       app: pihole
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
