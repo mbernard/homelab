@@ -56,14 +56,14 @@ spec:
           name: etc
         - mountPath: /etc/dnsmasq.d
           name: dnsm
-      volumeClaimTemplates:
-      - metadata:
-          name: etc
-        spec:
-          accessModes:
-          - ReadWriteOnce
-      - metadata:
-          name: dnsm
-        spec:
-          accessModes:
-          - ReadWriteOnce
+volumeClaimTemplates:
+- metadata:
+    name: etc
+  spec:
+    accessModes:
+    - ReadWriteOnce
+- metadata:
+    name: dnsm
+  spec:
+    accessModes:
+    - ReadWriteOnce
