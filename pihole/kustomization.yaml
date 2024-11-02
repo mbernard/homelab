@@ -8,7 +8,7 @@ kind: Kustomization
 namespace: pihole
 
 resources:
-- deployment-rw.yaml
+- statefulset.yaml
 - service.yaml
 - storage-dnsm.yaml
 - storage-etc.yaml

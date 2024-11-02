@@ -1,13 +1,12 @@
-# Deployment for Pi-hole RW
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: pihole
-  name: pihole-rw
+  name: pihole
   namespace: pihole
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: pihole
@@ -52,22 +51,19 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 60
           timeoutSeconds: 20
-        resources:
-          limits:
-            cpu: "250m"
-            memory: "896Mi"
-          requests:
-            cpu: "20m"
-            memory: "512Mi"
         volumeMounts:
         - mountPath: /etc/pihole
-          name: pihole-etc
+          name: etc
         - mountPath: /etc/dnsmasq.d
-          name: pihole-dnsm
-      volumes:
-      - name: pihole-etc
-        persistentVolumeClaim:
-          claimName: pihole-etc-pvc
-      - name: pihole-dnsm
-        persistentVolumeClaim:
-          claimName: pihole-dnsm-pvc
+          name: dnsm
+      volumeClaimTemplates:
+      - metadata:
+          name: etc
+        spec:
+          accessModes:
+          - ReadWriteOnce
+      - metadata:
+          name: dnsm
+        spec:
+          accessModes:
+          - ReadWriteOnce
