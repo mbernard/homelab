@@ -53,12 +53,12 @@ spec:
           timeoutSeconds: 20
         volumeMounts:
         - mountPath: /etc/pihole
-          name: etc
+          name: etc-pvc
         - mountPath: /etc/dnsmasq.d
-          name: dnsm
+          name: dnsm-pvc
   volumeClaimTemplates:
   - metadata:
-      name: etc
+      name: etc-pvc
     spec:
       accessModes:
       - ReadWriteOnce
@@ -66,7 +66,7 @@ spec:
         requests:
           storage: 1Gi
   - metadata:
-      name: dnsm
+      name: dnsm-pvc
     spec:
       accessModes:
       - ReadWriteOnce
