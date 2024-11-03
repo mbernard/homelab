@@ -14,6 +14,32 @@ spec:
 apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
 metadata:
+  name: snapshot-delete
+  namespace: longhorn
+spec:
+  concurrency: 2
+  cron: "0 * * * *" # every hour
+  groups:
+  - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
+  retain: 24
+  task: snapshot-delete
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: snapshot-cleanup
+  namespace: longhorn
+spec:
+  concurrency: 2
+  cron: "0 * * * *" # every hour
+  groups:
+  - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
+  retain: 24
+  task: snapshot-cleanup
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
   name: backup
   namespace: longhorn
 spec:
