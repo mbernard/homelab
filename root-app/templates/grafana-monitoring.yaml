@@ -16,7 +16,7 @@ spec:
       valueFiles:
       - $values/grafana-monitoring/values.yaml
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 1.6.8
+    targetRevision: 1.6.9
   # values from git
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
