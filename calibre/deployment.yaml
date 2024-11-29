@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: lscr.io/linuxserver/calibre:7.19.0
+        image: linuxserver/calibre:7.22.0
         name: calibre
         ports:
         - containerPort: 8080
@@ -41,4 +41,3 @@ spec:
         nfs:
           path: /volume1/data
           server: 192.168.10.10
-
