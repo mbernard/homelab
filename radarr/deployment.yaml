@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/radarr:release-5.14.0.9383
+        image: ghcr.io/hotio/radarr:release-5.15.1.9463
         name: radarr
         ports:
         - containerPort: 7878
