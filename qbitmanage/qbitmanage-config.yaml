@@ -26,7 +26,8 @@ qbt:
 
 settings:
   force_auto_tmm: True # Will force qBittorrent to enable Automatic Torrent Management for each torrent.
-  force_auto_tmm_ignore_tags: #Torrents with these tags will be ignored when force_auto_tmm is enabled.
+  force_auto_tmm_ignore_tags:
+  #Torrents with these tags will be ignored when force_auto_tmm is enabled.
   - cross-seed
   - Upload
   tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
@@ -72,8 +73,8 @@ cat:
   music.cross-seed: "/data/torrents/music"
   xxx: "/data/torrents/xxx"
 
-cat_change:
-# This moves all the torrents from one category to another category. This executes on --cat-update
+cat_change: # This moves all the torrents from one category to another category. This executes on --cat-update
+
 # WARNING: if the paths are different and Default Torrent Management Mode is set to automatic the files could be moved !!!
 # <Old Category Name> : <New Category>
 # Radarr-HD.cross-seed: movies-hd
@@ -135,6 +136,9 @@ tracker:
   yoinked:
     tag: yoinked
     notifiarr: yoinked
+  torrentleech:
+    tag: torrentleech
+    notifiarr: torrentleech
   # passthepopcorn:
   #   tag: PassThePopcorn
   #   notifiarr: passthepopcorn
@@ -328,6 +332,7 @@ notifiarr:
   apikey: <path:azurekv-secrets#notifiarr-api-key>
   # <OPTIONAL> Set to a unique value (could be your username on notifiarr for example)
   instance:
+
 
 webhooks:
   # Webhook notifications:

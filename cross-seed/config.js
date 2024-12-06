@@ -22,6 +22,7 @@ module.exports = {
         "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
         "http://prowlarr.prowlarr/6/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // SportsCult
         "http://prowlarr.prowlarr/7/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // YOiNKED
+        "http://prowlarr.prowlarr/9/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TorrentLeech
     ],
 
     sonarr: ["http://sonarr.sonarr?apikey=<path:azurekv-secrets#sonarr-api-key>"],
