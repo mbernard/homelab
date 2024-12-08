@@ -231,7 +231,8 @@ module.exports = {
      * Combine this with "excludeRecentSearch" and "searchCadence" to smooth long-term API usage patterns.
      * Default is no limit.
      */
-    searchLimit: undefined,
+    searchLimit: 400,
+    blocklist: [],
 
     flatLinking: true,
 };
