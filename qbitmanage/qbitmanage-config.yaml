@@ -136,9 +136,6 @@ tracker:
   yoinked:
     tag: yoinked
     notifiarr: yoinked
-  torrentleech:
-    tag: torrentleech
-    notifiarr: torrentleech
   # passthepopcorn:
   #   tag: PassThePopcorn
   #   notifiarr: passthepopcorn
@@ -151,9 +148,9 @@ tracker:
   # torrentdb:
   #   tag: TorrentDB
   #   notifiarr: torrentdb
-  # torrentleech|tleechreload:
-  #   tag: TorrentLeech
-  #   notifiarr: torrentleech
+  torrentleech|tleechreload:
+    tag: TorrentLeech
+    notifiarr: torrentleech
   # tv-vault:
   #   tag: TV-Vault
   # The "other" key is a special keyword and if defined will tag any other trackers that don't match the above trackers into this tag
@@ -265,6 +262,15 @@ share_limits:
     max_ratio: 5.0
     max_seeding_time: 2w
     min_seeding_time: 3d # Hard tracker requirement
+    last_active: 3d
+    cleanup: true
+  torrentleech:
+    priority: 4
+    include_all_tags:
+    - TorrentLeech
+    max_ratio: 5.0
+    max_seeding_time: 2w
+    min_seeding_time: 10d # Hard tracker requirement
     last_active: 3d
     cleanup: true
 
