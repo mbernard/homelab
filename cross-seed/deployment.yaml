@@ -36,9 +36,9 @@ spec:
           name: data
           readOnly: true
           subPath: BT_backup
-        - mountPath: /config/config.js
-          name: cross-seed-config
-          subPath: config.js
+        # - mountPath: /config/config.js
+        #   name: cross-seed-config
+        #   subPath: config.js
       volumes:
       - name: data
         nfs:
