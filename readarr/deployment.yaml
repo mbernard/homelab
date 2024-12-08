@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/readarr:testing-0.4.4.2686
+        image: ghcr.io/hotio/readarr:testing-0.4.5.2699
         name: readarr
         ports:
         - containerPort: 8787
