@@ -4,7 +4,7 @@ metadata:
   name: lidarr-pv
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 20Gi
   csi:
@@ -21,7 +21,7 @@ metadata:
   name: lidarr-pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 20Gi
