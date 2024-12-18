@@ -19,7 +19,7 @@ patches:
 
 # https://github.com/argoproj/argo-cd/tree/master/manifests/ha
 resources:
-- https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/release-2.13/manifests/ha/install.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.14.0-rc1/manifests/ha/install.yaml
 - repo.yaml
 
 # secretGenerator:
