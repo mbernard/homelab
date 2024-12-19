@@ -145,6 +145,9 @@ tracker:
   revolutiontt:
     tag: RevolutionTT
     notifiarr: revolutiontt
+  theLeachZove:
+    tag: TheLeachZone
+    notifiarr: theleachzone
   # torrentdb:
   #   tag: TorrentDB
   #   notifiarr: torrentdb
