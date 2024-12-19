@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: golift/notifiarr:0.8.2
+        image: golift/notifiarr:0.8.3
         name: notifiarr
         ports:
         - containerPort: 5454
@@ -34,4 +34,3 @@ spec:
       - name: notifiarr-vol
         persistentVolumeClaim:
           claimName: notifiarr-pvc
-
