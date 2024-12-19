@@ -4,7 +4,7 @@ metadata:
   name: organizr-pv
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   csi:
@@ -21,7 +21,7 @@ metadata:
   name: organizr-pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
