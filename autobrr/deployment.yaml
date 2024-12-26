@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/autobrr/autobrr:v1.55
+        image: ghcr.io/autobrr/autobrr:v1.56
         name: autobrr
         ports:
         - containerPort: 7474
