@@ -148,6 +148,9 @@ tracker:
   theLeachZove:
     tag: TheLeachZone
     notifiarr: theleachzone
+  seedpool:
+    tag: seedpool
+    notifiarr: seedpool
   # torrentdb:
   #   tag: TorrentDB
   #   notifiarr: torrentdb
