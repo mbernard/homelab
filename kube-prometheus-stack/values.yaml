@@ -4,7 +4,7 @@ grafana:
   admin:
     existingSecret: azurekv-secrets
     passwordKey: grafana
-    userKey: grafana
+    userKey: admin-username
 
   ## Timezone for the default dashboards
   ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
