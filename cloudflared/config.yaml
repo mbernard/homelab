@@ -62,7 +62,7 @@ ingress:
 - hostname: pihole.miguelbernard.com
   service: http://pihole-tcp.pihole
 - hostname: grafana.miguelbernard.com
-  service: http://grafana.grafana
+  service: http://kube-prometheus-stack-grafana.kube-prometheus-stack
 - hostname: spartan.miguelbernard.com
   service: ssh://spartan
 - service: http_status:404
