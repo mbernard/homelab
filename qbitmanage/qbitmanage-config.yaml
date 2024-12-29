@@ -354,8 +354,8 @@ webhooks:
   # Set value to a valid webhook URL
   # Set value to nothing (leave Empty/Blank) to disable
   error: notifiarr
-  run_start: notifiarr
-  run_end: notifiarr
+  run_start:
+  run_end:
   function:
     cross_seed: notifiarr
     recheck: notifiarr
@@ -365,5 +365,5 @@ webhooks:
     tag_tracker_error: notifiarr
     rem_orphaned: notifiarr
     tag_nohardlinks: notifiarr
-    share_limits: notifiarr
+    share_limits:
     cleanup_dirs: notifiarr
