@@ -24,4 +24,4 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true
+    # - ServerSideApply=true # only first time
