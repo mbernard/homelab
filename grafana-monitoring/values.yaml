@@ -60,16 +60,6 @@ prometheus-operator-crds:
   enabled: true
 kepler:
   enabled: true
-  # Luna's CPU doesn't support the lib Kepler uses to collect metrics
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: NotIn
-            values:
-            - luna
 alloy: {}
 alloy-events: {}
 alloy-logs: {}

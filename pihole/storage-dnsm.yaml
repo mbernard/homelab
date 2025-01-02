@@ -4,7 +4,7 @@ metadata:
   name: dnsm-pv-pihole-0
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   csi:
@@ -22,7 +22,7 @@ metadata:
   name: dnsm-pvc-pihole-0
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
@@ -35,7 +35,7 @@ metadata:
   name: dnsm-pv-pihole-1
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   csi:
@@ -53,7 +53,7 @@ metadata:
   name: dnsm-pvc-pihole-1
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
@@ -66,7 +66,7 @@ metadata:
   name: dnsm-pv-pihole-2
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   csi:
@@ -84,7 +84,7 @@ metadata:
   name: dnsm-pvc-pihole-2
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
