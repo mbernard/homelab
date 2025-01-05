@@ -4,7 +4,7 @@ metadata:
   name: sonarr-pv
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   csi:
@@ -21,7 +21,7 @@ metadata:
   name: sonarr-pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
