@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: radarr
   namespace: radarr
@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: radarr
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
