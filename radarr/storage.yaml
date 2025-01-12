@@ -4,7 +4,7 @@ metadata:
   name: radarr-pv
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   capacity:
     storage: 5Gi
   csi:
@@ -21,7 +21,7 @@ metadata:
   name: radarr-pvc
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
