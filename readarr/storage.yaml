@@ -4,7 +4,7 @@ metadata:
   name: readarr-pv
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   capacity:
     storage: 1Gi
   csi:
@@ -21,7 +21,7 @@ metadata:
   name: readarr-pvc
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
