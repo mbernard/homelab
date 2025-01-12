@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: radarr
   namespace: radarr
@@ -40,4 +40,3 @@ spec:
       - name: radarr-vol
         persistentVolumeClaim:
           claimName: radarr-pvc
-
