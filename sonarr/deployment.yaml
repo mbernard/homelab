@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: sonarr
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -40,4 +42,3 @@ spec:
       - name: sonarr-vol
         persistentVolumeClaim:
           claimName: sonarr-pvc
-
