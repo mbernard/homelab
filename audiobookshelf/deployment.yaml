@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: audiobookshelf
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -48,4 +50,3 @@ spec:
       - name: audiobookshelf-vol
         persistentVolumeClaim:
           claimName: audiobookshelf-pvc
-

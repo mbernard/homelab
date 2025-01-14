@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: recyclarr
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -38,4 +40,3 @@ spec:
       - configMap:
           name: recyclarr-config
         name: recyclarr-config
-
