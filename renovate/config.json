@@ -22,7 +22,7 @@
     {
       "description": "regex to match custom docker tags",
       "matchDatasources": ["docker"],
-      "versioning": "regex:^(?<compatibility>(release-|testing-|v))?(?<major>\\d+)\\.(?<minor>\\d+)?\\.?(?<patch>\\d+)?\\.?(?<bump>\\d+)?(?<branchname>(-develop))?"
+      "versioning": "regex:^(?<compatibility>(release-|testing-|v|develop-))?(?<major>\\d+)\\.(?<minor>\\d+)?\\.?(?<patch>\\d+)?\\.?(?<bump>\\d+)?"
     }
   ],
   "platformAutomerge": true,
