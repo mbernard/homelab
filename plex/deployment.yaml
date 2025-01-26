@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: plexserver
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -69,6 +71,3 @@ spec:
       - hostPath:
           path: /dev/dri
         name: quicksync
-
-
-
