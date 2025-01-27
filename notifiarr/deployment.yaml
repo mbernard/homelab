@@ -8,8 +8,6 @@ spec:
   selector:
     matchLabels:
       run: notifiarr
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
