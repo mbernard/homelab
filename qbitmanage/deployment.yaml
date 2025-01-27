@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: qbitmanage
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -47,4 +49,3 @@ spec:
       - configMap:
           name: qbitmanage-config
         name: qbitmanage-config
-

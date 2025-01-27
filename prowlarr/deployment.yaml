@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: prowlarr
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -34,4 +36,3 @@ spec:
       - name: prowlarr-vol
         persistentVolumeClaim:
           claimName: prowlarr-pvc
-

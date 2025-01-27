@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: autobrr
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -34,4 +36,3 @@ spec:
       - name: autobrr-vol
         persistentVolumeClaim:
           claimName: autobrr-pvc
-
