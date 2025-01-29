@@ -16,7 +16,7 @@ spec:
       valueFiles:
       - $values/nvidia-operator/values.yaml
     repoURL: https://helm.ngc.nvidia.com/nvidia
-    targetRevision: v24.9.1
+    targetRevision: v24.9.2
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
