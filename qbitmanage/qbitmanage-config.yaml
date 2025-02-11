@@ -260,7 +260,7 @@ share_limits:
     include_all_tags:
     - cross-seed
     max_seeding_time: 7d
-    cleanup: false
+    cleanup: true
   myanonamouse:
     priority: 3
     include_any_tags:
