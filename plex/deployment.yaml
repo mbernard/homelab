@@ -29,7 +29,7 @@ spec:
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
-        image: ghcr.io/hotio/plex:release-1.41.3.9292-bc7397402
+        image: ghcr.io/hotio/plex:release-1.41.4.9463-630c9f557
         name: plex
         ports:
         - containerPort: 32400 #PMS
