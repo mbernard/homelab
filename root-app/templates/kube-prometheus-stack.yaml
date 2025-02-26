@@ -16,7 +16,7 @@ spec:
       valueFiles:
       - $values/kube-prometheus-stack/values.yaml
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 69.4.1
+    targetRevision: 69.5.1
   # values from git
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
