@@ -6,7 +6,6 @@
 commands:
   # The commands defined below will IGNORE any commands used in command line and docker env variables.
   dry_run: False
-  cross_seed: False
   recheck: False
   cat_update: True
   tag_update: True
@@ -36,7 +35,6 @@ settings:
   share_limits_min_seeding_time_tag: MinSeedTimeNotReached # Tag to be added to torrents that have not yet reached the minimum seeding time
   share_limits_min_num_seeds_tag: MinSeedsNotMet # Tag to be added to torrents that have not yet reached the minimum number of seeds
   share_limits_last_active_tag: LastActiveLimitNotReached # Tag to be added to torrents that have not yet reached the last active limit
-  cross_seed_tag: cross-seed # Will set the tag of any torrents that are added by cross-seed command
   cat_filter_completed: True # Filters for completed torrents only when running cat_update command
   share_limits_filter_completed: True # Filters for completed torrents only when running share_limits command
   tag_nohardlinks_filter_completed: True # Filters for completed torrents only when running tag_nohardlinks command
@@ -53,7 +51,6 @@ directory:
   # <OPTIONAL> recycle_bin var: </your/path/here/>   # Path of the RecycleBin folder. Default location is set to remote_dir/.RecycleBin
   # <OPTIONAL> torrents_dir var: </your/path/here/>  # Path of the your qbittorrent torrents directory. Required for `save_torrents` attribute in recyclebin
   # <OPTIONAL> orphaned_dir var: </your/path/here/>  # Path of the the Orphaned Data folder. This is similar to RecycleBin, but only for orphaned data.
-  cross_seed: "/data/torrents/cross-seed/"
   root_dir: "/data/torrents/"
   remote_dir: "/data/torrents/"
   recycle_bin: "/data/torrents/.RecycleBin"
@@ -357,7 +354,6 @@ webhooks:
   run_start:
   run_end:
   function:
-    cross_seed: notifiarr
     recheck: notifiarr
     cat_update: notifiarr
     tag_update: notifiarr
