@@ -35,7 +35,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-vars
-        image: pihole/pihole:2025.02.7
+        image: pihole/pihole:2025.03.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 15
