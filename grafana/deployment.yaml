@@ -14,7 +14,7 @@ spec:
         app: grafana
     spec:
       containers:
-      - image: grafana/grafana:11.5.3-ubuntu
+      - image: grafana/grafana:11.6.0-ubuntu
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
