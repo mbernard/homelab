@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: hotio/overseerr:release-1.33.2
+        image: hotio/overseerr:release-1.34.0
         name: overseerr
         ports:
         - containerPort: 5055
