@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       run: stash
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
