@@ -64,6 +64,9 @@ spec:
           name: nfs-private
           subPath: stash/generated
       nodeName: spartan
+      securityContext:
+        runAsGroup: 1000
+        runAsUser: 1000
       volumes:
       - name: nfs-private
         nfs:
