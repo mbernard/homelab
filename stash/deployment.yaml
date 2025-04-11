@@ -64,14 +64,11 @@ spec:
           name: nfs-private
           subPath: stash/generated
       nodeName: spartan
-      securityContext:
-        runAsGroup: 1000
-        runAsUser: 1000
       volumes:
       - name: nfs-private
         nfs:
           path: /volume1/private
-          server: 192.168.10.16
+          server: 192.168.10.10
       - hostPath:
           path: /etc/localtime
         name: tz
