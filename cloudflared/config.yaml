@@ -66,9 +66,9 @@ ingress:
 - hostname: nas.miguelbernard.com
   service: http://192.168.10.16 # TrueNAS IP
 - hostname: bmc.miguelbernard.com
-  service: http://192.168.10.9 # Quanta server management port
+  service: https://192.168.10.9 # Quanta server management port
 - hostname: ipmi.miguelbernard.com
-  service: http://192.168.10.9 # Quanta server management port
+  service: https://192.168.10.9 # Quanta server management port
 - service: http_status:404
 # Serves the metrics server under /metrics and the readiness server under /ready
 metrics: 0.0.0.0:2000
