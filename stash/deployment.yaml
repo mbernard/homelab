@@ -67,7 +67,7 @@ spec:
       volumes:
       - name: nfs-private
         nfs:
-          path: /volume1/private
+          path: /mnt/volume1/private
           server: 192.168.10.16
       - hostPath:
           path: /etc/localtime
