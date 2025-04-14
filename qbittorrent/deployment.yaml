@@ -44,14 +44,14 @@ spec:
         - mountPath: /config/wireguard
           name: writable-volume
       initContainers:
-      - command: [ "sh", "-c", "cp -r /config/wireguard-ro/* /config/wireguard/" ]
+      - command: [ "sh", "-c", "cp -r /config-ro/* /config-rw/" ]
         image: busybox:latest
         name: copy-config
         volumeMounts:
-        - mountPath: /config/wireguard-ro
+        - mountPath: /config-ro
           name: vpn-config
           readOnly: true
-        - mountPath: /config/wireguard
+        - mountPath: /config-rw
           name: writable-volume
       nodeName: spartan # temp for a test
       securityContext:
