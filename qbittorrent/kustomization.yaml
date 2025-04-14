@@ -3,7 +3,7 @@ configMapGenerator:
   - env_vars.properties
   name: env-vars
 - files:
-  - vpn-wireguard.conf
+  - wg0.conf
   name: wg0.conf
 kind: Kustomization
 

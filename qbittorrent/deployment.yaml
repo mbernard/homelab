@@ -48,7 +48,6 @@ spec:
           subPath: BT_backup
         - mountPath: /config/wireguard
           name: vpn-config
-
       volumes:
       - name: data
         nfs:
