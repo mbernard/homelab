@@ -44,7 +44,7 @@ spec:
         - mountPath: /config/wireguard
           name: writable-volume
       initContainers:
-      - command: [ "sh", "-c", "cp -r /config-ro/* /config-rw/" ]
+      - command: [ "sh", "-c", "cp --verbose -r /config-ro/* /config-rw/" ]
         image: busybox:latest
         name: copy-config
         volumeMounts:
