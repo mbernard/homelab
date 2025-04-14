@@ -28,7 +28,9 @@ spec:
           name: seeding
         securityContext:
           capabilities:
-            add: [ "NET_ADMIN" ]
+            add:
+            - NET_ADMIN
+          privileged: true
         volumeMounts:
         - mountPath: data/torrents
           name: data
