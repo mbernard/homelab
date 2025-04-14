@@ -44,7 +44,7 @@ spec:
         - mountPath: /config/wireguard
           name: writable-volume
       initContainers:
-      - command: [ "sh", "-c", "sudo cp --verbose /config-ro/wg0.conf /config-rw/wg0.conf && cat /config-rw/wg0.conf" ]
+      - command: [ "sh", "-c", "cp --verbose /config-ro/wg0.conf /config-rw/ && cat /config-rw/wg0.conf" ]
         image: busybox:latest
         name: copy-config
         volumeMounts:
