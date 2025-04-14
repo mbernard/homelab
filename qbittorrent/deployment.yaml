@@ -42,7 +42,7 @@ spec:
           name: data
           subPath: BT_backup
         - mountPath: /config/wireguard
-          name: vpn-config
+          name: writable-volume
       initContainers:
       - command: [ "sh", "-c", "cp -r /config/wireguard-ro/* /config/wireguard/" ]
         image: busybox:latest
