@@ -26,6 +26,9 @@ spec:
           name: web-ui
         - containerPort: 28601
           name: seeding
+        securityContext:
+          capabilities:
+            add: [ "NET_ADMIN" ]
         volumeMounts:
         - mountPath: data/torrents
           name: data
@@ -42,8 +45,6 @@ spec:
           name: vpn-config
       nodeName: spartan # temp for a test
       securityContext:
-        capabilities:
-          add: [ "NET_ADMIN" ]
         sysctls:
         - name: net.ipv4.conf.all.src_valid_mark
           value: "1"
