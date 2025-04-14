@@ -43,7 +43,6 @@ spec:
           subPath: BT_backup
         - mountPath: /config/wireguard
           name: writable-volume
-      hostNetwork: true
       initContainers:
       - command: [ "sh", "-c", "cp /config-ro/wg0.conf /config-rw/" ]
         image: busybox:latest
