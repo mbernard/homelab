@@ -43,6 +43,16 @@ spec:
           subPath: BT_backup
         - mountPath: /config/wireguard
           name: vpn-config
+      initContainers:
+      - command: [ "sh", "-c", "cp -r /config/wireguard-ro/* /config/wireguard/" ]
+        image: busybox:latest
+        name: copy-config
+        volumeMounts:
+        - mountPath: /config/wireguard-ro
+          name: vpn-config
+          readOnly: true
+        - mountPath: /config/wireguard
+          name: writable-volume
       nodeName: spartan # temp for a test
       securityContext:
         sysctls:
@@ -64,3 +74,5 @@ spec:
       - configMap:
           name: wg0.conf
         name: vpn-config
+      - emptyDir: {}
+        name: writable-volume
