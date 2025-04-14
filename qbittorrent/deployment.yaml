@@ -44,6 +44,8 @@ spec:
           subPath: BT_backup
         - mountPath: /config/wireguard
           name: writable-volume
+        - mountPath: /dev/net/tun
+          name: tun-device
       initContainers:
       - command: [ "sh", "-c", "cp /config-ro/wg0.conf /config-rw/" ]
         image: busybox:latest
@@ -58,8 +60,8 @@ spec:
         sysctls:
         - name: net.ipv4.conf.all.src_valid_mark
           value: "1"
-        # - name: net.ipv6.conf.all.disable_ipv6
-        #   value: "1"
+        - name: net.ipv6.conf.all.disable_ipv6
+          value: "1"
       volumes:
       - name: data
         nfs:
@@ -76,3 +78,6 @@ spec:
         name: vpn-config
       - emptyDir: {}
         name: writable-volume
+      - hostPath:
+          path: /dev/net/tun # Path on the host node
+        name: tun-device
