@@ -44,13 +44,12 @@ spec:
         - mountPath: /config/wireguard
           name: writable-volume
       initContainers:
-      - command: [ "sh", "-c", "cp --verbose -r /config-ro/* /config-rw/ && cat /config-ro/wg0.conf" ]
+      - command: [ "sh", "-c", "cp --verbose -r /config-ro/* /config-rw/ && cat /config-rw/wg0.conf" ]
         image: busybox:latest
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro
           name: vpn-config
-          readOnly: true
         - mountPath: /config-rw
           name: writable-volume
       nodeName: spartan # temp for a test
@@ -76,3 +75,4 @@ spec:
         name: vpn-config
       - emptyDir: {}
         name: writable-volume
+        readOnly: false
