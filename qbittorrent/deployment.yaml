@@ -29,11 +29,11 @@ spec:
         securityContext:
           capabilities:
             add: [ "NET_ADMIN" ]
-          # sysctls:
-          # - name: net.ipv4.conf.all.src_valid_mark
-          #   value: "1"
-          # - name: net.ipv6.conf.all.disable_ipv6
-          #   value: "1"
+          sysctls:
+          - name: net.ipv4.conf.all.src_valid_mark
+            value: "1"
+          - name: net.ipv6.conf.all.disable_ipv6
+            value: "1"
         volumeMounts:
         - mountPath: data/torrents
           name: data
@@ -48,6 +48,7 @@ spec:
           subPath: BT_backup
         - mountPath: /config/wireguard
           name: vpn-config
+      nodeName: spartan # temp for a test
       volumes:
       - name: data
         nfs:
