@@ -27,13 +27,6 @@ spec:
             exec:
               command: [ "/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true" ]
         name: gluetun
-        ports:
-        - containerPort: 80
-          name: web-ui
-        - containerPort: 8080
-          name: web-ui-internal
-        - containerPort: 28601
-          name: seeding
         securityContext:
           capabilities:
             add: [ "NET_ADMIN" ]
