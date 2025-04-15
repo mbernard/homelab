@@ -19,6 +19,27 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
+        image: ghcr.io/qdm12/gluetun:v3.40.0
+        imagePullPolicy: Always
+        # https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md
+        lifecycle:
+          postStart:
+            exec:
+              command: [ "/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true" ]
+        name: gluetun
+        securityContext:
+          capabilities:
+            add: [ "NET_ADMIN" ]
+          # You can optionally specify ports that are used by your containers, but it is not strictly necessary
+          # ports:
+          # - containerPort: 8080
+        volumeMounts:
+        - mountPath: /gluetun
+          name: gluetun-config
+      # qBittorrent container
+      - envFrom:
+        - configMapRef:
+            name: env-vars
         image: hotio/qbittorrent:release-5.0.4
         name: qbittorrent
         ports:
@@ -26,10 +47,6 @@ spec:
           name: web-ui
         - containerPort: 28601
           name: seeding
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
         volumeMounts:
         - mountPath: data/torrents
           name: data
@@ -55,13 +72,6 @@ spec:
           name: vpn-config
         - mountPath: /config-rw
           name: writable-volume
-      nodeName: spartan # temp for a test
-      securityContext:
-        sysctls:
-        - name: net.ipv4.conf.all.src_valid_mark
-          value: "1"
-        - name: net.ipv6.conf.all.disable_ipv6
-          value: "1"
       volumes:
       - name: data
         nfs:
@@ -78,6 +88,6 @@ spec:
         name: vpn-config
       - emptyDir: {}
         name: writable-volume
-      - hostPath:
-          path: /dev/net/tun # Path on the host node
-        name: tun-device
+      - name: gluetun-config
+        persistentVolumeClaim:
+          claimName: gluetun-pvc
