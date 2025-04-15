@@ -41,5 +41,5 @@ spec:
           claimName: calibre-pvc
       - name: data
         nfs:
-          path: /volume1/data
-          server: 192.168.10.10
+          path: /mnt/volume1/data
+          server: 192.168.10.16
