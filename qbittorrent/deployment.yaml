@@ -30,9 +30,6 @@ spec:
         securityContext:
           capabilities:
             add: [ "NET_ADMIN" ]
-          # You can optionally specify ports that are used by your containers, but it is not strictly necessary
-          # ports:
-          # - containerPort: 8080
         volumeMounts:
         - mountPath: /gluetun
           name: gluetun-config
