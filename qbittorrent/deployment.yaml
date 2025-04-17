@@ -16,23 +16,23 @@ spec:
         run: qbittorrent
     spec:
       containers:
-      - envFrom:
-        - configMapRef:
-            name: env-vars
-        image: ghcr.io/qdm12/gluetun:v3.40.0
-        imagePullPolicy: Always
-        # https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md
-        lifecycle:
-          postStart:
-            exec:
-              command: [ "/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true" ]
-        name: gluetun
-        securityContext:
-          capabilities:
-            add: [ "NET_ADMIN" ]
-        volumeMounts:
-        - mountPath: /gluetun
-          name: gluetun-config
+      # - envFrom:
+      #   - configMapRef:
+      #       name: env-vars
+      #   image: ghcr.io/qdm12/gluetun:v3.40.0
+      #   imagePullPolicy: Always
+      #   # https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md
+      #   lifecycle:
+      #     postStart:
+      #       exec:
+      #         command: [ "/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true" ]
+      #   name: gluetun
+      #   securityContext:
+      #     capabilities:
+      #       add: [ "NET_ADMIN" ]
+      #   volumeMounts:
+      #   - mountPath: /gluetun
+      #     name: gluetun-config
       #  === qBittorrent container ===
       - envFrom:
         - configMapRef:
