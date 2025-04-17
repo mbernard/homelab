@@ -8,10 +8,10 @@ metadata:
   namespace: qbittorrent
 spec:
   ports:
-  # - name: seeding
-  #   port: 28601
-  #   protocol: TCP
-  #   targetPort: 28601
+  - name: seeding
+    port: 28601
+    protocol: TCP
+    targetPort: 28601
   - name: web-ui
     port: 80
     protocol: TCP
