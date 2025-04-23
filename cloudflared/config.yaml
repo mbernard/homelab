@@ -65,6 +65,8 @@ ingress:
   service: http://kube-prometheus-stack-grafana.kube-prometheus-stack
 - hostname: nas.miguelbernard.com
   service: http://192.168.10.16 # TrueNAS IP
+- hostname: home.miguelbernard.com
+  service: http://192.168.10.12:8123 # home assistant
 - hostname: bmc.miguelbernard.com
   service: https://192.168.10.9:443 # Quanta server management port
 - hostname: ipmi.miguelbernard.com
