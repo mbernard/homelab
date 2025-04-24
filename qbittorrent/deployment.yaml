@@ -83,6 +83,6 @@ spec:
         name: vpn-config
       - emptyDir: {}
         name: writable-volume
-      - name: gluetun-config
-        persistentVolumeClaim:
-          claimName: gluetun-pvc
+      # - name: gluetun-config
+      #   persistentVolumeClaim:
+      #     claimName: gluetun-pvc
