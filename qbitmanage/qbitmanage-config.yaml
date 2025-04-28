@@ -139,6 +139,9 @@ tracker:
   yoinked:
     tag: yoinked
     notifiarr: yoinked
+  abtorrent:
+    tag: ABtorrent
+    notifiarr: ABtorrent
   # passthepopcorn:
   #   tag: PassThePopcorn
   #   notifiarr: passthepopcorn

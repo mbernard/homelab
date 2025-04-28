@@ -24,6 +24,7 @@ module.exports = {
         "http://prowlarr.prowlarr/9/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TorrentLeech
         "http://prowlarr.prowlarr/10/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TheLeachZone
         "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool
+        "http://prowlarr.prowlarr/12/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // ABTorrents
     ],
 
     sonarr: ["http://sonarr.sonarr?apikey=<path:azurekv-secrets#sonarr-api-key>"],
