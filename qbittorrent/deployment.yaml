@@ -37,7 +37,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: hotio/qbittorrent:release-5.0.5
+        image: hotio/qbittorrent:release-5.1.0
         name: qbittorrent
         ports:
         - containerPort: 8080
