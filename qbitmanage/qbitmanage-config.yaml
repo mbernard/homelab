@@ -46,6 +46,7 @@ settings:
   # Ignores a list of words found in the status of the tracker when running rem_unregistered command and will not remove the torrent if matched
   - example placeholder words
   - ignore if found
+  stalled_tag: stalledDL # Will set the tag of any torrents that are stalled in the downloading state.
 
 directory:
   # Do not remove these
