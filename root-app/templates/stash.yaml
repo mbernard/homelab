@@ -15,6 +15,9 @@ spec:
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true
     # - ServerSideApply=true # only the first sync
