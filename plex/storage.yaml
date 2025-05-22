@@ -6,7 +6,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   capacity:
-    storage: 25Gi
+    storage: 40Gi
   csi:
     driver: driver.longhorn.io
     fsType: ext4
@@ -24,6 +24,6 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 25Gi
+      storage: 40Gi
   storageClassName: longhorn
   volumeName: plex-pv
