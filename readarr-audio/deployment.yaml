@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: lscr.io/linuxserver/readarr:0.4.17-nightly
+        image: lscr.io/linuxserver/readarr:0.4.18-nightly
         name: readarr-audio
         ports:
         - containerPort: 8787
