@@ -17,7 +17,7 @@ spec:
         env:
         - name: AVP_TYPE
           value: kubernetessecret
-        image: quay.io/argoproj/argocd:v3.0.5
+        image: quay.io/argoproj/argocd:v3.0.6
         name: avp-helm
         securityContext:
           runAsNonRoot: true
@@ -45,7 +45,7 @@ spec:
         env:
         - name: AVP_TYPE
           value: kubernetessecret
-        image: quay.io/argoproj/argocd:v3.0.5
+        image: quay.io/argoproj/argocd:v3.0.6
         name: avp-kustomize
         securityContext:
           runAsNonRoot: true
@@ -73,7 +73,7 @@ spec:
         env:
         - name: AVP_TYPE
           value: kubernetessecret
-        image: quay.io/argoproj/argocd:v3.0.5
+        image: quay.io/argoproj/argocd:v3.0.6
         name: avp
         securityContext:
           runAsNonRoot: true
