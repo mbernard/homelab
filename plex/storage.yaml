@@ -43,11 +43,16 @@ spec:
   - wsize=1048576
   - timeo=900
   - retrans=5
+  - noatime
+  - nodiratime
+  - hard
   nfs:
     path: /mnt/volume1/data
     readOnly: false
     server: 192.168.10.16
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  volumeMode: Filesystem
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -59,3 +64,5 @@ spec:
   resources:
     requests:
       storage: 20Ti
+  storageClassName: nfs
+  volumeName: data-nfs-pv
