@@ -58,16 +58,15 @@ spec:
           name: quicksync
       nodeName: spartan
       volumes:
-      - name: data
+      - mountOptions:
+        - vers=3
+        - rsize=1048576
+        - wsize=1048576
+        - timeo=900
+        - retrans=5
+        name: data
         nfs:
-          mountOptions:
-          - vers=3
-          - rsize=1048576
-          - wsize=1048576
-          - timeo=900
-          - retrans=5
           path: /mnt/volume1/data
-          readOnly: true
           server: 192.168.10.16
       - hostPath:
           path: /etc/localtime
