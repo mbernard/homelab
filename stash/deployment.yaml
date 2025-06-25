@@ -66,9 +66,8 @@ spec:
       nodeName: spartan
       volumes:
       - name: nfs-private
-        nfs:
-          path: /mnt/volume1/private
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: private-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz
