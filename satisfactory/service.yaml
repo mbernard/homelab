@@ -11,8 +11,6 @@ spec:
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
-  # might be necessary for your cluster:
-  loadBalancerIP: 192.168.10.205
   ports:
   - name: "api"
     port: 7777
