@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - chart: gpu-operator
+  - chart: descheduler
     helm:
       valueFiles:
       - $values/descheduler/values.yaml
