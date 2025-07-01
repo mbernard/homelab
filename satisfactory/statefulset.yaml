@@ -53,7 +53,7 @@ spec:
         - mountPath: /saved
           name: games
           subPath: satisfactory/saved
-  volumes:
-  - name: games
-    persistentVolumeClaim:
-      claimName: games-nfs-pvc
+      volumes:
+      - name: games
+        persistentVolumeClaim:
+          claimName: games-nfs-pvc
