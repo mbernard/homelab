@@ -2,6 +2,8 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.205
   labels:
     app: satisfactory
   name: satisfactory
@@ -26,4 +28,4 @@ spec:
     targetPort: 8888
   selector:
     app: satisfactory
-    type: LoadBalancer
+  type: LoadBalancer
