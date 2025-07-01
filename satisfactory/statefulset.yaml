@@ -17,7 +17,7 @@ spec:
       containers:
       - env:
         - name: DEBUG
-          value: false
+          value: "false"
         - name: MAXPLAYERS
           value: 8
         - name: PGID
@@ -25,9 +25,9 @@ spec:
         - name: PUID
           value: 1000
         - name: SKIPUPDATE
-          value: false
+          value: "false"
         - name: STEAMBETA
-          value: false
+          value: "false"
         image: wolveix/satisfactory-server:v1.9.9
         name: satisfactory
         ports:
