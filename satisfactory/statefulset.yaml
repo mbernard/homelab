@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: satisfactory
-  serviceName: "satisfactory"
+  serviceName: satisfactory
   template:
     metadata:
       labels:
@@ -17,28 +17,28 @@ spec:
       containers:
       - env:
         - name: DEBUG
-          value: "false"
+          value: false
         - name: MAXPLAYERS
-          value: "8"
+          value: 8
         - name: PGID
-          value: "1000"
+          value: 1000
         - name: PUID
-          value: "1000"
+          value: 1000
         - name: SKIPUPDATE
-          value: "false"
+          value: false
         - name: STEAMBETA
-          value: "false"
+          value: false
         image: wolveix/satisfactory-server:v1.9.9
         name: satisfactory
         ports:
         - containerPort: 7777
-          name: "api"
+          name: api
           protocol: TCP
         - containerPort: 7777
-          name: "game"
+          name: game
           protocol: UDP
         - containerPort: 8888
-          name: "messaging"
+          name: messaging
           protocol: TCP
         volumeMounts:
         - mountPath: /config
