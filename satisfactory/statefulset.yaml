@@ -43,16 +43,16 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: games
-          # subPath: satisfactory/config
-          # - mountPath: /config/gamefiles
-          #   name: games
-          #   subPath: satisfactory/data
-          # - mountPath: /backups
-          #   name: games
-          #   subPath: satisfactory/backups
-          # - mountPath: /saved
-          #   name: games
-          #   subPath: satisfactory/saved
+          subPath: satisfactory/config
+        - mountPath: /config/gamefiles
+          name: games
+          subPath: satisfactory/data
+        - mountPath: /backups
+          name: games
+          subPath: satisfactory/backups
+        - mountPath: /saved
+          name: games
+          subPath: satisfactory/saved
       volumes:
       - name: games
         persistentVolumeClaim:
