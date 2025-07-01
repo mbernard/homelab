@@ -19,11 +19,11 @@ spec:
         - name: DEBUG
           value: "false"
         - name: MAXPLAYERS
-          value: 8
-        - name: PGID
-          value: 1000
-        - name: PUID
-          value: 1000
+          value: "8"
+        # - name: PGID
+        #   value: 1000
+        # - name: PUID
+        #   value: 1000
         - name: SKIPUPDATE
           value: "false"
         - name: STEAMBETA
@@ -44,15 +44,6 @@ spec:
         - mountPath: /config
           name: games
           subPath: satisfactory
-        # - mountPath: /config/gamefiles
-        #   name: games
-        #   subPath: satisfactory/data
-        # - mountPath: /backups
-        #   name: games
-        #   subPath: satisfactory/backups
-        # - mountPath: /saved
-        #   name: games
-        #   subPath: satisfactory/saved
       volumes:
       - name: games
         persistentVolumeClaim:
