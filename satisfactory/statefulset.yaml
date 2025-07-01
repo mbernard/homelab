@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: satisfactory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: satisfactory
+  serviceName: "satisfactory"
+  template:
+    metadata:
+      labels:
+        app: satisfactory
+    spec:
+      containers:
+      - env:
+        - name: DEBUG
+          value: "false"
+        - name: MAXPLAYERS
+          value: "8"
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        - name: SKIPUPDATE
+          value: "false"
+        - name: STEAMBETA
+          value: "false"
+        image: wolveix/satisfactory-server:v1.9.9
+        name: satisfactory
+        ports:
+        - containerPort: 7777
+          name: "api"
+          protocol: TCP
+        - containerPort: 7777
+          name: "game"
+          protocol: UDP
+        - containerPort: 8888
+          name: "messaging"
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: games
+          subPath: satisfactory/config
+        - mountPath: /config/gamefiles
+          name: games
+          subPath: satisfactory/data
+        - mountPath: /backups
+          name: games
+          subPath: satisfactory/backups
+        - mountPath: /saved
+          name: games
+          subPath: satisfactory/saved
+  volumes:
+  - name: games
+    persistentVolumeClaim:
+      claimName: games-nfs-pvc
