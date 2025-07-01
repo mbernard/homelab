@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground
+  name: descheduler
+  namespace: argocd # Apps need to be in the argocd namespace to appear in the UI
+spec:
+  destination:
+    namespace: descheduler
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - chart: gpu-operator
+    helm:
+      valueFiles:
+      - $values/descheduler/values.yaml
+    repoURL: https://kubernetes-sigs.github.io/descheduler/
+    targetRevision: 0.33.0
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
