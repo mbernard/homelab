@@ -20,10 +20,10 @@ spec:
           value: "false"
         - name: MAXPLAYERS
           value: "8"
-        # - name: PGID
-        #   value: 1000
-        # - name: PUID
-        #   value: 1000
+        - name: PGID
+          value: 1000
+        - name: PUID
+          value: 1000
         - name: SKIPUPDATE
           value: "false"
         - name: STEAMBETA
