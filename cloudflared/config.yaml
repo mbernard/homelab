@@ -51,8 +51,6 @@ ingress:
   service: http://calibre.calibre:8081
 - hostname: notifiarr.miguelbernard.com
   service: http://notifiarr.notifiarr
-- hostname: homelab.miguelbernard.com
-  service: http://organizr.organizr
 - hostname: overseerr.miguelbernard.com
   service: http://overseerr.overseerr
 - hostname: lidarr.miguelbernard.com
@@ -61,7 +59,7 @@ ingress:
   service: http://overseerr-lidarr.overseerr-lidarr
 - hostname: pihole.miguelbernard.com
   service: http://pihole-tcp.pihole
-- hostname: grafana.miguelbernard.com
+- hostname: monitoring.miguelbernard.com
   service: http://kube-prometheus-stack-grafana.kube-prometheus-stack
 - hostname: nas.miguelbernard.com
   service: http://192.168.10.16 # TrueNAS IP
