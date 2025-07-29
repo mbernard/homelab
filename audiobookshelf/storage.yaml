@@ -27,3 +27,42 @@ spec:
       storage: 1Gi
   storageClassName: longhorn
   volumeName: audiobookshelf-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-nfs-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 20Ti
+  mountOptions:
+  - vers=3
+  - rsize=1048576
+  - wsize=1048576
+  - timeo=900
+  - retrans=5
+  - noatime
+  - nodiratime
+  - hard
+  nfs:
+    path: /mnt/volume1/data
+    readOnly: false
+    server: 192.168.10.16
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-nfs-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Ti
+  storageClassName: nfs
+  volumeName: data-nfs-pv

@@ -41,9 +41,8 @@ spec:
           subPath: media/podcasts
       volumes:
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: data-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz
