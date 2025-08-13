@@ -47,6 +47,7 @@ settings:
   - example placeholder words
   - ignore if found
   stalled_tag: stalledDL # Will set the tag of any torrents that are stalled in the downloading state.
+  rem_unregistered_grace_minutes: 30 # Will wait this many minutes before removing unregistered torrents. This is to allow for any tracker issues to resolve themselves.
 
 directory:
   # Do not remove these
