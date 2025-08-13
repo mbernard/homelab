@@ -30,11 +30,20 @@ spec:
           readOnly: true
         - mountPath: /config
           name: qbitmanage-vol
-        - mountPath: /qbitmanage-config
-          name: qbitmanage-config
         - mountPath: /qbit_appdata
           name: data
           subPath: BT_backup
+        - mountPath: /qbitmanage-config
+          name: writable-volume
+      initContainers:
+      - command: [ "sh", "-c", "cp /config-ro/qbitmanage-config.yaml /config-rw/" ]
+        image: busybox:latest
+        name: copy-config
+        volumeMounts:
+        - mountPath: /config-ro
+          name: qbitmanage-config
+        - mountPath: /config-rw
+          name: writable-volume
       volumes:
       - name: data
         nfs:
@@ -49,3 +58,5 @@ spec:
       - configMap:
           name: qbitmanage-config
         name: qbitmanage-config
+      - emptyDir: {}
+        name: writable-volume
