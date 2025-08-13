@@ -341,6 +341,7 @@ orphaned:
   - "**/*.!qB"
   - "**/*_unpackerred"
   max_orphaned_files_to_delete: -1
+  min_file_age_minutes: 60 # Minimum age of files to be considered for deletion in orphaned data. Default is 60 minutes (1 hour)
 
 # apprise:
 #   # Apprise integration with webhooks
