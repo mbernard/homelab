@@ -43,7 +43,6 @@ kind: Service
 metadata:
   name: pihole-web
 spec:
-  externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
   ports:
