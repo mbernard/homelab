@@ -58,7 +58,7 @@ ingress:
 - hostname: overseerr-lidarr.miguelbernard.com
   service: http://overseerr-lidarr.overseerr-lidarr
 - hostname: pihole.miguelbernard.com
-  service: http://pihole-tcp.pihole
+  service: http://pihole-web.pihole
 - hostname: monitoring.miguelbernard.com
   service: http://kube-prometheus-stack-grafana.kube-prometheus-stack
 - hostname: nas.miguelbernard.com
