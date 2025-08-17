@@ -1,39 +1,29 @@
----
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: games-nfs-pv
+  name: satisfactory-pv
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   capacity:
-    storage: 20Ti
-  mountOptions:
-  - vers=3
-  - rsize=1048576
-  - wsize=1048576
-  - timeo=900
-  - retrans=5
-  - noatime
-  - nodiratime
-  - hard
-  nfs:
-    path: /mnt/volume1/games
-    readOnly: false
-    server: 192.168.10.16
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs
+    storage: 1Gi
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeHandle: satisfactory
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: longhorn
   volumeMode: Filesystem
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: games-nfs-pvc
+  name: satisfactory-pvc
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
-      storage: 20Ti
-  storageClassName: nfs
-  volumeName: games-nfs-pv
+      storage: 1Gi
+  storageClassName: longhorn
+  volumeName: satisfactory-pv
