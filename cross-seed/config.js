@@ -17,7 +17,6 @@ module.exports = {
     torznab: [
         "http://prowlarr.prowlarr/1/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // RevolutionTT
         "http://prowlarr.prowlarr/2/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Milkie
-        "http://prowlarr.prowlarr/3/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Digital core
         "http://prowlarr.prowlarr/4/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // My Anonymouse
         "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
         "http://prowlarr.prowlarr/6/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // SportsCult
@@ -25,6 +24,7 @@ module.exports = {
         "http://prowlarr.prowlarr/10/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TheLeachZone
         "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool
         "http://prowlarr.prowlarr/12/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // ABTorrents
+        "http://prowlarr.prowlarr/13/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Digital core
     ],
 
     sonarr: ["http://sonarr.sonarr?apikey=<path:azurekv-secrets#sonarr-api-key>"],
