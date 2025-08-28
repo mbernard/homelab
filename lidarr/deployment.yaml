@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/lidarr:release-2.12.4.4658
+        image: ghcr.io/hotio/lidarr:release-2.13.3.4711
         name: lidarr
         ports:
         - containerPort: 8686
