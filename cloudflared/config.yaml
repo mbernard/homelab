@@ -39,6 +39,8 @@ ingress:
   service: http://readarr.readarr
 - hostname: readarr-audio.miguelbernard.com
   service: http://readarr-audio.readarr-audio
+- hostname: bookshelf.miguelbernard.com
+  service: http://bookshelf.bookshelf
 - hostname: audiobook.miguelbernard.com
   service: http://audiobookshelf.audiobookshelf
 - hostname: prowlarr.miguelbernard.com
