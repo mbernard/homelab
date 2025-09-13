@@ -23,7 +23,7 @@ spec:
             envFrom:
             - configMapRef:
                 name: env-vars
-            image: renovate/renovate:41.99.11-full
+            image: renovate/renovate:41.100-full
             name: renovate
             volumeMounts:
             - mountPath: /opt/renovate/
