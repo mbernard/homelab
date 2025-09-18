@@ -28,7 +28,7 @@ spec:
           value: "false"
         - name: STEAMBETA
           value: "false"
-        image: wolveix/satisfactory-server:v1.9.9
+        image: wolveix/satisfactory-server:v1.9.10
         name: satisfactory
         ports:
         - containerPort: 7777
