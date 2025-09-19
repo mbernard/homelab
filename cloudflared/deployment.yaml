@@ -20,7 +20,7 @@ spec:
         - --config
         - /etc/cloudflared/config/config.yaml
         - run
-        image: cloudflare/cloudflared:2025.8.1
+        image: cloudflare/cloudflared:2025.9.0
         livenessProbe:
           failureThreshold: 1
           httpGet:
