@@ -35,10 +35,6 @@ ingress:
   service: http://radarr.radarr
 - hostname: sonarr.miguelbernard.com
   service: http://sonarr.sonarr
-- hostname: readarr.miguelbernard.com
-  service: http://readarr.readarr
-- hostname: readarr-audio.miguelbernard.com
-  service: http://readarr-audio.readarr-audio
 - hostname: bookshelf.miguelbernard.com
   service: http://bookshelf.bookshelf
 - hostname: audiobook.miguelbernard.com
