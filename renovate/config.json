@@ -14,8 +14,8 @@
   "assignees": ["mbernard"],
   "packageRules": [
     {
-      "description": "auto merge everything except major",
-      "matchUpdateTypes": ["minor", "patch", "bump", "digest", "pin", "pinDigest", "replacement"],
+      "description": "auto merge minor",
+      "matchUpdateTypes": ["minor"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
     },
