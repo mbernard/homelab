@@ -17,7 +17,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: hotio/unpackerr:release-0.14.5
+        image: ghcr.io/hotio/unpackerr:release-0.14.5
         name: unpackerr
         volumeMounts:
         - mountPath: /etc/localtime
