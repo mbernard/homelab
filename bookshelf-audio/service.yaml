@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookshelf-audio
+  namespace: bookshelf-audio
+spec:
+  ports:
+  - name: web-ui
+    port: 80
+    protocol: TCP
+    targetPort: 8787
+  selector:
+    run: bookshelf-audio

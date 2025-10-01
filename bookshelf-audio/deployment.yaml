@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookshelf-audio
+  namespace: bookshelf-audio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: bookshelf-audio
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: bookshelf-audio
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: env-vars
+        image: ghcr.io/pennydreadful/bookshelf:softcover-v0.4.20.91
+        name: bookshelf-audio
+        ports:
+        - containerPort: 8787
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: tz
+          readOnly: true
+        - mountPath: /config
+          name: bookshelf-audio-vol
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        nfs:
+          path: /mnt/volume1/data
+          server: 192.168.10.16
+      - hostPath:
+          path: /etc/localtime
+        name: tz
+      - name: bookshelf-audio-vol
+        persistentVolumeClaim:
+          claimName: bookshelf-audio-pvc
