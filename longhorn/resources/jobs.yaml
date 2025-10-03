@@ -34,7 +34,7 @@ spec:
   cron: "0 * * * *" # every hour
   groups:
   - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
-  retain: 24
+  retain: 0
   task: snapshot-cleanup
 ---
 apiVersion: longhorn.io/v1beta2
@@ -60,5 +60,5 @@ spec:
   cron: "0 0 * * *" # every day
   groups:
   - default # Having default in groups will automatically schedule this recurring job to any volume with no recurring job.
-  retain: 7
+  retain: 0
   task: "filesystem-trim"
