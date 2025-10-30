@@ -28,7 +28,7 @@ spec:
         - mountPath: /data
           name: data
       initContainers:
-      - command: [ "sh", "-c", "cp /config-ro/unpackerr-config.yaml /config-rw/" ]
+      - command: [ "sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/" ]
         image: busybox:latest
         name: copy-config
         volumeMounts:
