@@ -24,9 +24,18 @@ spec:
           name: tz
           readOnly: true
         - mountPath: /config
-          name: unpackerr-config
+          name: writable-volume
         - mountPath: /data
           name: data
+      initContainers:
+      - command: [ "sh", "-c", "cp /config-ro/unpackerr-config.yaml /config-rw/" ]
+        image: busybox:latest
+        name: copy-config
+        volumeMounts:
+        - mountPath: /config-ro
+          name: unpackerr-config
+        - mountPath: /config-rw
+          name: writable-volume
       volumes:
       - name: data
         nfs:
@@ -38,3 +47,5 @@ spec:
       - configMap:
           name: unpackerr-config
         name: unpackerr-config
+      - emptyDir: {}
+        name: writable-volume
