@@ -15,7 +15,6 @@ module.exports = {
      * Wrap each URL in quotation marks, and separate them with commas, and surround the entire set in brackets.
      */
     torznab: [
-        "http://prowlarr.prowlarr/1/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // RevolutionTT
         "http://prowlarr.prowlarr/2/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Milkie
         "http://prowlarr.prowlarr/4/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // My Anonymouse
         "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
