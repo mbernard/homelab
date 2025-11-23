@@ -8,7 +8,7 @@ spec:
   - remoteRef:
       key: github-personal-access-token-argocd
     secretKey: token
-  refreshInterval: 1m
+  refreshInterval: 1m0s
   secretStoreRef:
     kind: ClusterSecretStore
     name: azurekv-secret-store
