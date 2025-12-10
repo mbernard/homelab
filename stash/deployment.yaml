@@ -64,6 +64,7 @@ spec:
           name: nfs-private
           subPath: stash/generated
       nodeName: spartan
+      runtimeClassName: nvidia
       volumes:
       - name: nfs-private
         persistentVolumeClaim:
