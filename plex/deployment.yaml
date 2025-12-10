@@ -29,7 +29,7 @@ spec:
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
-        image: plexinc/pms-docker:1.42.2.10156-f737b826c
+        image: ghcr.io/hotio/plex:release-1.42.2.10156-f737b826c
         name: plex
         ports:
         - containerPort: 32400 #PMS
