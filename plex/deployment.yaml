@@ -58,6 +58,7 @@ spec:
           name: quicksync
       hostNetwork: true
       nodeName: spartan
+      runtimeClassName: nvidia
       volumes:
       - name: data
         persistentVolumeClaim:
