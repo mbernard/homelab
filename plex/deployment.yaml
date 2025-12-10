@@ -24,7 +24,7 @@ spec:
         - name: PLEX_NO_AUTH_NETWORKS
           value: ''
         - name: PLEX_BETA_INSTALL
-          value: 'true'
+          value: 'false'
         - name: NVIDIA_VISIBLE_DEVICES
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
