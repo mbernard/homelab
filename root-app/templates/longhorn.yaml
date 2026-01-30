@@ -19,7 +19,7 @@ spec:
       valueFiles:
       - $values/longhorn/values.yaml
     repoURL: https://charts.longhorn.io/
-    targetRevision: 1.10.1 # Replace with the Longhorn version you'd like to install or upgrade to    
+    targetRevision: 1.11.0 # Replace with the Longhorn version you'd like to install or upgrade to    
     # values from git
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
