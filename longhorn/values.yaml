@@ -1,7 +1,7 @@
 csi:
   kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
 defaultSettings:
-  backupTarget: nfs://192.168.10.10:/volume1/longhorn-backup
+  backupTarget: nfs://192.168.10.16:/mnt/volume1/longhorn-backup
   createDefaultDiskLabeledNodes: false
   defaultDataPath: /mnt/longhorn
   defaultReplicaCount: '2'
