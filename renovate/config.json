@@ -3,6 +3,7 @@
   "labels": ["renovate"],
   "repositories": ["mbernard/homelab"],
   "extends": ["config:recommended"],
+  "automerge": true,
   "minimumReleaseAge": "36 hours",
   "argocd": {
     "fileMatch": [".*\\.yaml$"]
@@ -14,10 +15,9 @@
   "assignees": ["mbernard"],
   "packageRules": [
     {
-      "description": "auto merge minor",
-      "matchUpdateTypes": ["minor"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true
+      "description": "disable automerge for major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
     },
     {
       "description": "regex to match custom docker tags",
