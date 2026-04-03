@@ -14,11 +14,11 @@ spec:
     targetRevision: 0.13.0
     helm:
       valuesFiles:
-        - $values/tempo/values.yaml
+      - $values/tempo/values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true

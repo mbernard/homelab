@@ -12,21 +12,21 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: microk8s-hostpath
-          accessModes: ["ReadWriteOnce"]
+          accessModes: [ "ReadWriteOnce" ]
           resources:
             requests:
               storage: 40Gi
     additionalAlertManagerConfigs:
-      - apiVersion: v1
-        kind: Secret
-        name: alertmanager-notifiarr
-        key: alertmanager.yaml
+    - apiVersion: v1
+      kind: Secret
+      name: alertmanager-notifiarr
+      key: alertmanager.yaml
     alerting:
       alertmanagers:
-        - namespace: kube-prometheus-stack
-          name: alertmanager
-          port: web
-          scheme: https
+      - namespace: kube-prometheus-stack
+        name: alertmanager
+        port: web
+        scheme: https
   kubeStateMetrics:
     enabled: true
   nodeExporter:
@@ -52,16 +52,16 @@ alertmanager:
       volumeClaimTemplate:
         spec:
           storageClassName: microk8s-hostpath
-          accessModes: ["ReadWriteOnce"]
+          accessModes: [ "ReadWriteOnce" ]
           resources:
             requests:
               storage: 10Gi
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchLabels:
-              app.kubernetes.io/name: alertmanager
-          topologyKey: kubernetes.io/hostname
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: alertmanager
+        topologyKey: kubernetes.io/hostname
 
 grafana:
   enabled: true
@@ -79,11 +79,11 @@ grafana:
       kubernetes.io/ingress.class: public
       cert-manager.io/cluster-issuer: letsencrypt
     hosts:
-      - grafana.example.com
+    - grafana.example.com
     tls:
-      - hosts:
-          - grafana.example.com
-        secretName: grafana-tls
+    - hosts:
+      - grafana.example.com
+      secretName: grafana-tls
   service:
     type: ClusterIP
   sidecar:
@@ -102,19 +102,19 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-      - name: Prometheus
-        type: prometheus
-        access: proxy
-        url: http://kube-prometheus-stack-prometheus.kube-prometheus-stack.svc.cluster.local:9090
-        isDefault: true
-      - name: Loki
-        type: loki
-        access: proxy
-        url: http://loki.loki.svc.cluster.local:3100
-      - name: Tempo
-        type: tempo
-        access: proxy
-        url: http://tempo.tempo.svc.cluster.local:3200
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://kube-prometheus-stack-prometheus.kube-prometheus-stack.svc.cluster.local:9090
+      isDefault: true
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki.loki.svc.cluster.local:3100
+    - name: Tempo
+      type: tempo
+      access: proxy
+      url: http://tempo.tempo.svc.cluster.local:3200
 
 alertmanagerConfig:
   alertmanager.yaml: |

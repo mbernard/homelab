@@ -14,11 +14,11 @@ spec:
     targetRevision: 5.7.0
     helm:
       valuesFiles:
-        - $values/loki/values.yaml
+      - $values/loki/values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true
