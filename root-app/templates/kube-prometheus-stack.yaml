@@ -28,8 +28,3 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-  diffOptions:
-    ignoreDifferences:
-    - kind: CustomResourceDefinition
-      jsonPointers:
-      - /status
