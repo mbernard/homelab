@@ -8,6 +8,7 @@ prometheus:
     serviceMonitorNamespaceSelector: {}
     podDisruptionBudget:
       enabled: true
+    podAntiAffinity: "hard"
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -56,12 +57,7 @@ alertmanager:
           resources:
             requests:
               storage: 10Gi
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: alertmanager
-        topologyKey: kubernetes.io/hostname
+    podAntiAffinity: "hard"
 
 grafana:
   enabled: true
