@@ -21,14 +21,8 @@ spec:
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  ignoreDifferences:
-  - group: apps
-    kind: StatefulSet
-    jsonPointers:
-    - /status/terminatingReplicas
-  - jsonPointers:
-    - /status/terminatingReplicas
-    - /status  # Ignore entire status to bypass schema issues
+  diffOptions:
+    disableStructuredMerge: true
   syncPolicy:
     automated:
       prune: true
