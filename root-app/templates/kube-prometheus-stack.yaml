@@ -21,6 +21,11 @@ spec:
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
+  ignoreDifferences:
+  - group: apps
+    kind: StatefulSet
+    jsonPointers:
+    - /status/terminatingReplicas
   syncPolicy:
     automated:
       prune: true
