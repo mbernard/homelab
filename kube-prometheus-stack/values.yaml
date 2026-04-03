@@ -1,7 +1,7 @@
 prometheus:
   prometheusSpec:
     replicas: 2
-    retention: "30d"
+    retention: "720h"
     evaluationInterval: "1m"
     ruleEvaluationInterval: "1m"
     podMonitorNamespaceSelector: {}
@@ -38,7 +38,7 @@ prometheus:
 alertmanager:
   alertmanagerSpec:
     replicas: 2
-    retention: "14d"
+    retention: "336h"
     externalURL: "http://alertmanager.kube-prometheus-stack.svc.cluster.local"
     resources:
       requests:
