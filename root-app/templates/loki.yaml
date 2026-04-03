@@ -8,13 +8,17 @@ spec:
     namespace: loki
     server: https://kubernetes.default.svc
   project: default
-  source:
-    repoURL: oci://ghcr.io/grafana-community/helm-charts/loki
-    chart: loki
+  sources:
+  - chart: loki
     targetRevision: 9.5.0
+    repoURL: oci://ghcr.io/grafana-community/helm-charts/loki
+
     helm:
       valuesFiles:
       - $values/loki/values.yaml
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true

@@ -8,13 +8,16 @@ spec:
     namespace: tempo
     server: https://kubernetes.default.svc
   project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
+  sources:
+  - repoURL: https://grafana.github.io/helm-charts
     chart: tempo
     targetRevision: 0.13.0
     helm:
       valuesFiles:
       - $values/tempo/values.yaml
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
