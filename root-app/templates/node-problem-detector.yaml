@@ -9,16 +9,16 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://k8s-at-home.com/charts/
+    repoURL: https://kubernetes.github.io/node-problem-detector/
     chart: node-problem-detector
-    targetRevision: 2.3.4
+    targetRevision: 2.3.9
     helm:
       valuesFiles:
-        - $values/node-problem-detector/values.yaml
+      - $values/node-problem-detector/values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true
