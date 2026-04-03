@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://kubernetes.github.io/node-problem-detector
+    repoURL: oci://ghcr.io/deliveryhero/helm-charts/node-problem-detector
     chart: node-problem-detector
-    targetRevision: 2.3.9
+    targetRevision: 2.4.0
     helm:
       valuesFiles:
       - $values/node-problem-detector/values.yaml
