@@ -26,6 +26,8 @@ spec:
     kind: StatefulSet
     jsonPointers:
     - /status/terminatingReplicas
+  - jsonPointers:
+    - /status/terminatingReplicas
   syncPolicy:
     automated:
       prune: true
