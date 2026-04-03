@@ -28,6 +28,7 @@ spec:
     - /status/terminatingReplicas
   - jsonPointers:
     - /status/terminatingReplicas
+    - /status  # Ignore entire status to bypass schema issues
   syncPolicy:
     automated:
       prune: true
