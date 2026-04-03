@@ -21,8 +21,6 @@ spec:
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  diffOptions:
-    disableStructuredMerge: true
   syncPolicy:
     automated:
       prune: true
