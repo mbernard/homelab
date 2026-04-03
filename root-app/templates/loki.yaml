@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://grafana.github.io/helm-charts
+    repoURL: https://grafana-community.github.io/helm-charts
     chart: loki
-    targetRevision: 6.6.2
+    targetRevision: 9.5.0
     helm:
       valuesFiles:
       - $values/loki/values.yaml
