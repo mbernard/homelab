@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://kubernetes.github.io/node-problem-detector/
+    repoURL: https://kubernetes.github.io/node-problem-detector
     chart: node-problem-detector
     targetRevision: 2.3.9
     helm:
