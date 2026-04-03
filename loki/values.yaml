@@ -1,33 +1,54 @@
-persistence:
-  enabled: true
-  storageClassName: microk8s-hostpath
-  size: 50Gi
+loki:
+  # 1. Required: Define the storage type and mandatory bucket names
+  storage:
+    type: filesystem
+    bucketNames:
+      chunks: chunks
+      ruler: ruler
+      admin: admin
+    # This replaces your old 'storage.filesystem' block
+    filesystem:
+      chunks_directory: /var/loki/chunks
+      rules_directory: /var/loki/rules
 
-resources:
-  limits:
-    cpu: 500m
-    memory: 2Gi
-  requests:
-    cpu: 250m
-    memory: 1Gi
+  # 2. Required: Updated Schema Config (Loki 3.0 uses 'tsdb' usually, 
+  # but I've kept your filesystem logic)
+  schemaConfig:
+    configs:
+    - from: "2020-10-24"
+      store: tsdb # Recommended for 3.0+, but boltdb-shipper works for migration
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
 
-ingester:
+# 3. Component settings moved to top-level or specific keys
+# The 'write' component replaces the old 'ingester' in Simple Scalable mode
+write:
   replicas: 2
   persistence:
     enabled: true
-    storageClassName: microk8s-hostpath
+    storageClass: microk8s-hostpath
     size: 20Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 2Gi
+    requests:
+      cpu: 250m
+      memory: 1Gi
 
-schemaConfig:
-  configs:
-  - from: 2020-10-24
-    store: boltdb-shipper
-    object_store: filesystem
-    schema: v11
-    index:
-      prefix: index_
-      period: 24h
+read:
+  replicas: 1
+  persistence:
+    enabled: true
+    storageClass: microk8s-hostpath
+    size: 10Gi
 
-storage:
-  filesystem:
-    directory: /data/loki
+backend:
+  replicas: 1
+  persistence:
+    enabled: true
+    storageClass: microk8s-hostpath
+    size: 10Gi
