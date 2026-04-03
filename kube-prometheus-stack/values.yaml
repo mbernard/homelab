@@ -1,44 +1,143 @@
-## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
+prometheus:
+  prometheusSpec:
+    replicas: 2
+    retention: "30d"
+    evaluationInterval: "1m"
+    ruleEvaluationInterval: "1m"
+    podMonitorNamespaceSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    podDisruptionBudget:
+      enabled: true
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: microk8s-hostpath
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 40Gi
+    additionalAlertManagerConfigs:
+      - apiVersion: v1
+        kind: Secret
+        name: alertmanager-notifiarr
+        key: alertmanager.yaml
+    alerting:
+      alertmanagers:
+        - namespace: kube-prometheus-stack
+          name: alertmanager
+          port: web
+          scheme: https
+  kubeStateMetrics:
+    enabled: true
+  nodeExporter:
+    enabled: true
+  kubelet:
+    enabled: true
+
+alertmanager:
+  alertmanagerSpec:
+    replicas: 2
+    retention: "14d"
+    externalURL: "http://alertmanager.kube-prometheus-stack.svc.cluster.local"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
+    podDisruptionBudget:
+      enabled: true
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: microk8s-hostpath
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: alertmanager
+          topologyKey: kubernetes.io/hostname
+
 grafana:
+  enabled: true
   admin:
     existingSecret: azurekv-secrets
     passwordKey: grafana
     userKey: admin-username
-  # Provision grafana-dashboards-kubernetes
-  dashboardProviders:
-    dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-      - disableDeletion: true
-        editable: true
-        folder: 'Kubernetes'
-        name: 'grafana-dashboards-kubernetes'
-        options:
-          path: /var/lib/grafana/dashboards/grafana-dashboards-kubernetes
-        orgId: 1
-        type: file
-  dashboards:
-    grafana-dashboards-kubernetes:
-      k8s-system-api-server:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
-      k8s-system-coredns:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
-      k8s-views-global:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
-      k8s-views-namespaces:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
-      k8s-views-nodes:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
-      k8s-views-pods:
-        token: ''
-        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-  ## Timezone for the default dashboards
-  ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
-  ##
-  defaultDashboardsTimezone: America/Montreal
+  persistence:
+    enabled: true
+    storageClassName: microk8s-hostpath
+    size: 10Gi
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: public
+      cert-manager.io/cluster-issuer: letsencrypt
+    hosts:
+      - grafana.example.com
+    tls:
+      - hosts:
+          - grafana.example.com
+        secretName: grafana-tls
+  service:
+    type: ClusterIP
+  sidecar:
+    datasources:
+      enabled: true
+      label: grafana_datasource
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+
+grafana.ini:
+  auth.anonymous:
+    enabled: false
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        url: http://kube-prometheus-stack-prometheus.kube-prometheus-stack.svc.cluster.local:9090
+        isDefault: true
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki.loki.svc.cluster.local:3100
+      - name: Tempo
+        type: tempo
+        access: proxy
+        url: http://tempo.tempo.svc.cluster.local:3200
+
+alertmanagerConfig:
+  alertmanager.yaml: |
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['alertname', 'namespace']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 4h
+      receiver: notifiarr
+      routes:
+        - match:
+            severity: critical
+          receiver: notifiarr
+    receivers:
+      - name: notifiarr
+        webhook_configs:
+          - url: "https://notifiarr.com/api/v1/notify/9f3fd758-dfbc-4ccb-acc6-c39e8dc8bd98"
+            send_resolved: true
+    inhibit_rules:
+      - source_match:
+          severity: critical
+        target_match:
+          severity: warning
+        equal: ['alertname', 'namespace', 'pod']

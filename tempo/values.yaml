@@ -1,0 +1,28 @@
+local:
+  path: /data/tempo
+
+persistence:
+  enabled: true
+  storageClassName: microk8s-hostpath
+  size: 100Gi
+
+compactor:
+  enabled: true
+
+distributor:
+  replicas: 1
+
+queryFrontend:
+  enabled: false
+
+query:
+  replicas: 1
+
+ingester:
+  replicas: 2
+  chunk_idle_period: 5m
+  max_chunk_age: 1h
+
+storage:
+  trace:
+    backend: local
