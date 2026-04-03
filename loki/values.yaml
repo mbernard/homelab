@@ -1,30 +1,28 @@
 loki:
-  # 1. Required: Define the storage type and mandatory bucket names
+  # 1. This block satisfies the "Please define loki.storage.bucketNames.chunks" error
   storage:
     type: filesystem
     bucketNames:
       chunks: chunks
       ruler: ruler
       admin: admin
-    # This replaces your old 'storage.filesystem' block
     filesystem:
       chunks_directory: /var/loki/chunks
       rules_directory: /var/loki/rules
 
-  # 2. Required: Updated Schema Config (Loki 3.0 uses 'tsdb' usually, 
-  # but I've kept your filesystem logic)
+  # 2. Schema must be nested under 'loki' in version 9.5.0+
   schemaConfig:
     configs:
     - from: "2020-10-24"
-      store: tsdb # Recommended for 3.0+, but boltdb-shipper works for migration
+      store: tsdb # Recommended for 3.0+, but boltdb-shipper works for legacy
       object_store: filesystem
       schema: v11
       index:
         prefix: index_
         period: 24h
 
-# 3. Component settings moved to top-level or specific keys
-# The 'write' component replaces the old 'ingester' in Simple Scalable mode
+# 3. Component settings for 'Simple Scalable' mode
+# In 9.5.0, 'write' replaces the old 'ingester' block for resources/replicas
 write:
   replicas: 2
   persistence:
@@ -44,11 +42,9 @@ read:
   persistence:
     enabled: true
     storageClass: microk8s-hostpath
-    size: 10Gi
 
 backend:
   replicas: 1
   persistence:
     enabled: true
     storageClass: microk8s-hostpath
-    size: 10Gi
