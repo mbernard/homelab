@@ -17,7 +17,7 @@ spec:
   # 2. Reference the chart SECOND
   - repoURL: https://grafana.github.io/helm-charts
     chart: tempo
-    targetRevision: 0.13.0
+    targetRevision: 0.16.9
     helm:
       valuesFiles:
       # This now points directly to the 'ref' defined above
