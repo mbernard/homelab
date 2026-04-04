@@ -11,8 +11,7 @@ spec:
   sources:
   - chart: loki
     targetRevision: 9.5.0
-    repoURL: oci://ghcr.io/grafana-community/helm-charts/loki
-
+    repoURL: oci://ghcr.io/grafana-community/helm-charts
     helm:
       valuesFiles:
       - $values/loki/values.yaml
