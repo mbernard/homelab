@@ -10,8 +10,8 @@ spec:
   project: default
   sources:
   - chart: loki
-    targetRevision: 9.5.0
-    repoURL: oci://ghcr.io/grafana-community/helm-charts
+    targetRevision: 9.3.2
+    repoURL: ghcr.io/grafana-community/helm-charts
     helm:
       valuesFiles:
       - $values/loki/values.yaml
