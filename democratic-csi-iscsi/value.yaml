@@ -1,0 +1,47 @@
+csiDriver:
+  name: "org.democratic-csi.iscsi"
+
+storageClasses:
+- name: truenas-iscsi
+  defaultClass: false
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    fsType: ext4
+
+driver:
+  config:
+    driver: freenas-api-iscsi
+    httpConnection:
+      protocol: https
+      host: 192.168.10.16
+      port: 443
+      apiKey: $azurekv-secrets:truenas-api-key
+      allowInsecure: true
+
+    zfs:
+      datasetParentName: volume1/logs
+      detachedSnapshotsDatasetParentName: volume1/logs
+      datasetEnableQuotas: true
+      datasetEnableReservation: false
+      datasetPermissionsMode: "0770"
+      datasetPermissionsUser: 0
+      datasetPermissionsGroup: 0
+
+    iscsi:
+      targetPortal: "192.168.10.16:3260" # ← your TrueNAS IP
+      targetPortals: []
+      interface: ""
+      namePrefix: csi-
+      nameSuffix: "-cluster"
+      targetGroups:
+      - targetGroupPortalGroup: 1 # ← portal ID from TrueNAS
+        targetGroupInitiatorGroup: 1 # ← initiator group ID from TrueNAS
+        targetGroupAuthType: None
+      extentInsecureTpc: true
+      extentXenCompat: false
+      extentDisablePhysicalBlocksize: true
+      extentBlocksize: 512
+      extentRpm: "SSD"
+      extentAvailThreshold: 0

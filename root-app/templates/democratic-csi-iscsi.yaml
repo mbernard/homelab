@@ -1,28 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki
+  name: democratic-csi-iscsi
   namespace: argocd
 spec:
-  destination:
-    namespace: loki
-    server: https://kubernetes.default.svc
   project: default
+
   sources:
-  - repoURL: ghcr.io/grafana-community/helm-charts
-    chart: loki
-    targetRevision: 9.3.2
+  - repoURL: https://democratic-csi.github.io/charts/
+    chart: democratic-csi
+    targetRevision: "*"
     helm:
-      releaseName: loki
-      valueFiles:
-      - $values/loki/values.yaml
+      releaseName: democratic-csi-iscsi
+      valuesFiles:
+      - $values/blackbox-exporter/values.yaml
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: democratic-csi
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true
