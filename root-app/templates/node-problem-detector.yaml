@@ -13,7 +13,7 @@ spec:
     chart: node-problem-detector
     targetRevision: 2.4.0
     helm:
-      valuesFiles:
+      valueFiles:
       - $values/node-problem-detector/values.yaml
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git

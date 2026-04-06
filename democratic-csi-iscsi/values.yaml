@@ -21,8 +21,8 @@ driver:
       allowInsecure: true
 
     zfs:
-      datasetParentName: volume1/logs
-      detachedSnapshotsDatasetParentName: volume1/logs
+      datasetParentName: volume1/logs/vols
+      detachedSnapshotsDatasetParentName: volume1/logs/snaps
       datasetEnableQuotas: true
       datasetEnableReservation: false
       datasetPermissionsMode: "0770"

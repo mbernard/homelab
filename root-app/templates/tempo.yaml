@@ -19,7 +19,7 @@ spec:
     chart: tempo
     targetRevision: 1.24.4
     helm:
-      valuesFiles:
+      valueFiles:
       # This now points directly to the 'ref' defined above
       - $values/tempo/values.yaml
   syncPolicy:

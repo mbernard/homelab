@@ -13,7 +13,7 @@ spec:
     chart: prometheus-blackbox-exporter
     targetRevision: 11.9.1
     helm:
-      valuesFiles:
+      valueFiles:
       - $values/blackbox-exporter/values.yaml
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
