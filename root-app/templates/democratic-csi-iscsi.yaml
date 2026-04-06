@@ -12,7 +12,7 @@ spec:
     targetRevision: "*"
     helm:
       releaseName: democratic-csi-iscsi
-      valuesFiles:
+      valueFiles:
       - $values/democratic-csi-iscsi/values.yaml
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
