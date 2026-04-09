@@ -14,6 +14,9 @@ spec:
       releaseName: democratic-csi-iscsi
       valueFiles:
       - $values/democratic-csi-iscsi/values.yaml
+      parameters:
+      - name: driver.config.httpConnection.apiKey
+        value: $azurekv-secrets:truenas-api-key
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
