@@ -18,6 +18,7 @@ driver:
       host: 192.168.10.16
       port: 443
       allowInsecure: true
+      apiKey: <path:azurekv#truenas-api-key>
 
     zfs:
       datasetParentName: volume1/logs/vols
