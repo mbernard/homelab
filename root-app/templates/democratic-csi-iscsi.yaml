@@ -1,6 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: democratic-csi-iscsi-secrets
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+    path: democratic-csi-iscsi/secrets
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: democratic-csi
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: democratic-csi-iscsi
   namespace: argocd
   annotations:
