@@ -31,11 +31,31 @@ spec:
           name: bookshelf-audio-vol
         - mountPath: /data
           name: data
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+        livenessProbe:
+          tcpSocket:
+            port: 8787
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: 8787
+          initialDelaySeconds: 5
+          periodSeconds: 10
       volumes:
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: bookshelf-audio-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz

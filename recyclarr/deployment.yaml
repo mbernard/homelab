@@ -30,6 +30,17 @@ spec:
         - mountPath: /config/recyclarr.yml
           name: recyclarr-config
           subPath: recyclarr.yml
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
       volumes:
       - hostPath:
           path: /etc/localtime

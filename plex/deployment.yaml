@@ -56,6 +56,27 @@ spec:
           name: plex-vol
         - mountPath: /dev/dri
           name: quicksync
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 4000m
+            memory: 4Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+        livenessProbe:
+          tcpSocket:
+            port: 32400
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: 32400
+          initialDelaySeconds: 5
+          periodSeconds: 10
       hostNetwork: true
       nodeName: spartan
       runtimeClassName: nvidia

@@ -64,6 +64,17 @@ spec:
           name: etc-pvc
         - mountPath: /etc/dnsmasq.d
           name: dnsm-pvc
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
   volumeClaimTemplates:
   - metadata:
       name: etc-pvc

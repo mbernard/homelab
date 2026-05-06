@@ -32,6 +32,27 @@ spec:
           name: calibre-vol
         - mountPath: /data
           name: data
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
       volumes:
       - hostPath:
           path: /etc/localtime
@@ -40,6 +61,5 @@ spec:
         persistentVolumeClaim:
           claimName: calibre-pvc
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: calibre-nfs-pvc

@@ -31,11 +31,31 @@ spec:
           name: lidarr-vol
         - mountPath: /data
           name: data
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+        livenessProbe:
+          tcpSocket:
+            port: 8686
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: 8686
+          initialDelaySeconds: 5
+          periodSeconds: 10
       volumes:
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: lidarr-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz

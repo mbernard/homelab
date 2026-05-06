@@ -27,9 +27,20 @@ spec:
           name: writable-volume
         - mountPath: /data
           name: data
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
       initContainers:
-      - command: [ "sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/" ]
-        image: busybox:latest
+      - command: ["sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/"]
+        image: busybox:1.36.1
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro
@@ -38,9 +49,8 @@ spec:
           name: writable-volume
       volumes:
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: unpackerr-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz

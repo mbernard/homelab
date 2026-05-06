@@ -35,9 +35,20 @@ spec:
           subPath: BT_backup
         - mountPath: /qbitmanage-config
           name: writable-volume
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
       initContainers:
-      - command: [ "sh", "-c", "cp /config-ro/qbitmanage-config.yaml /config-rw/" ]
-        image: busybox:latest
+      - command: ["sh", "-c", "cp /config-ro/qbitmanage-config.yaml /config-rw/"]
+        image: busybox:1.36.1
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro
@@ -46,9 +57,8 @@ spec:
           name: writable-volume
       volumes:
       - name: data
-        nfs:
-          path: /mnt/volume1/data
-          server: 192.168.10.16
+        persistentVolumeClaim:
+          claimName: qbitmanage-nfs-pvc
       - hostPath:
           path: /etc/localtime
         name: tz

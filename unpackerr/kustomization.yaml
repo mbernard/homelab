@@ -10,3 +10,4 @@ namespace: unpackerr
 
 resources:
 - deployment.yaml
+- nfs-pv-pvc.yaml

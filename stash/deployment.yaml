@@ -31,7 +31,7 @@ spec:
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: compute,video,utility
-        image: nerethos/stash-jellyfin-ffmpeg
+        image: nerethos/stash:v0.31.1
         name: stash
         ports:
         - containerPort: 9999
@@ -63,6 +63,27 @@ spec:
           ## Where to store generated content (screenshots,previews,transcodes,sprites)
           name: nfs-private
           subPath: stash/generated
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+        livenessProbe:
+          tcpSocket:
+            port: 9999
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: 9999
+          initialDelaySeconds: 5
+          periodSeconds: 10
       nodeName: spartan
       runtimeClassName: nvidia
       volumes:
