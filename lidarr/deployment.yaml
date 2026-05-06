@@ -45,12 +45,12 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 8686
-          initialDelaySeconds: 15
+          initialDelaySeconds: 60
           periodSeconds: 20
         readinessProbe:
           tcpSocket:
             port: 8686
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 10
       volumes:
       - name: data

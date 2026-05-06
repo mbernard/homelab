@@ -70,12 +70,12 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 32400
-          initialDelaySeconds: 15
+          initialDelaySeconds: 180
           periodSeconds: 20
         readinessProbe:
           tcpSocket:
             port: 32400
-          initialDelaySeconds: 5
+          initialDelaySeconds: 90
           periodSeconds: 10
       hostNetwork: true
       nodeName: spartan

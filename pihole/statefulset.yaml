@@ -38,7 +38,7 @@ spec:
         image: pihole/pihole:2026.04.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
-          initialDelaySeconds: 15
+          initialDelaySeconds: 60
           periodSeconds: 30
           tcpSocket:
             port: dns-tcp
@@ -56,7 +56,7 @@ spec:
         readinessProbe:
           exec:
             command: ['dig', '@127.0.0.1', 'cloudflare.com']
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 60
           timeoutSeconds: 20
         volumeMounts:

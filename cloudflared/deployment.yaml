@@ -26,7 +26,7 @@ spec:
           httpGet:
             path: /ready
             port: 2000
-          initialDelaySeconds: 10
+          initialDelaySeconds: 60
           periodSeconds: 10
         name: cloudflared
         volumeMounts:
