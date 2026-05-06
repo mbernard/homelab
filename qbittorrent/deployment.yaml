@@ -65,10 +65,6 @@ spec:
           limits:
             cpu: 1000m
             memory: 1Gi
-        securityContext:
-          capabilities:
-            drop:
-            - ALL
         livenessProbe:
           tcpSocket:
             port: 8080

@@ -34,10 +34,6 @@ spec:
           limits:
             cpu: 1000m
             memory: 1Gi
-        securityContext:
-          capabilities:
-            drop:
-            - ALL
       initContainers:
       - command: ["sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/"]
         image: busybox:1.36.1
