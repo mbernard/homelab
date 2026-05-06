@@ -3,6 +3,7 @@ data:
   policy.csv: |
     p, role:myrole, exec, create, */*, allow
     g, mig@miguelbernard.com, role:admin
+    g, 109255208402743298270, role:admin
   policy.default: role:readonly
 kind: ConfigMap
 metadata:
