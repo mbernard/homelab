@@ -1,15 +1,14 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "labels": ["renovate"],
   "repositories": ["mbernard/homelab"],
   "extends": ["config:recommended"],
   "automerge": true,
   "minimumReleaseAge": "36 hours",
   "argocd": {
-    "fileMatch": [".*\\.yaml$"]
+    "managerFilePatterns": ["/.*\\.yaml$/"]
   },
   "kubernetes": {
-    "fileMatch": [".*\\.yaml$"]
+    "managerFilePatterns": ["/.*\\.yaml$/"]
   },
   "reviewers": ["mbernard"],
   "assignees": ["mbernard"],
@@ -26,6 +25,5 @@
     }
   ],
   "platformAutomerge": true,
-  "prCreation": "not-pending",
   "ignoreTests": true
 }
