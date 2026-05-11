@@ -36,7 +36,7 @@ spec:
             memory: 1Gi
       initContainers:
       - command: ["sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/"]
-        image: busybox:1.36.1
+        image: busybox:1.37.0-uclibc
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro
