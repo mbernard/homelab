@@ -1,0 +1,6 @@
+namespace: technitium
+
+resources:
+- statefulset.yaml
+- service.yaml
+- storage.yaml
