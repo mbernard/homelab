@@ -52,12 +52,12 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 7777
-          initialDelaySeconds: 180
+          initialDelaySeconds: 300
           periodSeconds: 20
         readinessProbe:
           tcpSocket:
             port: 7777
-          initialDelaySeconds: 90
+          initialDelaySeconds: 300
           periodSeconds: 10
       volumes:
       - name: games
