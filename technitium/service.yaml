@@ -34,6 +34,14 @@ spec:
     port: 53
     protocol: TCP
     targetPort: 53
+  - name: web
+    port: 5380
+    protocol: TCP
+    targetPort: 5380
+  - name: cluster
+    port: 53443
+    protocol: TCP
+    targetPort: 53443
   selector:
     app: technitium
   type: LoadBalancer
@@ -41,63 +49,143 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: technitium-web-0
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-0
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.204
+  name: technitium-udp-0
 spec:
+  externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
   ports:
-  - name: web
-    port: 5380
-    protocol: TCP
-    targetPort: 5380
+  - name: dnsudp
+    port: 53
+    protocol: UDP
+    targetPort: 53
   selector:
     statefulset.kubernetes.io/pod-name: technitium-0
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: technitium-web-1
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-0
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.204
+  name: technitium-tcp-0
 spec:
+  externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
   ports:
+  - name: dnstcp
+    port: 53
+    protocol: TCP
+    targetPort: 53
   - name: web
     port: 5380
     protocol: TCP
     targetPort: 5380
+  - name: cluster
+    port: 53443
+    protocol: TCP
+    targetPort: 53443
+  selector:
+    statefulset.kubernetes.io/pod-name: technitium-0
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-1
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.205
+  name: technitium-udp-1
+spec:
+  externalTrafficPolicy: Local
+  ipFamilies:
+  - IPv4
+  ports:
+  - name: dnsudp
+    port: 53
+    protocol: UDP
+    targetPort: 53
   selector:
     statefulset.kubernetes.io/pod-name: technitium-1
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: technitium-web-2
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-1
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.205
+  name: technitium-tcp-1
 spec:
+  externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
   ports:
+  - name: dnstcp
+    port: 53
+    protocol: TCP
+    targetPort: 53
   - name: web
     port: 5380
     protocol: TCP
     targetPort: 5380
+  - name: cluster
+    port: 53443
+    protocol: TCP
+    targetPort: 53443
+  selector:
+    statefulset.kubernetes.io/pod-name: technitium-1
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-2
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.206
+  name: technitium-udp-2
+spec:
+  externalTrafficPolicy: Local
+  ipFamilies:
+  - IPv4
+  ports:
+  - name: dnsudp
+    port: 53
+    protocol: UDP
+    targetPort: 53
   selector:
     statefulset.kubernetes.io/pod-name: technitium-2
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: technitium-web
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns-2
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.206
+  name: technitium-tcp-2
 spec:
+  externalTrafficPolicy: Local
   ipFamilies:
   - IPv4
   ports:
+  - name: dnstcp
+    port: 53
+    protocol: TCP
+    targetPort: 53
   - name: web
     port: 5380
     protocol: TCP
     targetPort: 5380
+  - name: cluster
+    port: 53443
+    protocol: TCP
+    targetPort: 53443
   selector:
-    app: technitium
-  type: ClusterIP
+    statefulset.kubernetes.io/pod-name: technitium-2
+  type: LoadBalancer

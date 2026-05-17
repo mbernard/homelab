@@ -39,6 +39,9 @@ spec:
         - containerPort: 5380
           name: web
           protocol: TCP
+        - containerPort: 53443
+          name: cluster
+          protocol: TCP
         volumeMounts:
         - mountPath: /etc/dns
           name: etc-pvc
