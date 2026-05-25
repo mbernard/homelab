@@ -27,3 +27,41 @@ spec:
       storage: 20Gi
   storageClassName: longhorn
   volumeName: satisfactory-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: satisfactory-nfs-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /volume1/games
+    server: 192.168.10.16
+  mountOptions:
+  - vers=3
+  - rsize=1048576
+  - wsize=1048576
+  - timeo=900
+  - retrans=5
+  - noatime
+  - nodiratime
+  - hard
+  storageClassName: nfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: satisfactory-nfs-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: "nfs"
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: satisfactory-nfs-pv
+

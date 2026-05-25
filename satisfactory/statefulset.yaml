@@ -42,6 +42,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: games
+          subPath: satisfactory
         resources:
           requests:
             cpu: 500m
@@ -52,4 +53,5 @@ spec:
       volumes:
       - name: games
         persistentVolumeClaim:
-          claimName: satisfactory-pvc
+          claimName: satisfactory-nfs-pvc
+
