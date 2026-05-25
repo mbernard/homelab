@@ -44,7 +44,7 @@ spec:
             memory: 256Mi
       initContainers:
       - command: ["sh", "-c", "cp /config-ro/qbitmanage-config.yaml /config-rw/"]
-        image: busybox:1.37.0-uclibc
+        image: busybox:1.38.0-uclibc
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro
