@@ -39,7 +39,7 @@ spec:
   - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /volume1/games
+    path: /mnt/volume1/games
     server: 192.168.10.16
   mountOptions:
   - vers=3
