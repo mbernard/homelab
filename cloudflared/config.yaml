@@ -63,19 +63,12 @@ ingress:
   service: http://pihole-web-2.pihole
 - hostname: dns.miguelbernard.com
   service: https://technitium-tcp.technitium:53443
-- hostname: dns0-web.miguelbernard.com
-  service: https://technitium-tcp-0.technitium:53443
-- hostname: dns1-web.miguelbernard.com
-  service: https://technitium-tcp-1.technitium:53443
-- hostname: dns2-web.miguelbernard.com
-  service: https://technitium-tcp-2.technitium:53443
 - hostname: dns0.miguelbernard.com
-  service: tcp://technitium-tcp-0.technitium:53443
+  service: https://technitium-tcp-0.technitium:53443
 - hostname: dns1.miguelbernard.com
-  service: tcp://technitium-tcp-1.technitium:53443
+  service: https://technitium-tcp-1.technitium:53443
 - hostname: dns2.miguelbernard.com
-  service: tcp://technitium-tcp-2.technitium:53443
-
+  service: https://technitium-tcp-2.technitium:53443
 - hostname: monitoring.miguelbernard.com
   service: http://kube-prometheus-stack-grafana.kube-prometheus-stack
 - hostname: nas.miguelbernard.com
