@@ -47,10 +47,10 @@ spec:
         - mountPath: /etc/dns
           name: etc-pvc
         # Use subPath to inject the file natively inside the /etc/dns directory
-        # - name: cert-volume
-        #   mountPath: /etc/dns/technitium.pfx
-        #   subPath: technitium
-        #   readOnly: true
+        - name: cert-volume
+          mountPath: /etc/dns/technitium.pfx
+          subPath: technitium
+          readOnly: true
         resources:
           requests:
             cpu: 50m
