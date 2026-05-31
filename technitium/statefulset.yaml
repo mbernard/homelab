@@ -28,6 +28,15 @@ spec:
       containers:
       - image: technitium/dns-server:15.2.0
         imagePullPolicy: IfNotPresent
+        env:
+        # 1. Point Technitium to the exact file path inside the volume
+        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_FILE_PATH
+          value: "/etc/technitium-certs/technitium"
+        # 2. Provide the password you used when generating the PFX file
+        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PASSWORD
+          value: "dns" 
+        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_ENABLE_TLS
+          value: "true"
         name: technitium
         ports:
         - containerPort: 53
@@ -45,6 +54,9 @@ spec:
         volumeMounts:
         - mountPath: /etc/dns
           name: etc-pvc
+        - name: cert-volume
+          mountPath: "/etc/technitium-certs"
+          readOnly: true
         resources:
           requests:
             cpu: 50m
@@ -62,6 +74,14 @@ spec:
             port: 5380
           initialDelaySeconds: 30
           periodSeconds: 10
+      volumes:
+      - name: cert-volume
+        secret:
+          secretName:  azurekv-secrets
+          items:
+          # This maps the key "technitium" to a clear filename
+          - key: technitium
+            path: technitium
   volumeClaimTemplates:
   - metadata:
       name: etc-pvc
