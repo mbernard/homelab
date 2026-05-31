@@ -29,14 +29,6 @@ spec:
       containers:
       - image: technitium/dns-server:15.2.0
         imagePullPolicy: IfNotPresent
-        env:
-        # Corrected variable names matching Technitium's core logic:
-        - name: DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PATH
-          value: "/etc/dns/technitium.pfx"
-        - name: DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PASSWORD
-          value: "dns" 
-        - name: DNS_SERVER_WEB_SERVICE_ENABLE_HTTPS
-          value: "true"
         name: technitium
         ports:
         - containerPort: 53
@@ -55,10 +47,10 @@ spec:
         - mountPath: /etc/dns
           name: etc-pvc
         # Use subPath to inject the file natively inside the /etc/dns directory
-        - name: cert-volume
-          mountPath: /etc/dns/technitium.pfx
-          subPath: technitium
-          readOnly: true
+        # - name: cert-volume
+        #   mountPath: /etc/dns/technitium.pfx
+        #   subPath: technitium
+        #   readOnly: true
         resources:
           requests:
             cpu: 50m
