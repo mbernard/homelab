@@ -51,6 +51,10 @@ spec:
           mountPath: /etc/dns/technitium.pfx
           subPath: technitium
           readOnly: true
+        # This injects your self-signed cert into the OS trusted anchors dynamically
+        - mountPath: /etc/ssl/certs/technitium-ca.pem
+          name: cert-volume
+          subPath: technitium-chain-pem
         resources:
           requests:
             cpu: 50m
