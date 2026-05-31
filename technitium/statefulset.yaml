@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: technitium
+  serviceName: technitium-headless # Required for StatefulSets
   template:
     metadata:
       labels:
@@ -29,13 +30,12 @@ spec:
       - image: technitium/dns-server:15.2.0
         imagePullPolicy: IfNotPresent
         env:
-        # 1. Point Technitium to the exact file path inside the volume
-        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_FILE_PATH
-          value: "/etc/technitium-certs/technitium"
-        # 2. Provide the password you used when generating the PFX file
-        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PASSWORD
+        # Corrected variable names matching Technitium's core logic:
+        - name: DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PATH
+          value: "/etc/dns/technitium.pfx"
+        - name: DNS_SERVER_WEB_SERVICE_TLS_CERTIFICATE_PASSWORD
           value: "dns" 
-        - name: TECHNITIUM_DNS_SERVER_WEB_SERVICE_ENABLE_TLS
+        - name: DNS_SERVER_WEB_SERVICE_ENABLE_HTTPS
           value: "true"
         name: technitium
         ports:
@@ -54,8 +54,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/dns
           name: etc-pvc
+        # Use subPath to inject the file natively inside the /etc/dns directory
         - name: cert-volume
-          mountPath: "/etc/technitium-certs"
+          mountPath: /etc/dns/technitium.pfx
+          subPath: technitium
           readOnly: true
         resources:
           requests:
@@ -77,9 +79,8 @@ spec:
       volumes:
       - name: cert-volume
         secret:
-          secretName:  azurekv-secrets
+          secretName: azurekv-secrets
           items:
-          # This maps the key "technitium" to a clear filename
           - key: technitium
             path: technitium
   volumeClaimTemplates:
