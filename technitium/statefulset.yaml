@@ -47,13 +47,13 @@ spec:
         - mountPath: /etc/dns
           name: etc-pvc
         # Use subPath to inject the file natively inside the /etc/dns directory
-        - name: cert-volume
+        - name: secrets-volume
           mountPath: /etc/dns/technitium.pfx
-          subPath: technitium
+          subPath: technitium-pfx
           readOnly: true
         # This injects your self-signed cert into the OS trusted anchors dynamically
         - mountPath: /etc/ssl/certs/technitium-ca.pem
-          name: cert-volume
+          name: secrets-volume
           subPath: technitium-chain-pem
         resources:
           requests:
@@ -73,12 +73,14 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
       volumes:
-      - name: cert-volume
+      - name: secrets-volume
         secret:
           secretName: azurekv-secrets
           items:
-          - key: technitium
-            path: technitium
+          - key: technitium-pfx
+            path: technitium-pfx
+          - key: technitium-chain-pem
+            path: technitium-chain-pem
   volumeClaimTemplates:
   - metadata:
       name: etc-pvc
