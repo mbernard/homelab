@@ -46,6 +46,10 @@ spec:
           ## Point this at your collection.
           name: nfs-private
           subPath: Porn
+        - mountPath: /config
+          ## Keep configs, scrapers, and plugins here.
+          name: stash-vol
+          subPath: config
         - mountPath: /root/.stash
           ## Keep configs, scrapers, and plugins here.
           name: stash-vol
