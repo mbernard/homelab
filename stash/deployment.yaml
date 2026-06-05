@@ -31,7 +31,8 @@ spec:
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: compute,video,utility
-        image: nerethos/stash:v0.31.1
+        image: ghcr.io/rufftruffles/stash-nvenc-patches:latest
+        imagePullPolicy: Always
         name: stash
         ports:
         - containerPort: 9999
