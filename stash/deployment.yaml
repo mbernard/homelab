@@ -31,10 +31,6 @@ spec:
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: compute,video,utility
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "1000"
         - name: MIGRATE
           value: "true"
         image: ghcr.io/rufftruffles/stash-nvenc-patches:latest
@@ -89,10 +85,6 @@ spec:
           periodSeconds: 10
       nodeName: spartan
       runtimeClassName: nvidia
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
       volumes:
       - name: nfs-private
         persistentVolumeClaim:
