@@ -35,8 +35,7 @@ helm install external-secrets external-secrets/external-secrets -n external-secr
 1. Create root-app
 
 ```bash
-kubectl config set-context --current --namespace=argocd
-argocd app create root-app --repo https://github.com/mbernard/homelab.git --path root-app --dest-server https://kubernetes.default.svc --dest-namespace root-app
+kubectl apply -f root-app/templates/root-app.yaml
 ```
 
 1. Sync root-app: `argocd app sync root-app`
