@@ -23,10 +23,6 @@ resources:
 - repo.yaml
 - repo-server-rbac.yaml
 
-images:
-- name: quay.io/argoproj/argocd
-  newTag: latest
-
 commonAnnotations:
   keel.sh/policy: force
   keel.sh/trigger: poll

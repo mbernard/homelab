@@ -28,7 +28,7 @@ helm install external-secrets external-secrets/external-secrets -n external-secr
 ### Argo CD
 
 1. Create `argocd` namespace with `kubectl create namespace argocd`
-1. Deploy ArgoCD manually with `kubectl apply -k argo-cd`
+1. Deploy ArgoCD manually with `kubectl apply -k argo-cd --server-side`
 1. Change the argocd-server service type to LoadBalancer: `kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'`
 1. `argocd admin initial-password -n argocd` to get the password
 1. `argocd login <ARGOCD_SERVER>` "<ARGOCD_SERVER>" should be 127.0.0.1:[PORT_FROM_THE_LB]
