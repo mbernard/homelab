@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: qbitmanage
   namespace: qbitmanage
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -19,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/stuffanthings/qbit_manage:v4.7.1
+        image: ghcr.io/stuffanthings/qbit_manage:latest
         name: qbitmanage
         volumeMounts:
         - mountPath: data/torrents
@@ -44,7 +48,7 @@ spec:
             memory: 256Mi
       initContainers:
       - command: ["sh", "-c", "cp /config-ro/qbitmanage-config.yaml /config-rw/"]
-        image: busybox:1.38.0-uclibc
+        image: busybox:latest
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro

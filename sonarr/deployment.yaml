@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: sonarr
   namespace: sonarr
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -19,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/sonarr:release-4.0.17.2952
+        image: ghcr.io/hotio/sonarr:latest
         name: sonarr
         ports:
         - containerPort: 8989

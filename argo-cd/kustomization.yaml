@@ -23,6 +23,16 @@ resources:
 - repo.yaml
 - repo-server-rbac.yaml
 
+images:
+- name: quay.io/argoproj/argocd
+  newTag: latest
+
+commonAnnotations:
+  keel.sh/policy: force
+  keel.sh/trigger: poll
+  keel.sh/pollSchedule: "@every 1h"
+  keel.sh/approvals: "1"
+
 # secretGenerator:
 # - literals:
 #   - AVP_TYPE=kubernetessecret

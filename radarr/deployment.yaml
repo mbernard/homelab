@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: radarr
   namespace: radarr
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -19,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/radarr:release-6.1.1.10360
+        image: ghcr.io/hotio/radarr:latest
         name: radarr
         ports:
         - containerPort: 7878

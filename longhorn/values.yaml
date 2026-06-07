@@ -1,3 +1,25 @@
+global:
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
+    keel.sh/approvals: "1"
+
+image:
+  longhorn:
+    engine:
+      tag: latest
+    manager:
+      tag: latest
+    ui:
+      tag: latest
+    instanceManager:
+      tag: latest
+    shareManager:
+      tag: latest
+    backingImageManager:
+      tag: latest
+
 csi:
   kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
 defaultSettings:

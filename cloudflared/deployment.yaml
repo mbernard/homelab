@@ -4,6 +4,10 @@ kind: Deployment
 metadata:
   name: cloudflared
   namespace: cloudflared
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 2
   selector:
@@ -20,7 +24,7 @@ spec:
         - --config
         - /etc/cloudflared/config/config.yaml
         - run
-        image: cloudflare/cloudflared:2026.5.2
+        image: cloudflare/cloudflared:latest
         livenessProbe:
           failureThreshold: 1
           httpGet:

@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: plex-server
   namespace: plex
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -29,7 +33,7 @@ spec:
           value: 'all'
         - name: NVIDIA_DRIVER_CAPABILITIES
           value: 'compute,video,utility'
-        image: ghcr.io/hotio/plex:release-1.43.2.10687-563d026ea
+        image: ghcr.io/hotio/plex:latest
         name: plex
         ports:
         - containerPort: 32400 #PMS

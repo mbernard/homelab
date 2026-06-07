@@ -5,6 +5,11 @@ metadata:
     app: technitium
   name: technitium
   namespace: technitium
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
+    keel.sh/approvals: "1"
 spec:
   replicas: 3
   selector:
@@ -27,7 +32,7 @@ spec:
                 - technitium
             topologyKey: "kubernetes.io/hostname"
       containers:
-      - image: technitium/dns-server:15.2.0
+      - image: technitium/dns-server:latest
         imagePullPolicy: IfNotPresent
         name: technitium
         ports:

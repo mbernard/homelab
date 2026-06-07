@@ -18,6 +18,14 @@ data:
     # https://argo-cd.readthedocs.io/en/stable/user-guide/diffing/#ignoring-rbac-changes-made-by-aggregateroles
     ignoreAggregatedRoles: true
   url: https://argocd.miguelbernard.com
+  resource.customizations.ignoreDifferences.apps_Deployment: |
+    jqPathExpressions:
+    - .spec.template.spec.containers[].image
+    - .spec.template.spec.initContainers[].image
+  resource.customizations.ignoreDifferences.apps_StatefulSet: |
+    jqPathExpressions:
+    - .spec.template.spec.containers[].image
+    - .spec.template.spec.initContainers[].image
 kind: ConfigMap
 metadata:
   labels:

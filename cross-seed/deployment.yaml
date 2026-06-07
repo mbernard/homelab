@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: cross-seed
   namespace: cross-seed
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -22,7 +26,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/cross-seed/cross-seed:7.0.0-13
+        image: ghcr.io/cross-seed/cross-seed:latest
         name: cross-seed
         ports:
         - containerPort: 2468

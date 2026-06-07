@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: unpackerr
   namespace: unpackerr
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -17,7 +21,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/unpackerr:release-0.15.2
+        image: ghcr.io/hotio/unpackerr:latest
         name: unpackerr
         volumeMounts:
         - mountPath: /etc/localtime
@@ -36,7 +40,7 @@ spec:
             memory: 1Gi
       initContainers:
       - command: ["sh", "-c", "cp /config-ro/unpackerr.conf /config-rw/"]
-        image: busybox:1.38.0-uclibc
+        image: busybox:latest
         name: copy-config
         volumeMounts:
         - mountPath: /config-ro

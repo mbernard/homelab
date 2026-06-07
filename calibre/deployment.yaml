@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: calibre
   namespace: calibre
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -19,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: linuxserver/calibre:9.9.0
+        image: linuxserver/calibre:latest
         name: calibre
         ports:
         - containerPort: 8080

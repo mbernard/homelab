@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: satisfactory
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -27,7 +31,7 @@ spec:
           value: "false"
         - name: STEAMBETA
           value: "false"
-        image: wolveix/satisfactory-server:v1.9.10
+        image: wolveix/satisfactory-server:latest
         name: satisfactory
         ports:
         - containerPort: 7777

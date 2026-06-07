@@ -21,6 +21,8 @@ credentials-file: /etc/cloudflared/creds/cloudflared-cred
 #   service: hello_world
 # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
 ingress:
+- hostname: keel.miguelbernard.com
+  service: http://keel.keel:9300
 - hostname: argocd.miguelbernard.com
   service: http://argocd-server.argocd.svc.cluster.local
 - hostname: longhorn.miguelbernard.com

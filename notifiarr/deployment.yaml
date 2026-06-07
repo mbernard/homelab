@@ -3,6 +3,10 @@ kind: StatefulSet
 metadata:
   name: notifiarr
   namespace: notifiarr
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
   selector:
@@ -17,7 +21,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: golift/notifiarr:0.9.5-cuda
+        image: golift/notifiarr:latest
         name: notifiarr
         ports:
         - containerPort: 5454
