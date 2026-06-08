@@ -21,8 +21,7 @@ spec:
       containers:
       - args:
         - tunnel
-        - --config
-        - /etc/cloudflared/config/config.yaml
+        - --no-autoupdate
         - run
         image: cloudflare/cloudflared:latest
         livenessProbe:
