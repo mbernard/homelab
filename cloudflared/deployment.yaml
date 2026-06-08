@@ -19,13 +19,9 @@ spec:
         app: cloudflared
     spec:
       containers:
-      - args:
-        - tunnel
-        - --no-autoupdate
-        - --protocol
-        - "http2"
-        - run
-        image: cloudflare/cloudflared:latest
+      - image: cloudflare/cloudflared:latest
+        command: ["cloudflared", "tunnel", "--no-autoupdate", "--protocol", "http2", "run"]
+        args: ["--token", "$(TUNNEL_TOKEN)"] 
         livenessProbe:
           failureThreshold: 1
           httpGet:
