@@ -19,11 +19,14 @@ spec:
         app: cloudflared
     spec:
       containers:
-      - args:
-        - tunnel
-        - --config
-        - /etc/cloudflared/config/config.yaml
-        - run
+      - name: cloudflared
+        # 1. Override the entrypoint to use a shell
+        command: ["/bin/sh", "-c"]
+        # 2. Decode the variable and pass it inline to the run command
+        args:
+        - |
+          CLEAN_TOKEN=$(echo -n "$RAW_KV_TOKEN" | base64)
+          exec cloudflared tunnel --no-autoupdate run --token "$CLEAN_TOKEN"
         image: cloudflare/cloudflared:latest
         livenessProbe:
           failureThreshold: 1
@@ -32,9 +35,8 @@ spec:
             port: 2000
           initialDelaySeconds: 60
           periodSeconds: 10
-        name: cloudflared
         env:
-        - name: TUNNEL_TOKEN
+        - name: RAW_KV_TOKEN
           valueFrom:
             secretKeyRef:
               key: cloudflare-tunnel-token
