@@ -19,18 +19,12 @@ spec:
         app: cloudflared
     spec:
       containers:
-      - env:
-        - name: TUNNEL_TOKEN
-          valueFrom:
-            secretKeyRef:
-              key: cloudflare-tunnel-token
-              name: azurekv-secrets
       - args:
         - tunnel
         - --config
         - /etc/cloudflared/config/config.yaml
         - run
-        image: cloudflare/cloudflared:lastest
+        image: cloudflare/cloudflared:latest
         livenessProbe:
           failureThreshold: 1
           httpGet:
@@ -39,6 +33,12 @@ spec:
           initialDelaySeconds: 60
           periodSeconds: 10
         name: cloudflared
+        env:
+        - name: TUNNEL_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: cloudflare-tunnel-token
+              name: azurekv-secrets
         volumeMounts:
         - mountPath: /etc/cloudflared/config
           name: config
