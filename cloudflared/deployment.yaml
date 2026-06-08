@@ -23,8 +23,8 @@ spec:
         - name: TUNNEL_TOKEN
           valueFrom:
             secretKeyRef:
-              name: azurekv-secrets
               key: cloudflare-tunnel-token
+              name: azurekv-secrets
       - args:
         - tunnel
         - --config
