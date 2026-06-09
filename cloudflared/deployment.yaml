@@ -20,25 +20,25 @@ spec:
     spec:
       containers:
       - image: cloudflare/cloudflared:latest
+        name: cloudflared
         command:
-            - cloudflared
-            - tunnel
-            - --no-autoupdate
-            - --transport-protocol
-            - http2
-            - --loglevel
-            - info
-            - --metrics
-            - 0.0.0.0:2000
-            - run
+          - cloudflared
+          - tunnel
+          - --no-autoupdate
+          - run
+          - --transport-protocol
+          - http2
+          - --loglevel
+          - info
+          - --metrics
+          - 0.0.0.0:2000
         livenessProbe:
-          failureThreshold: 1
+          failureThreshold: 5
           httpGet:
             path: /ready
             port: 2000
           initialDelaySeconds: 60
           periodSeconds: 10
-        name: cloudflared
         env:
         - name: TUNNEL_TOKEN
           valueFrom:
@@ -63,9 +63,9 @@ spec:
       - name: creds
         secret:
           secretName: azurekv-secrets
-      - configMap:
+      - name: config
+        configMap:
+          name: cloudflared
           items:
           - key: config.yaml
             path: config.yaml
-          name: cloudflared
-        name: config
