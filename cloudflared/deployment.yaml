@@ -24,6 +24,8 @@ spec:
             - cloudflared
             - tunnel
             - --no-autoupdate
+            - --transport-protocol
+            - http2
             - --loglevel
             - info
             - --metrics
@@ -43,8 +45,6 @@ spec:
             secretKeyRef:
               key: cloudflare-tunnel-token
               name: azurekv-secrets
-        - name: TUNNEL_TRANSPORT_PROTOCOL
-          value: "http2"
         volumeMounts:
         - mountPath: /etc/cloudflared/config
           name: config
