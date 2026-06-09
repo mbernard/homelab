@@ -26,7 +26,7 @@ spec:
           - tunnel
           - --no-autoupdate
           - run
-          - --transport-protocol
+          - --protocol
           - http2
           - --loglevel
           - info
