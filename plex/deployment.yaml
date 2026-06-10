@@ -4,10 +4,10 @@ metadata:
   name: plex-server
   namespace: plex
   annotations:
-    keel.sh/policy: force
+    keel.sh/policy: regex
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 1h"
-    keel.sh/image-policy: "tag"
+    keel.sh/match: '^release-.*-linux-amd64$'
 spec:
   replicas: 1
   selector:
