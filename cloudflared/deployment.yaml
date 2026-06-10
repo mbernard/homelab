@@ -32,6 +32,8 @@ spec:
           - run
           - --protocol
           - http2
+          - --token
+          - $(TUNNEL_TOKEN)
         livenessProbe:
           failureThreshold: 5
           httpGet:
