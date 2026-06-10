@@ -21,8 +21,7 @@ spec:
       containers:
       - image: cloudflare/cloudflared:latest
         name: cloudflared
-        command:
-          - cloudflared
+        args:
           - tunnel
           - --no-autoupdate
           - --loglevel
@@ -32,8 +31,6 @@ spec:
           - run
           - --protocol
           - http2
-          - --token
-          - $(TUNNEL_TOKEN)
         livenessProbe:
           failureThreshold: 5
           httpGet:
