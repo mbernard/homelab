@@ -23,12 +23,12 @@ spec:
         name: cloudflared
         args:
           - tunnel
+          - run
           - --no-autoupdate
           - --loglevel
           - info
           - --metrics
           - 0.0.0.0:2000
-          - run
           - --protocol
           - http2
         livenessProbe:
