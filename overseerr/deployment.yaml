@@ -31,7 +31,7 @@ spec:
         - mountPath: /etc/localtime
           name: tz
           readOnly: true
-        - mountPath: /config
+        - mountPath: /app/config
           name: overseerr-vol
         - mountPath: /data/media
           name: data
