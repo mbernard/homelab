@@ -4,9 +4,10 @@ metadata:
   name: sonarr
   namespace: sonarr
   annotations:
-    keel.sh/policy: force
+    keel.sh/policy: regex
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 1h"
+    keel.sh/match: '^release-.*-linux-amd64$'
 spec:
   replicas: 1
   selector:
