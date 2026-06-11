@@ -23,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/overseerr:latest
+        image: ghcr.io/seerr-team/seerr:latest
         name: overseerr
         ports:
         - containerPort: 5055
