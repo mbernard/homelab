@@ -15,20 +15,20 @@ module.exports = {
      * Wrap each URL in quotation marks, and separate them with commas, and surround the entire set in brackets.
      */
     torznab: [
-        "http://prowlarr.prowlarr/2/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Milkie
-        "http://prowlarr.prowlarr/4/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // My Anonymouse
-        "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
-        "http://prowlarr.prowlarr/9/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TorrentLeech
-        "http://prowlarr.prowlarr/10/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TheLeachZone
-        "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool
-        "http://prowlarr.prowlarr/12/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // ABTorrents
-        "http://prowlarr.prowlarr/13/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Digital core
-        "http://prowlarr.prowlarr/14/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // RevoTT
+        "http://prowlarr.prowlarr/2/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // Milkie
+        "http://prowlarr.prowlarr/4/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // My Anonymouse
+        "http://prowlarr.prowlarr/5/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // LST
+        "http://prowlarr.prowlarr/9/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // TorrentLeech
+        "http://prowlarr.prowlarr/10/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // TheLeachZone
+        "http://prowlarr.prowlarr/11/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // Seedpool
+        "http://prowlarr.prowlarr/12/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // ABTorrents
+        "http://prowlarr.prowlarr/13/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // Digital core
+        "http://prowlarr.prowlarr/14/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search", // RevoTT
     ],
 
-    sonarr: ["http://sonarr.sonarr?apikey=<path:azurekv-secrets#sonarr-api-key>"],
+    sonarr: ["http://sonarr.sonarr?apikey=${process.env.SONARR_API_KEY}"],
 
-    radarr: ["http://radarr.radarr?apikey=<path:azurekv-secrets#radarr-api-key>"],
+    radarr: ["http://radarr.radarr?apikey=${process.env.RADARR_API_KEY}"],
 
     /**
      * To search with downloaded data, you can pass in directories to your downloaded torrent
@@ -145,7 +145,7 @@ module.exports = {
      * Supply your username and password inside the url like so:
      * "http://username:password@localhost:8080"
      */
-    qbittorrentUrl: "http://admin:<path:azurekv-secrets#qbittorrent-password>@qbittorrent.qbittorrent",
+    qbittorrentUrl: "http://admin:${process.env.QBITTORRENT_PASSWORD}@qbittorrent.qbittorrent",
     /**
      * The url of your Transmission RPC interface.
      * Usually ends with "/transmission/rpc".

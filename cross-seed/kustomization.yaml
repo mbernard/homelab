@@ -5,7 +5,7 @@ configMapGenerator:
 - files:
   - config.js
   name: cross-seed-config
-
+ 
 namespace: cross-seed
 
 resources:
