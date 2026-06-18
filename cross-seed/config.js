@@ -18,7 +18,6 @@ module.exports = {
         "http://prowlarr.prowlarr/2/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Milkie
         "http://prowlarr.prowlarr/4/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // My Anonymouse
         "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
-        "http://prowlarr.prowlarr/6/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // SportsCult
         "http://prowlarr.prowlarr/9/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TorrentLeech
         "http://prowlarr.prowlarr/10/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TheLeachZone
         "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool

@@ -23,7 +23,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/pennydreadful/bookshelf:latest
+        image: ghcr.io/pennydreadful/bookshelf:softcover
         name: bookshelf
         ports:
         - containerPort: 8787
