@@ -19,6 +19,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: cross-seed-pvc
+  namespace: cross-seed
 spec:
   accessModes:
   - ReadWriteOnce
