@@ -1,3 +1,7 @@
+kind: Kustomization
+
+namespace: cross-seed
+
 configMapGenerator:
 - envs:
   - env_vars.properties
