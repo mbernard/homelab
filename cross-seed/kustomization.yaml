@@ -6,7 +6,6 @@ configMapGenerator:
   - config.js
   name: cross-seed-config
 
-
 resources:
 - deployment.yaml
 - service.yaml
