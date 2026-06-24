@@ -37,9 +37,9 @@ module.exports = {
      * If enabled, this needs to be surrounded by brackets. Windows users will need to use
      * double backslash in all paths in this config.
      * e.g.
-     * 		dataDirs: ["/path/here"],
-     * 		dataDirs: ["/path/here", "/other/path/here"],
-     * 		dataDirs: ["C:\\My Data\\Downloads"]
+     * 	dataDirs: ["/path/here"],
+     * 	dataDirs: ["/path/here", "/other/path/here"],
+     * 	dataDirs: ["C:\\My Data\\Downloads"]
      */
     dataDirs: undefined, // ["/data/torrents"],
     /**
