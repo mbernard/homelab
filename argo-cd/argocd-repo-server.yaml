@@ -39,8 +39,6 @@ spec:
         - mountPath: /usr/local/bin/argocd-vault-plugin
           name: custom-tools
           subPath: argocd-vault-plugin
-
-      # argocd-vault-plugin with Kustomize
         resources:
           requests:
             cpu: 10m
@@ -48,6 +46,8 @@ spec:
           limits:
             cpu: 250m
             memory: 256Mi
+
+      # argocd-vault-plugin with Kustomize
       - command: [/var/run/argocd/argocd-cmp-server]
         env:
         - name: AVP_TYPE
@@ -74,8 +74,6 @@ spec:
         - mountPath: /usr/local/bin/argocd-vault-plugin
           name: custom-tools
           subPath: argocd-vault-plugin
-
-      # argocd-vault-plugin with plain YAML
         resources:
           requests:
             cpu: 10m
@@ -83,11 +81,13 @@ spec:
           limits:
             cpu: 250m
             memory: 256Mi
+
+      # argocd-vault-plugin with plain YAML
       - command: [/var/run/argocd/argocd-cmp-server]
         env:
         - name: AVP_TYPE
           value: kubernetessecret
-        image: quay.io/argoproj/argocd:v3.4.2
+        image: quay.io/argoproj/argocd:v3.4.3
         name: avp
         securityContext:
           runAsNonRoot: true
@@ -109,7 +109,6 @@ spec:
         - mountPath: /usr/local/bin/argocd-vault-plugin
           name: custom-tools
           subPath: argocd-vault-plugin
-      # Download tools
         resources:
           requests:
             cpu: 10m
@@ -117,6 +116,8 @@ spec:
           limits:
             cpu: 250m
             memory: 256Mi
+
+      # Download tools
       initContainers:
       - args:
         - >-
