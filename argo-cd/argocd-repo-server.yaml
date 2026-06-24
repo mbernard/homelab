@@ -87,7 +87,7 @@ spec:
         env:
         - name: AVP_TYPE
           value: kubernetessecret
-        image: quay.io/argoproj/argocd:v3.4.2
+        image: quay.io/argoproj/argocd:v3.4.3
         name: avp
         securityContext:
           runAsNonRoot: true
