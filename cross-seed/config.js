@@ -37,9 +37,9 @@ module.exports = {
      * If enabled, this needs to be surrounded by brackets. Windows users will need to use
      * double backslash in all paths in this config.
      * e.g.
-     * 	dataDirs: ["/path/here"],
-     * 	dataDirs: ["/path/here", "/other/path/here"],
-     * 	dataDirs: ["C:\\My Data\\Downloads"]
+     * dataDirs: ["/path/here"],
+     * dataDirs: ["/path/here", "/other/path/here"],
+     * dataDirs: ["C:\\My Data\\Downloads"]
      */
     dataDirs: undefined, // ["/data/torrents"],
     /**
@@ -75,7 +75,7 @@ module.exports = {
      * Directory containing .torrent files.
      * For qBittorrent, this is BT_Backup
      * For rtorrent, this is your session directory
-     * 		as configured in your .rtorrent.rc file.
+     *  as configured in your .rtorrent.rc file.
      * For Deluge, this is ~/.config/deluge/state.
      * For Transmission, this would be ~/.config/transmission/torrents
      *
