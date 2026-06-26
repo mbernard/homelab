@@ -7,7 +7,7 @@ configMapGenerator:
   - env_vars.properties
   name: env-vars
 - files:
-  # - config.js
+  - config.js
   name: cross-seed-config
 
 resources:
