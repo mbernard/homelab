@@ -9,7 +9,7 @@ spec:
       command:
       - sh
       - "-c"
-      - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+      - "if [ ! -f kustomization.yaml ] && [ ! -f Chart.yaml ]; then find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep .; else false; fi"
   generate:
     command:
     - argocd-vault-plugin
