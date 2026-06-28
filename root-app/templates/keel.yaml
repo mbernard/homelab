@@ -10,12 +10,11 @@ spec:
     chart: keel
     targetRevision: 1.2.0
     helm:
-    valueFiles:
-    - $values/keel/values.yaml
+      valueFiles:
+      - $values/keel/values.yaml
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-        
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: keel
