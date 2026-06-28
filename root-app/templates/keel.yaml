@@ -12,11 +12,12 @@ spec:
     helm:
       values: |
         keel:
-          ui:
-            enabled: true
           notificationLevel: info
           discord:
             enabled: true
+          service:
+            enabled: true
+            type: ClusterIP
         env:
         - name: DISCORD_WEBHOOK_URL
           valueFrom:
