@@ -8,8 +8,8 @@ service:
   enabled: true
   type: ClusterIP
 secret:
-  create: false      
-  name: azurekv-secrets
+  create: false
+  name: ""
 extraEnv:
   - name: BASIC_AUTH_PASSWORD
     valueFrom:
