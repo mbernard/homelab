@@ -9,9 +9,12 @@ spec:
   - repoURL: 'https://charts.keel.sh'
     chart: keel
     targetRevision: 1.2.0
-    helm:
-      valueFiles:
-      - $values/keel/values.yaml
+    plugin:
+        name: argocd-vault-plugin-helm
+        env:
+          # This variable replaces ${ARGOCD_ENV_HELM_ARGS} in your sidecar script
+          - name: ARGOCD_ENV_HELM_ARGS
+            value: "-f $ARGOCD_APP_SOURCE_values/keel/values.yaml"
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
