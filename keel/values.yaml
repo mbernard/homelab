@@ -9,7 +9,6 @@ service:
   type: ClusterIP
 extraEnv:
   - name: BASIC_AUTH_PASSWORD
-    # value: <path:azurekv-secrets#keel-password>
-    value: "test"
+    value: "<path:azurekv-secrets#keel-password>"
   - name: DISCORD_WEBHOOK_URL
-    value: <path:azurekv-secrets#discord-webhook-url>
+    value: "<path:azurekv-secrets#discord-webhook-url>"
