@@ -11,19 +11,13 @@ spec:
     targetRevision: 1.2.0
     helm:
       values: |
-        keel:
-          notificationLevel: info
-          discord:
-            enabled: true
-          service:
-            enabled: true
-            type: ClusterIP
-        env:
-        - name: DISCORD_WEBHOOK_URL
-          valueFrom:
-            secretKeyRef:
-              name: azurekv-secrets
-              key: discord-webhook-url
+        notificationLevel: info
+        discord:
+          enabled: true
+          webhookUrl: <path:azurekv-secrets#discord-webhook-url>
+        service:
+          enabled: true
+          type: ClusterIP
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: keel
