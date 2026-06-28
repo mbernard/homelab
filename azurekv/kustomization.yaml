@@ -6,3 +6,4 @@ namespace: azurekv
 resources:
 - azurekv-secret-store.yaml
 - azurekv-secrets.yaml
+- keel-secrets.yaml

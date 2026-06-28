@@ -9,4 +9,4 @@ service:
   type: ClusterIP
 secret:
   create: false
-  name: azurekv-secrets
+  name: keel-secrets

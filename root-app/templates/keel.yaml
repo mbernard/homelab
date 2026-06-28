@@ -9,6 +9,9 @@ spec:
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
+  - repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+    path: keel
   - repoURL: 'https://charts.keel.sh'
     chart: keel
     targetRevision: 1.2.0
