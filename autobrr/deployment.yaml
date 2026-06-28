@@ -45,12 +45,12 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 7474
-          initialDelaySeconds: 60
+          initialDelaySeconds: 300
           periodSeconds: 20
         readinessProbe:
           tcpSocket:
             port: 7474
-          initialDelaySeconds: 30
+          initialDelaySeconds: 300
           periodSeconds: 10
       volumes:
       - hostPath:
