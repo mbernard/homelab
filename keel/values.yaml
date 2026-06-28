@@ -1,0 +1,11 @@
+notificationLevel: info
+discord:
+  enabled: true
+  webhookUrl: <path:azurekv-secrets#discord-webhook-url>
+basicauth:
+  enabled: true
+  user: admin
+  password: <path:azurekv-secrets#keel-password>
+service:
+  enabled: true
+  type: ClusterIP

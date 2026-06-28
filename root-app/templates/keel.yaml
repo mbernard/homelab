@@ -5,23 +5,17 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://charts.keel.sh'
+  sources:
+  - repoURL: 'https://charts.keel.sh'
     chart: keel
     targetRevision: 1.2.0
     helm:
-      values: |
-        notificationLevel: info
-        discord:
-          enabled: true
-          webhookUrl: <path:azurekv-secrets#discord-webhook-url>
-        basicauth:
-          enabled: true
-          user: admin
-          password: <path:azurekv-secrets#keel-password>
-        service:
-          enabled: true
-          type: ClusterIP
+    valueFiles:
+    - $values/keel/values.yaml
+  - ref: values
+    repoURL: https://github.com/mbernard/homelab.git
+    targetRevision: HEAD
+        
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: keel
