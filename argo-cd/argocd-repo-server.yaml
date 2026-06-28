@@ -127,7 +127,7 @@ spec:
         command: [sh, -c]
         env:
         - name: AVP_VERSION
-          value: 1.18.0
+          value: 1.18.1
         image: registry.access.redhat.com/ubi8:8.10-1778769589
         name: download-tools
         volumeMounts:
