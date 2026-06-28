@@ -5,16 +5,15 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
-  - ref: values
+  source:
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
-  - repoURL: 'https://charts.keel.sh'
-    chart: keel
-    targetRevision: 1.2.0
-    helm:
-      valueFiles:
-      - $values/keel/values.yaml
+    path: keel  # folder containing Chart.yaml that wraps keel as a dependency
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+        - name: HELM_ARGS
+          value: "-f values.yaml"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: keel
