@@ -7,6 +7,9 @@ basicauth:
 service:
   enabled: true
   type: ClusterIP
+secret:
+  create: false      
+  name: azurekv-secrets
 extraEnv:
   - name: BASIC_AUTH_PASSWORD
     valueFrom:
