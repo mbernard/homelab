@@ -14,7 +14,7 @@ spec:
         env:
           # This variable replaces ${ARGOCD_ENV_HELM_ARGS} in your sidecar script
           - name: ARGOCD_ENV_HELM_ARGS
-            value: "-f $ARGOCD_APP_SOURCE_values/keel/values.yaml"
+            value: "-f $values/keel/values.yaml"
   - ref: values
     repoURL: https://github.com/mbernard/homelab.git
     targetRevision: HEAD
