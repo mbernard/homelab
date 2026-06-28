@@ -6,6 +6,7 @@ metadata:
   annotations:
     keel.sh/policy: force
     keel.sh/trigger: poll
+    keel.sh/match-tag: "true"
     keel.sh/pollSchedule: "@every 1h"
 spec:
   replicas: 1
@@ -24,6 +25,7 @@ spec:
         - configMapRef:
             name: env-vars
         image: ghcr.io/autobrr/autobrr:latest
+        imagePullPolicy: Always
         name: autobrr
         ports:
         - containerPort: 7474
