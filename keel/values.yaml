@@ -9,15 +9,4 @@ service:
   type: ClusterIP
 secret:
   create: false
-  name: ""
-extraEnv:
-  - name: BASIC_AUTH_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: azurekv-secrets
-        key: keel-password
-  - name: DISCORD_WEBHOOK_URL
-    valueFrom:
-      secretKeyRef:
-        name: azurekv-secrets
-        key: discord-webhook-url
+  name: azurekv-secrets
