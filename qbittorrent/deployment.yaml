@@ -9,6 +9,7 @@ metadata:
     keel.sh/pollSchedule: "@every 1h"
     keel.sh/match: '^release-.*-linux-amd64$'
     keel.sh/approvals: "1"
+    keel.sh/match-tag: "true"
 spec:
   replicas: 1
   selector:

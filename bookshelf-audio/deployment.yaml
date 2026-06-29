@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: bookshelf-audio
   namespace: bookshelf-audio
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1h"
+    keel.sh/match-tag: "true"
 spec:
   replicas: 1
   selector:
