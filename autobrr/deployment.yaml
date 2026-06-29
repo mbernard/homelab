@@ -35,13 +35,6 @@ spec:
           readOnly: true
         - mountPath: /config
           name: autobrr-vol
-        resources:
-          requests:
-            cpu: 10m
-            memory: 64Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
       volumes:
       - hostPath:
           path: /etc/localtime
