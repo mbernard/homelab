@@ -1,4 +1,4 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 
 namespace: azurekv
@@ -6,4 +6,3 @@ namespace: azurekv
 resources:
 - azurekv-secret-store.yaml
 - azurekv-secrets.yaml
-- keel-secrets.yaml
