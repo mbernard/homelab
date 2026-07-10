@@ -23,36 +23,22 @@ spec:
         run: qbittorrent
     spec:
       containers:
-      # - envFrom:
-      #   - configMapRef:
-      #       name: env-vars
-      #   image: ghcr.io/qdm12/gluetun:v3.40.0
-      #   imagePullPolicy: Always
-      #   # https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md
-      #   lifecycle:
-      #     postStart:
-      #       exec:
-      #         command: [ "/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true" ]
-      #   name: gluetun
-      #   securityContext:
-      #     capabilities:
-      #       add: [ "NET_ADMIN" ]
-      #   volumeMounts:
-      #   - mountPath: /gluetun
-      #     name: gluetun-config
-      #  === qBittorrent container ===
-      - envFrom:
+      - name: qbittorrent
+        image: ghcr.io/hotio/qbittorrent:latest
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/qbittorrent:latest
-        name: qbittorrent
         ports:
         - containerPort: 8080
           name: web-ui
         - containerPort: 28601
           name: seeding
         volumeMounts:
-        - mountPath: data/torrents
+        - mountPath: /data/torrents
           name: data
           subPath: torrents
         - mountPath: /etc/localtime
@@ -83,9 +69,9 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
       initContainers:
-      - command: ["sh", "-c", "cp /config-ro/wg0.conf /config-rw/"]
+      - name: copy-config
         image: busybox:latest
-        name: copy-config
+        command: ["sh", "-c", "cp /config-ro/wg0.conf /config-rw/"]
         volumeMounts:
         - mountPath: /config-ro
           name: vpn-config
@@ -95,17 +81,17 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: qbittorrent-nfs-pvc
-      - hostPath:
+      - name: tz
+        hostPath:
           path: /etc/localtime
-        name: tz
       - name: qbittorrent-vol
         persistentVolumeClaim:
           claimName: qbittorrent-pvc
       - configMap:
           name: wg0.conf
         name: vpn-config
-      - emptyDir: {}
-        name: writable-volume
-      # - name: gluetun-config
-      #   persistentVolumeClaim:
-      #     claimName: gluetun-pvc
+      - name: writable-volume
+        emptyDir: {}
+
+
+
