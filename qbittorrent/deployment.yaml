@@ -23,20 +23,34 @@ spec:
         run: qbittorrent
     spec:
       containers:
-      - name: qbittorrent
-        image: ghcr.io/hotio/qbittorrent:latest
+      # === Container 1: Gluetun VPN Gateway ===
+      - name: gluetun
+        image: ghcr.io/qdm12/gluetun:latest
+        imagePullPolicy: Always
         securityContext:
           capabilities:
-            add:
-            - NET_ADMIN
+            add: [ "NET_ADMIN" ]
         envFrom:
         - configMapRef:
             name: env-vars
+        env:
+          - name: WIREGUARD_PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: azurekv-secrets
+                key: proton-vpn-private-key
         ports:
         - containerPort: 8080
           name: web-ui
         - containerPort: 28601
           name: seeding
+        volumeMounts:
+        - mountPath: /gluetun
+          name: gluetun-config
+
+      # === Container 2: qBittorrent (Secured by Gluetun) ===
+      - name: qbittorrent
+        image: ghcr.io/hotio/qbittorrent:latest
         volumeMounts:
         - mountPath: /data/torrents
           name: data
@@ -49,8 +63,6 @@ spec:
         - mountPath: /config/data/BT_backup
           name: data
           subPath: BT_backup
-        - mountPath: /config/wireguard
-          name: writable-volume
         resources:
           requests:
             cpu: 100m
@@ -58,19 +70,7 @@ spec:
           limits:
             cpu: 1000m
             memory: 2Gi
-      initContainers:
-      - name: copy-config
-        image: busybox:latest
-        command: ["sh", "-c", "cp /config-ro/wg0.conf /config-rw/"]
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-        volumeMounts:
-        - mountPath: /config-ro
-          name: vpn-config
-        - mountPath: /config-rw
-          name: writable-volume
+
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -81,11 +81,5 @@ spec:
       - name: qbittorrent-vol
         persistentVolumeClaim:
           claimName: qbittorrent-pvc
-      - name: vpn-config
-        secret:
-          secretName: wg0-config-secret
-      - name: writable-volume
+      - name: gluetun-config
         emptyDir: {}
-
-
-
