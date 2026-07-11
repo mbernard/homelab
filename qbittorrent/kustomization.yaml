@@ -4,7 +4,7 @@ configMapGenerator:
   name: env-vars
 - files:
   - wg0.conf
-  name: wg0.conf
+  name: wg0-blueprint
 kind: Kustomization
 
 namespace: qbittorrent
@@ -14,3 +14,4 @@ resources:
 - service.yaml
 - storage.yaml
 - nfs-pv-pvc.yaml
+- qbittorrent-vpn-config.yaml

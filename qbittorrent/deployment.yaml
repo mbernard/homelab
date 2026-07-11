@@ -81,9 +81,9 @@ spec:
       - name: qbittorrent-vol
         persistentVolumeClaim:
           claimName: qbittorrent-pvc
-      - configMap:
-          name: wg0.conf
-        name: vpn-config
+      - name: vpn-config
+        secret:
+          secretName: wg0-config-secret
       - name: writable-volume
         emptyDir: {}
 
