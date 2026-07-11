@@ -1,5 +1,3 @@
-const { flatLinking } = require("./config.js.old");
-
 module.exports = {
     /**
      * List of Torznab URLs from Prowlarr or Jackett.
