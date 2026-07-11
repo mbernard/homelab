@@ -26,9 +26,7 @@ spec:
       - name: qbittorrent
         image: ghcr.io/hotio/qbittorrent:latest
         securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
+          privileged: true
         envFrom:
         - configMapRef:
             name: env-vars
