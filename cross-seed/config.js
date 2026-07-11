@@ -77,9 +77,11 @@ module.exports = {
     searchCadence: "14d",     // How frequently to scan your entire library (e.g., every 14 days)
     rssCadence: "10m",        // How frequently to scan indexer RSS feeds
 
+    // extra
     notificationWebhookUrls: [
         "https://notifiarr.com/api/v1/notification/crossSeed/60829eba-7fd6-4efb-8a1b-f5a669028e7d"
     ],
-
     flatLinking: true,
+    excludeOlder: "2 weeks",
+    excludeRecentSearch: "3 days",
 };
