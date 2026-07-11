@@ -74,7 +74,7 @@ module.exports = {
      * Daemon Options
      */
     port: 2468,               // Port for the local API/Webhooks (e.g., for autobrr integration)
-    searchCadence: "14d",     // How frequently to scan your entire library (e.g., every 14 days)
+    searchCadence: "1d",     // How frequently to scan your entire library (e.g., every 14 days)
     rssCadence: "10m",        // How frequently to scan indexer RSS feeds
 
     // extra
