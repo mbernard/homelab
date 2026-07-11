@@ -5,6 +5,8 @@ configMapGenerator:
 - files:
   - wg0.conf
   name: wg0-blueprint
+  options:
+    disableNameSuffixHash: true
 kind: Kustomization
 
 namespace: qbittorrent
