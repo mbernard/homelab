@@ -11,13 +11,13 @@ spec:
   target:
     name: wg0-config-secret
     creationPolicy: Owner
-  template:
-    engineVersion: v2
-    templateFrom:
-    - configMap:
-        name: wg0-blueprint
-        items:
-        - key: wg0.conf
+    template:
+      engineVersion: v2
+      templateFrom:
+      - configMap:
+          name: wg0-blueprint
+          items:
+          - key: wg0.conf
   data:
   - secretKey: private_key
     remoteRef:
