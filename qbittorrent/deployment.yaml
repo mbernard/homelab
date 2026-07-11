@@ -29,7 +29,9 @@ spec:
         imagePullPolicy: Always
         securityContext:
           capabilities:
-            add: [ "NET_ADMIN" ]
+            add: 
+            - NET_ADMIN
+          privileged: true
         envFrom:
         - configMapRef:
             name: env-vars
@@ -47,10 +49,15 @@ spec:
         volumeMounts:
         - mountPath: /gluetun
           name: gluetun-config
+        - name: host-tun
+          mountPath: /dev/net/tun
 
       # === Container 2: qBittorrent (Secured by Gluetun) ===
       - name: qbittorrent
         image: ghcr.io/hotio/qbittorrent:latest
+        env:
+          - name: WEBUI_PORT
+            value: "8080"
         volumeMounts:
         - mountPath: /data/torrents
           name: data
@@ -71,6 +78,20 @@ spec:
             cpu: 1000m
             memory: 2Gi
 
+      # === Container 3: Port Sync Sidecar ===
+      # This ultra-lightweight process watches Gluetun's port file and pushes changes to qBittorrent
+      - name: port-sync
+        image: ghcr.io/hononeko/qbit-gluetun-sync:latest
+        env:
+          - name: QBIT_ADDR
+            value: "http://localhost:8080"
+          - name: PORT_FILE
+            value: "/gluetun/forwarded_port"
+        volumeMounts:
+        - mountPath: /gluetun
+          name: gluetun-config
+          readOnly: true
+
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -83,3 +104,7 @@ spec:
           claimName: qbittorrent-pvc
       - name: gluetun-config
         emptyDir: {}
+      - name: host-tun
+        hostPath:
+          path: /dev/net/tun
+          type: CharDevice
