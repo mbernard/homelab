@@ -4,15 +4,15 @@ module.exports = {
      * MUST be enclosed in brackets [] and strings separated by commas.
      */
     torznab: [
-        `http://prowlarr.prowlarr/2/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // Milkie
-        `http://prowlarr.prowlarr/4/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // My Anonymouse
-        `http://prowlarr.prowlarr/5/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // LST
-        `http://prowlarr.prowlarr/9/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // TorrentLeech
-        `http://prowlarr.prowlarr/10/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // TheLeachZone
-        `http://prowlarr.prowlarr/11/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // Seedpool
-        `http://prowlarr.prowlarr/12/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // ABTorrents
-        `http://prowlarr.prowlarr/13/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // Digital core
-        `http://prowlarr.prowlarr/14/api?apikey=${process.env.PROWLARR_API_KEY}&extended=1&t=search`, // RevoTT
+        "http://prowlarr.prowlarr/2/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Milkie
+        "http://prowlarr.prowlarr/4/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // My Anonymouse
+        "http://prowlarr.prowlarr/5/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // LST
+        "http://prowlarr.prowlarr/9/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TorrentLeech
+        "http://prowlarr.prowlarr/10/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // TheLeachZone
+        "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool
+        "http://prowlarr.prowlarr/12/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // ABTorrents
+        "http://prowlarr.prowlarr/13/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Digital core
+        "http://prowlarr.prowlarr/14/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // RevoTT
     ],
 
     /**
@@ -21,7 +21,7 @@ module.exports = {
      * Format -> client:http://username:password@host:port
      */
     torrentClients: [
-        `qbittorrent:http://admin:${process.env.QBITTORRENT_PASSWORD}@qbittorrent.qbittorrent`,
+        "qbittorrent:http://admin:<path:azurekv-secrets#qbittorrent-password>@qbittorrent.qbittorrent",
         // "deluge:http://:your_password@localhost:8112/json",
         // "transmission:readonly:http://user:pass@localhost:9091/transmission/rpc",
         // "rtorrent:http://user:pass@localhost:8080/RPC2"
@@ -66,8 +66,8 @@ module.exports = {
      * Media Management Integration (Sonarr/Radarr)
      * Allows searching by specific Media IDs rather than just raw text titles.
      */
-    sonarr: [`http://sonarr.sonarr?apikey=${process.env.SONARR_API_KEY}`],
-    radarr: [`http://radarr.radarr?apikey=${process.env.RADARR_API_KEY}`],
+    sonarr: ["http://sonarr.sonarr?apikey=<path:azurekv-secrets#sonarr-api-key>"],
+    radarr: ["http://radarr.radarr?apikey=<path:azurekv-secrets#radarr-api-key>"],
     duplicateCategories: true, // Appends ".cross-seed" to your existing hardlink categories
 
     /**
