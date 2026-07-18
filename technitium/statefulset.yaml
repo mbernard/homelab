@@ -34,7 +34,7 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - image: technitium/dns-server:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: technitium
         ports:
         - containerPort: 53

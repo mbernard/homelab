@@ -55,6 +55,7 @@ spec:
       # === Container 2: qBittorrent (Secured by Gluetun) ===
       - name: qbittorrent
         image: ghcr.io/hotio/qbittorrent:latest
+        imagePullPolicy: Always
         env:
           - name: WEBUI_PORT
             value: "8080"
