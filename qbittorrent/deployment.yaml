@@ -108,8 +108,8 @@ spec:
                 name: azurekv-secrets
                 key: mousehole-password
         volumeMounts:
-            - name: mousehole
-              mountPath: /var/lib/mousehole
+        - name: mousehole
+          mountPath: /var/lib/mousehole
         resources:
           requests:
             cpu: 100m
