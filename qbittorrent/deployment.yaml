@@ -46,6 +46,8 @@ spec:
           name: web-ui
         - containerPort: 28601
           name: seeding
+        - containerPort: 5010
+          name: mousehole
         volumeMounts:
         - mountPath: /gluetun
           name: gluetun-config
@@ -93,6 +95,28 @@ spec:
           name: gluetun-config
           readOnly: true
 
+      # === Container 4: MouseHole ===
+      - name: mousehole
+        image: tmmrtn/mousehole:latest
+        imagePullPolicy: Always
+        env:
+          - name: PORT
+            value: "5010"
+          - name: MOUSEHOLE_AUTH_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: azurekv-secrets
+                key: mousehole-password
+        volumeMounts:
+            - name: mousehole
+              mountPath: /var/lib/mousehole
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 2Gi
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -109,3 +133,6 @@ spec:
         hostPath:
           path: /dev/net/tun
           type: CharDevice
+      - name: mousehole
+        persistentVolumeClaim:
+          claimName: mousehole-pvc

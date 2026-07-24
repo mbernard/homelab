@@ -16,6 +16,10 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 8080
+  - name: mousehole
+    port: 5010
+    protocol: TCP
+    targetPort: 5010
   selector:
     run: qbittorrent
   type: LoadBalancer
