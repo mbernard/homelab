@@ -104,6 +104,8 @@ spec:
             value: "5010"
           - name: MOUSEHOLE_ALLOWED_HOSTS
             value: mousehole.miguelbernard.com
+          - name: MOUSEHOLE_ALLOWED_ORIGINS
+            value: https://mousehole.miguelbernard.com
           - name: MOUSEHOLE_AUTH_PASSWORD
             valueFrom:
               secretKeyRef:
