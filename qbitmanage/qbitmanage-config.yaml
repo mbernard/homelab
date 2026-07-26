@@ -165,6 +165,9 @@ tracker:
   torrentleech|tleechreload:
     tag: TorrentLeech
     notifiarr: torrentleech
+  hdts:
+    tag: HDTorrents
+    notifiarr: hdts
   # tv-vault:
   #   tag: TV-Vault
   # The "other" key is a special keyword and if defined will tag any other trackers that don't match the above trackers into this tag
