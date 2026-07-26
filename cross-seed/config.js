@@ -12,6 +12,7 @@ module.exports = {
         "http://prowlarr.prowlarr/11/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Seedpool
         "http://prowlarr.prowlarr/12/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // ABTorrents
         "http://prowlarr.prowlarr/13/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // Digital core
+        "http://prowlarr.prowlarr/15/api?apikey=<path:azurekv-secrets#prowlarr-api-key>&extended=1&t=search", // HD Torrents
     ],
 
     /**
