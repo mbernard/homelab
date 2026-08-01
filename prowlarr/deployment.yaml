@@ -4,10 +4,9 @@ metadata:
   name: prowlarr
   namespace: prowlarr
   annotations:
-    keel.sh/policy: regex
+    keel.sh/policy: force
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 1h"
-    keel.sh/match: '^release-.*-linux-amd64$'
     keel.sh/match-tag: "true"
 spec:
   replicas: 1
@@ -26,6 +25,7 @@ spec:
         - configMapRef:
             name: env-vars
         image: ghcr.io/hotio/prowlarr:latest
+        imagePullPolicy: Always
         name: prowlarr
         ports:
         - containerPort: 9696
