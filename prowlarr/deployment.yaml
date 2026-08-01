@@ -24,7 +24,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: env-vars
-        image: ghcr.io/hotio/prowlarr:latest
+        image: linuxserver/prowlarr:latest
         imagePullPolicy: Always
         name: prowlarr
         ports:
