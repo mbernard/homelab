@@ -38,7 +38,7 @@ spec:
           value: compute,video,utility
         - name: MIGRATE
           value: "true"
-        image: ghcr.io/rufftruffles/stash-nvenc-patches:latest
+        image: ghcr.io/feederbox826/stash-s6:hwaccel
         imagePullPolicy: Always
         name: stash
         ports:
