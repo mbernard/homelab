@@ -65,16 +65,15 @@ spec:
           subPath: metadata
         - mountPath: /cache
           ## Any other cache content.
-          name: stash-vol
-          subPath: cache
+          name: stash-cache-ram
         - mountPath: /blobs
           ## Where to store binary blob data (scene covers, images)
           name: stash-vol
           subPath: blobs
         - mountPath: /generated
           ## Where to store generated content (screenshots,previews,transcodes,sprites)
-          name: nfs-private
-          subPath: stash/generated
+          name: stash-vol
+          subPath: generated
       nodeName: spartan
       runtimeClassName: nvidia
       volumes:
@@ -87,3 +86,7 @@ spec:
       - name: stash-vol
         persistentVolumeClaim:
           claimName: stash-pvc
+      - name: stash-cache-ram
+        emptyDir:
+          medium: Memory
+          sizeLimit: 2Gi
