@@ -4,10 +4,13 @@ metadata:
   labels:
     run: stash
   name: stash
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.207
 spec:
   ports:
-  - port: 80
+  - port: 9999
     protocol: TCP
     targetPort: 9999
   selector:
     run: stash
+  type: LoadBalancer
